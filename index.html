@@ -972,7 +972,7 @@ function analyze(){
     +'<span class="tag">'+SCENES[curScene].label+"</span></div>"
     +"<label>Độ hài hòa · "+sc+"/100</label>"
     +'<div class="bar"><i style="width:'+sc+'%"></i></div>'
-    +w.map(x=>'<div class="warn'+(ok?" ok":"")+"">"+(ok?"✅":"⚠️")+" "+x+"</div>").join("")
+    +w.map(x=>'<div class="warn'+(ok?' ok':'')+'">'+(ok?'✅':'⚠️')+' '+x+'</div>').join('')
     +'<p style="margin-top:12px"><b>💡 Gợi ý:</b> '+tips.join(" ")+"</p>"
     +'<p style="color:var(--mute);font-size:.9rem"><b>📜 Nguồn gốc:</b> '+g.o+"</p>"
     +'<button class="btn sm" id="sv" style="margin-top:12px">💾 Lưu vào lookbook</button>';
