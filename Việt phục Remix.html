@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Việt phục Remix</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf3e4;--card:#fffaf0;--ink:#3a2418;--mute:#7a604f;--red:#9c2f1b;--gold:#c8922a;--line:#e7d5b5;--warn:#fbe3d6;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1f1510;--card:#2b1d16;--ink:#f6e8d2;--mute:#c0a58e;--red:#e0674c;--gold:#e3b04b;--line:#4a3427;--warn:#4a2a20}}
+:root[data-theme="dark"]{--bg:#1f1510;--card:#2b1d16;--ink:#f6e8d2;--mute:#c0a58e;--red:#e0674c;--gold:#e3b04b;--line:#4a3427;--warn:#4a2a20}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Be Vietnam Pro',system-ui,sans-serif;line-height:1.6}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;margin:.2em 0}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;gap:4px;align-items:center;padding:8px 14px;overflow-x:auto}
+nav b{font-family:'Playfair Display',serif;color:var(--red);margin-right:auto;white-space:nowrap;font-size:1.15rem}
+nav a{padding:6px 12px;border-radius:99px;color:var(--ink);text-decoration:none;font-size:.9rem;white-space:nowrap}
+nav a.on{background:var(--red);color:#fff}
+main{max-width:1000px;margin:0 auto;padding:20px 16px 60px}
+.page{display:none;animation:f .5s}.page.on{display:block}@keyframes f{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+.hero{text-align:center;padding:40px 10px;border-radius:24px;background:radial-gradient(circle at 50% 0,rgba(200,146,42,.25),transparent 70%),var(--card);border:1px solid var(--line)}
+.hero h1{font-size:clamp(2rem,6vw,3.6rem);color:var(--red)}
+.btn{background:var(--red);color:#fff;border:0;border-radius:99px;padding:10px 22px;font:inherit;cursor:pointer;text-decoration:none;display:inline-block;transition:.2s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.1)}.btn.o{background:transparent;color:var(--red);border:1.5px solid var(--red)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin:18px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+.card .ic{font-size:1.8rem}
+.lay{display:grid;gap:18px;grid-template-columns:1fr 1.2fr}@media(max-width:760px){.lay{grid-template-columns:1fr}}
+label{display:block;font-weight:600;font-size:.85rem;margin:12px 0 6px;color:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:5px 12px;font:inherit;font-size:.85rem;cursor:pointer}
+.chip.on{border-color:var(--red);background:var(--red);color:#fff}
+.sw{width:30px;height:30px;border-radius:50%;border:3px solid var(--card);box-shadow:0 0 0 1.5px var(--line);cursor:pointer;padding:0}.sw.on{box-shadow:0 0 0 3px var(--gold)}
+.stage{background:linear-gradient(#f6e3bd,#efd29b);border-radius:20px;padding:10px;text-align:center}.stage svg{max-width:280px;width:100%;height:auto}
+.tag{display:inline-block;background:var(--gold);color:#3a2418;border-radius:8px;padding:1px 9px;font-size:.78rem;margin:2px}
+.warn{background:var(--warn);border-left:4px solid var(--red);padding:8px 12px;border-radius:8px;margin:6px 0;font-size:.9rem}
+.ok{border-left-color:#4a8a3c}
+.bar{height:10px;border-radius:9px;background:var(--line);overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--red));transition:width .6s}
+.shots{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.shot img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:12px;background:#efd29b}
+input[type=text],textarea{width:100%;padding:9px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
+.opt{display:block;width:100%;text-align:left;margin:6px 0}
+.step{display:flex;gap:12px;margin:14px 0}.step b{flex:none;width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center}
+</style></head><body>
+<nav><b>❖ Việt phục Remix</b>
+<a href="#home">Trang chủ</a><a href="#mix">Gợi ý phối đồ</a><a href="#look">Lookbook</a><a href="#learn">Tìm hiểu &amp; Quiz</a><a href="#about">Về dự án</a></nav>
+<main>
+
+<section class="page" id="home"><div class="hero">
+<p style="color:var(--gold);letter-spacing:.2em">VIỆT PHỤC · GEN Z</p>
+<h1>Mặc quá khứ,<br>phối theo hiện tại</h1>
+<p style="max-width:560px;margin:10px auto 22px">Khám phá áo dài, áo tứ thân, áo ngũ thân, áo bà ba và phối cùng đồ hiện đại – vừa cá tính, vừa giữ trọn bản sắc.</p>
+<a class="btn" href="#mix">Bắt đầu phối đồ</a> <a class="btn o" href="#learn">Tìm hiểu Việt phục</a></div>
+<div class="grid">
+<div class="card"><div class="ic">🧵</div><h3>Chọn &amp; phối</h3><p>Chọn trang phục, sự kiện, màu, phụ kiện và phong cách để xem mockup ngay.</p></div>
+<div class="card"><div class="ic">⚠️</div><h3>Cảnh báo văn hóa</h3><p>Hệ thống nhắc những kết hợp dễ làm sai lệch đặc trưng của Việt phục.</p></div>
+<div class="card"><div class="ic">📸</div><h3>Lookbook cá nhân</h3><p>Lưu phối đồ, đăng ảnh thật như một trang profile nhỏ.</p></div>
+<div class="card"><div class="ic">📜</div><h3>Hiểu để mặc đúng</h3><p>Nguồn gốc, ý nghĩa và quiz vui về trang phục truyền thống.</p></div></div></section>
+
+<section class="page" id="mix"><h2>Gợi ý phối đồ</h2><p style="color:var(--mute)">Chọn từng bước – kết quả cập nhật trực tiếp.</p>
+<div class="lay"><div class="card" id="ctl"></div><div><div class="stage" id="stage"></div><div class="card" style="margin-top:12px" id="res"></div></div></div></section>
+
+<section class="page" id="look"><h2>Lookbook Việt phục</h2><p style="color:var(--mute)">Ảnh lưu trên trình duyệt của bạn. Khi có back end, đây sẽ là profile để trao đổi &amp; chia sẻ.</p>
+<div class="card"><label>Tên / chú thích</label><input type="text" id="cap" placeholder="VD: Áo dài trắng + sneaker đi cà phê">
+<label>Ảnh trang phục của bạn</label><input type="file" id="file" accept="image/*"> <button class="btn" id="up" style="margin-top:8px">Đăng vào lookbook</button></div>
+<div class="shots" id="shots" style="margin-top:16px"></div></section>
+
+<section class="page" id="learn"><h2>Tìm hiểu Việt phục</h2><div class="grid" id="info"></div>
+<h2>Quiz nhỏ</h2><div class="card" id="quiz"></div></section>
+
+<section class="page" id="about"><h2>Về dự án</h2>
+<div class="card"><h3>Mục đích</h3><p>Việt phục Remix giúp học sinh, sinh viên đưa trang phục truyền thống vào đời sống hằng ngày: hiện đại nhưng vẫn <b>làm nổi bật</b> Việt phục chứ không làm mờ bản sắc.</p></div>
+<h3 style="margin-top:20px">Quy trình hoạt động</h3>
+<div class="step"><b>1</b><div><b>Chọn</b> trang phục, sự kiện, màu sắc và phong cách.</div></div>
+<div class="step"><b>2</b><div><b>Phối</b> với đồ hiện đại và phụ kiện, xem mockup trực tiếp.</div></div>
+<div class="step"><b>3</b><div><b>Kiểm tra</b> độ hài hòa màu và cảnh báo văn hóa theo bộ quy tắc.</div></div>
+<div class="step"><b>4</b><div><b>Đọc</b> thẻ nguồn gốc – ý nghĩa để hiểu điều mình đang mặc.</div></div>
+<div class="step"><b>5</b><div><b>Lưu &amp; chia sẻ</b> vào lookbook cá nhân.</div></div>
+<div class="card"><h3>Bảo đảm thông tin văn hóa</h3><p>Mỗi trang phục có thẻ thông tin ngắn; quy tắc phối do người làm sản phẩm biên soạn từ tài liệu phổ biến và cần được thẩm định bởi nhà nghiên cứu/nhóm Việt phục trước khi phát hành. Tinh thần: gợi ý, không áp đặt; cảnh báo, không cấm.</p></div></section>
+</main>
+<script>
+const G={
+aodai:{n:"Áo dài",p:"Áo dài",sh:"long",o:"Định hình nét hiện đại từ thế kỷ 20, bắt nguồn từ áo ngũ thân và áo giao lĩnh. Thanh lịch, ôm dáng, hợp lễ hội, tốt nghiệp, chụp ảnh."},
+tuthan:{n:"Áo tứ thân",sh:"tu",o:"Phổ biến ở Bắc Bộ; hai tà trước buộc lại, gắn với hình ảnh các liền chị Quan họ. Kết hợp yếm, váy và thắt lưng."},
+nguthan:{n:"Áo ngũ thân",sh:"ngu",o:"Áo cổ đứng, cài lệch, có thêm vạt con; phổ biến thời Nguyễn – nền tảng của áo dài hiện đại. Trang trọng, hợp lễ, sự kiện văn hóa."},
+baba:{n:"Áo bà ba",sh:"ba",o:"Áo thường ngày Nam Bộ, cổ tròn hoặc cổ tim, gọn gàng, hợp khí hậu nóng ẩm; thường đi với quần lụa."}};
+const EV=["Lễ hội / Tết","Tốt nghiệp","Đi cà phê","Chụp ảnh kỷ yếu"];
+const COL=[["Đỏ son","#b3261e"],["Vàng nghệ","#d9a21b"],["Xanh chàm","#2c4a73"],["Trắng ngà","#f4ecd8"],["Nâu đất","#7a4a2b"],["Xanh rêu","#5b7a45"]];
+const MOD=[["Quần jeans","#4d6a8f"],["Quần ống rộng trắng","#f4f0e6"],["Chân váy dài","#3b2f2f"],["Quần short","#4d6a8f"]];
+const ACC=["Nón lá","Khăn vấn","Trâm/hoa tai","Sneaker","Hoodie","Mũ lưỡi trai"];
+const STY=["Thanh lịch","Streetwear nhẹ","Cổ điển"];
+let S={g:"aodai",e:0,c:0,m:1,a:new Set(["Trâm/hoa tai"]),s:0};
+const $=q=>document.querySelector(q);
+function chips(k,arr,multi){return `<div class="chips">`+arr.map((x,i)=>{const on=multi?S.a.has(x):S[k]==(k=="g"?x[0]:i);return `<button class="chip ${on?'on':''}" data-k="${k}" data-v="${k=='g'?x[0]:multi?x:i}">${k=='g'?x[1]:x}</button>`}).join("")+`</div>`}
+function sw(k,arr){return `<div class="chips">`+arr.map((x,i)=>`<button class="sw ${S[k]==i?'on':''}" data-k="${k}" data-v="${i}" title="${x[0]}" style="background:${x[1]}"></button>`).join("")+`</div>`}
+function ctl(){$("#ctl").innerHTML=`<label>1 · Trang phục</label>${chips("g",Object.entries(G).map(([k,v])=>[k,v.n]))}
+<label>2 · Sự kiện</label>${chips("e",EV)}<label>3 · Màu chủ đạo</label>${sw("c",COL)}
+<label>4 · Đồ hiện đại phối cùng</label>${chips("m",MOD.map(x=>x[0]))}<label>5 · Phụ kiện</label>${chips("a",ACC,1)}<label>6 · Phong cách</label>${chips("s",STY)}`}
+function svg(){const c=COL[S.c][1],m=MOD[S.m][1],g=G[S.g],a=S.a,skin="#e9b98f";
+const dark=c=="#2c4a73"||c=="#7a4a2b"||c=="#5b7a45"||c=="#b3261e",tr=dark?"#f4ecd8":"#3a2418";
+let b="";const leg=S.m==2?`<path d="M96 200 L184 200 L196 300 L84 300Z" fill="${m}"/>`:S.m==3?`<rect x="98" y="200" width="36" height="46" fill="${m}"/><rect x="146" y="200" width="36" height="46" fill="${m}"/><rect x="104" y="246" width="24" height="54" fill="${skin}"/><rect x="152" y="246" width="24" height="54" fill="${skin}"/>`:`<rect x="100" y="190" width="38" height="112" fill="${m}"/><rect x="142" y="190" width="38" height="112" fill="${m}"/>`;
+const sh=a.has("Sneaker")?"#fff":"#3a2418";
+if(g.sh=="long"||g.sh=="ngu"){b=`<path d="M96 96 L184 96 L196 ${g.sh=='ngu'?250:270} L84 ${g.sh=='ngu'?250:270}Z" fill="${c}"/><path d="M140 96 L140 ${g.sh=='ngu'?250:270}" stroke="${tr}" stroke-width="2" opacity=".5"/>${g.sh=='ngu'?'<path d="M112 96 L158 190" stroke="'+tr+'" stroke-width="3" opacity=".6"/>':''}<path d="M96 96 L60 190 L78 196 L100 130Z M184 96 L220 190 L202 196 L180 130Z" fill="${c}"/>`}
+else if(g.sh=="tu"){b=`<path d="M100 96 L180 96 L172 200 L108 200Z" fill="#c25a6b"/><path d="M100 96 L86 260 L128 260 L132 110Z M180 96 L194 260 L152 260 L148 110Z" fill="${c}"/><path d="M96 96 L58 196 L76 200 L100 130Z M184 96 L222 196 L204 200 L180 130Z" fill="${c}"/><rect x="100" y="178" width="80" height="8" fill="#d9a21b"/>`}
+else{b=`<path d="M100 96 L180 96 L186 214 L94 214Z" fill="${c}"/><path d="M100 96 L66 190 L84 198 L104 130Z M180 96 L214 190 L196 198 L176 130Z" fill="${c}"/><circle cx="140" cy="118" r="3" fill="${tr}"/><circle cx="140" cy="150" r="3" fill="${tr}"/>`}
+let top=S.a.has("Hoodie")?`<path d="M92 92 L188 92 L192 190 L88 190Z" fill="#8a8a8a" opacity=".55"/>`:"";
+let hat=a.has("Nón lá")?`<path d="M70 60 L140 12 L210 60Z" fill="#e6c98a" stroke="#b8923f"/>`:a.has("Khăn vấn")?`<ellipse cx="140" cy="42" rx="34" ry="14" fill="${c}" stroke="${tr}"/>`:a.has("Mũ lưỡi trai")?`<path d="M106 42 Q140 16 174 42Z M170 42 L206 46 L174 50Z" fill="#333"/>`:"";
+let ear=a.has("Trâm/hoa tai")?`<circle cx="108" cy="72" r="4" fill="#d9a21b"/><circle cx="172" cy="72" r="4" fill="#d9a21b"/>`:"";
+return `<svg viewBox="0 0 280 330" xmlns="http://www.w3.org/2000/svg"><ellipse cx="140" cy="318" rx="80" ry="8" fill="#0002"/>${leg}<rect x="98" y="296" width="42" height="14" rx="6" fill="${sh}" stroke="#3a2418"/><rect x="140" y="296" width="42" height="14" rx="6" fill="${sh}" stroke="#3a2418"/>${b}${top}<rect x="128" y="84" width="24" height="14" fill="${skin}"/><circle cx="140" cy="62" r="28" fill="${skin}"/><path d="M112 60 Q140 20 168 60 L168 50 Q140 14 112 50Z" fill="#2b1a12"/>${ear}${hat}</svg>`}
+function analyze(){const g=G[S.g],w=[],A=S.a,mo=MOD[S.m][0];let sc=78;
+const isC=S.c==2||S.c==4||S.c==5;
+if(mo=="Quần short"){w.push("Quần short làm mất tính trang nhã của "+g.n+"; hãy chọn quần ống rộng hoặc chân váy dài.");sc-=25}
+if(A.has("Hoodie")&&(S.g=="nguthan"||S.g=="tuthan")){w.push("Hoodie che vạt và cổ áo – đặc trưng chính của "+g.n+". Thử khoác cardigan/blazer mỏng để lộ trọn phần áo.");sc-=20}
+else if(A.has("Hoodie")){w.push("Hoodie dễ che mất kiểu cổ và nếp áo; nếu dùng, nên chọn tông trơn và ngắn hơn áo.");sc-=10}
+if(A.has("Mũ lưỡi trai")&&(A.has("Nón lá")||A.has("Khăn vấn"))){w.push("Không nên đội nhiều loại mũ/khăn cùng lúc.");sc-=12}
+if(A.has("Nón lá")&&A.has("Khăn vấn")){w.push("Nón lá và khăn vấn thuộc hai phong cách khác nhau – chọn một để nổi bật hơn.");sc-=10}
+if(S.g=="tuthan"&&A.has("Khăn vấn")==false&&S.s==2)w.push("Gợi ý: kiểu cổ điển của áo tứ thân hợp khăn mỏ quạ.");
+if(A.has("Sneaker")&&S.g=="nguthan"&&S.e==0){w.push("Lễ hội/lễ trang trọng: sneaker hơi lệch tinh thần, có thể đổi sang giày bệt hoặc guốc.");sc-=6}
+if(S.g=="baba"&&S.e==1){w.push("Áo bà ba hợp không khí gần gũi; với tốt nghiệp nên cân nhắc áo dài hoặc ngũ thân.");sc-=6}
+if(S.c==1&&S.e==1&&false){}
+if(S.c==3&&mo=="Quần ống rộng trắng"){w.push("Trắng ngà + quần trắng: nhẹ nhàng nhưng dễ nhạt – thêm phụ kiện đỏ/vàng để có điểm nhấn.");sc-=4}
+if(S.s==1&&isC)sc+=6;if(S.s==0&&(S.c==0||S.c==3))sc+=6;if(S.s==2&&(S.c==0||S.c==4||S.c==1))sc+=6;
+sc=Math.max(20,Math.min(98,sc));
+if(!w.length)w.push("Kết hợp hài hòa – Việt phục vẫn là điểm nhấn chính.");
+const ok=w.length==1&&sc>=78;
+const tips=["Giữ Việt phục là lớp nổi bật; đồ hiện đại chọn tông trơn để làm nền.","Thử thêm một chi tiết đỏ hoặc vàng ở phụ kiện để kết nối với bảng màu truyền thống.","Với "+EV[S.e].toLowerCase()+": "+["ưu tiên màu rực và phụ kiện trang trọng.","chọn tông nhã, dễ chụp ảnh.","phong cách gọn, đi lại thoải mái.","tránh họa tiết quá rối để nổi bật trên ảnh."][S.e]];
+$("#stage").innerHTML=svg();
+$("#res").innerHTML=`<h3>${g.n} · ${STY[S.s]}</h3><span class="tag">${EV[S.e]}</span><span class="tag">${COL[S.c][0]}</span><span class="tag">${MOD[S.m][0]}</span>
+<label>Độ hài hòa · ${sc}/100</label><div class="bar"><i style="width:${sc}%"></i></div>
+${w.map(x=>`<div class="warn ${ok?'ok':''}">${ok?'✅':'⚠️'} ${x}</div>`).join("")}
+<p><b>💡 Gợi ý:</b> ${tips.join(" ")}</p><p style="color:var(--mute)"><b>📜 Nguồn gốc:</b> ${g.o}</p>
+<button class="btn" id="sv">Lưu vào lookbook</button>`;
+$("#sv").onclick=()=>{add("data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg()),g.n+" · "+STY[S.s]+" · "+COL[S.c][0]);location.hash="#look"}}
+document.addEventListener("click",e=>{const t=e.target.closest("[data-k]");if(!t)return;const k=t.dataset.k,v=t.dataset.v;
+if(k=="a"){S.a.has(v)?S.a.delete(v):S.a.add(v)}else S[k]=k=="g"?v:+v;ctl();analyze()});
+/* lookbook */
+let L=[];try{L=JSON.parse(localStorage.getItem("vpr")||"[]")}catch(e){}
+function save(){try{localStorage.setItem("vpr",JSON.stringify(L))}catch(e){}}
+function add(src,cap){L.unshift({src,cap:cap||"Phối đồ của tôi"});save();shots()}
+function shots(){$("#shots").innerHTML=L.length?L.map((x,i)=>`<div class="card shot"><img src="${x.src}" alt=""><p style="margin:8px 0 4px"><b>${x.cap.replace(/</g,"&lt;")}</b></p><button class="chip" onclick="L.splice(${i},1);save();shots()">Xóa</button></div>`).join(""):`<p style="color:var(--mute)">Chưa có ảnh nào. Hãy đăng ảnh hoặc lưu phối đồ từ trang Gợi ý.</p>`}
+$("#up").onclick=()=>{const f=$("#file").files[0];if(!f)return alert("Hãy chọn một ảnh");const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,480/im.width),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);add(c.toDataURL("image/jpeg",.75),$("#cap").value);$("#cap").value="";$("#file").value=""};im.src=r.result};r.readAsDataURL(f)};
+/* learn + quiz */
+$("#info").innerHTML=Object.values(G).map(g=>`<div class="card"><h3>${g.n}</h3><p style="font-size:.9rem">${g.o}</p></div>`).join("")+`<div class="card"><h3>Ý nghĩa màu sắc</h3><p style="font-size:.9rem">Đỏ – may mắn, lễ hội; vàng – trang trọng, thịnh vượng; chàm – mộc mạc, gần gũi; trắng – thanh khiết, học đường.</p></div>`;
+const Q=[["Áo dài hiện đại có nền tảng từ trang phục nào?",["Áo ngũ thân","Áo bà ba","Áo cổ tròn Tây"],0],["Áo tứ thân gắn với vùng nào?",["Nam Bộ","Bắc Bộ","Tây Nguyên"],1],["Áo bà ba phổ biến ở đâu?",["Nam Bộ","Bắc Bộ","Trung Bộ"],0],["Khi phối với Việt phục nên…",["Che hết bằng hoodie lớn","Giữ Việt phục là điểm nhấn","Mặc quần short"],1],["Áo tứ thân có mấy tà trước buộc lại?",["Hai","Bốn","Không có"],0]];
+let qi=0,qs=0;
+function quiz(){const q=$("#quiz");if(qi>=Q.length){q.innerHTML=`<h3>Điểm: ${qs}/${Q.length}</h3><p>${qs>=4?"Bạn rất hiểu Việt phục! 🎉":"Đọc lại phần thông tin rồi thử lại nhé."}</p><button class="btn" onclick="qi=0;qs=0;quiz()">Làm lại</button>`;return}
+q.innerHTML=`<p style="color:var(--mute)">Câu ${qi+1}/${Q.length}</p><h3>${Q[qi][0]}</h3>`+Q[qi][1].map((o,i)=>`<button class="chip opt" data-q="${i}">${o}</button>`).join("")+`<div id="fb"></div>`;
+q.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{const ok=+b.dataset.q==Q[qi][2];if(ok)qs++;q.querySelectorAll("[data-q]").forEach(x=>x.disabled=true);$("#fb").innerHTML=`<div class="warn ${ok?'ok':''}">${ok?"✅ Chính xác!":"❌ Đáp án đúng: "+Q[qi][1][Q[qi][2]]}</div><button class="btn" onclick="qi++;quiz()">Tiếp</button>`})}
+/* router */
+function route(){const h=(location.hash||"#home").slice(1);document.querySelectorAll(".page").forEach(p=>p.classList.toggle("on",p.id==h));document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.hash=="#"+h));scrollTo(0,0)}
+addEventListener("hashchange",route);route();ctl();analyze();shots();quiz();
+</script></body></html>
