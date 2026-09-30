@@ -2,1086 +2,2823 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Việt phục Remix – Mặc quá khứ, phối theo hiện tại</title>
-<meta name="description" content="Khám phá và phối áo dài, áo tứ thân, áo ngũ thân, áo bà ba cùng thời trang hiện đại – vừa cá tính, vừa giữ trọn bản sắc.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thêu Lại – Dệt Quá Khứ, Phối Hiện Đại</title>
+<meta name="description" content="Thêu Lại: Khám phá và phối áo dài, áo tứ thân, áo ngũ thân, áo bà ba cùng phong cách đương đại trên những con phố di sản Việt Nam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
 <style>
-/* ══ TOKENS ══ */
-:root{
-  --bg:#fff8f2;--bg2:#fff3ea;--card:#ffffff;
-  --ink:#2d1a10;--ink2:#5c3d2e;--mute:#9c7060;
-  --red:#c84b2f;--red-lt:#fdf0ec;--red-mid:#e0724f;
-  --gold:#d4922c;--gold-lt:#fdf4e2;
-  --line:#f0e0d4;--warn:#fef3ee;
-  --shadow:rgba(200,100,60,.10);--shadow2:rgba(200,100,60,.22);
-  --nav-bg:rgba(255,248,242,.92);
-  --radius:20px;--radius-sm:12px;--radius-xs:8px;
-  --ease:cubic-bezier(.22,1,.36,1);
-}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#1a0e08;--bg2:#22120a;--card:#2a1710;--ink:#fdf0e8;--ink2:#ddb898;
-  --mute:#b0856a;--red:#e06040;--red-lt:#3a1810;--red-mid:#d06040;
-  --gold:#d9a030;--gold-lt:#2a1e08;--line:#3e2518;--warn:#321208;
-  --shadow:rgba(0,0,0,.35);--shadow2:rgba(0,0,0,.5);
-  --nav-bg:rgba(26,14,8,.94);
-}}
-:root[data-theme="dark"]{
-  --bg:#1a0e08;--bg2:#22120a;--card:#2a1710;--ink:#fdf0e8;--ink2:#ddb898;
-  --mute:#b0856a;--red:#e06040;--red-lt:#3a1810;--red-mid:#d06040;
-  --gold:#d9a030;--gold-lt:#2a1e08;--line:#3e2518;--warn:#321208;
-  --shadow:rgba(0,0,0,.35);--shadow2:rgba(0,0,0,.5);
-  --nav-bg:rgba(26,14,8,.94);
+/* ══ HỆ THỐNG MÀU SẮC & DESIGN TOKENS (GẤM THÊU, SƠN MÀI & TƠ LỤA) ══ */
+:root {
+  --bg: #fcf8f3;
+  --bg-gradient: radial-gradient(circle at 10% 20%, #fffbf6 0%, #faefe2 90%);
+  --bg2: #f6ecdf;
+  --card: #ffffff;
+  --card-elevated: #ffffff;
+  --ink: #2b170e;
+  --ink2: #5c3826;
+  --mute: #9e6f56;
+  --red: #c63d24;
+  --red-hover: #dd482b;
+  --red-lt: #fdf0ec;
+  --gold: #d48f22;
+  --gold-lt: #fef7ea;
+  --gold-border: rgba(212, 143, 34, 0.42);
+  --line: #ecdcd0;
+  --warn: #fff4ee;
+  --shadow-sm: 0 2px 10px rgba(130, 60, 20, 0.06);
+  --shadow: 0 8px 30px rgba(140, 65, 25, 0.08);
+  --shadow2: 0 16px 44px rgba(140, 65, 25, 0.14);
+  --nav-bg: rgba(252, 248, 243, 0.94);
+  --nav-link: #4d3324;
+  --nav-link-hover: #c63d24;
+  --radius-lg: 20px;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ══ RESET ══ */
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-padding-top:60px}
-body{margin:0;background:var(--bg);color:var(--ink);
-  font-family:"Be Vietnam Pro",system-ui,sans-serif;
-  line-height:1.65;-webkit-font-smoothing:antialiased}
-h1,h2,h3,h4{font-family:"Playfair Display",Georgia,serif;margin:.1em 0 .35em;line-height:1.2}
-h2{font-size:clamp(1.5rem,4vw,2.1rem)}
-h3{font-size:1.1rem}
-h4{font-size:.95rem;font-family:"Be Vietnam Pro",sans-serif;font-weight:700}
-p{margin:.3em 0}
-ul{padding-left:1.2em;margin:.4em 0}
-li{margin:.2em 0;font-size:.93rem}
+:root[data-theme="dark"] {
+  --bg: #140c08;
+  --bg-gradient: radial-gradient(circle at 50% 10%, #201109 0%, #120906 100%);
+  --bg2: #1e110b;
+  --card: #1c100a;
+  --card-elevated: #26150d;
+  --ink: #fbede4;
+  --ink2: #f2d5c2;
+  --mute: #c49980;
+  --red: #e65335;
+  --red-hover: #f96344;
+  --red-lt: #34170f;
+  --gold: #e5a432;
+  --gold-lt: #2e1d09;
+  --gold-border: rgba(229, 164, 50, 0.4);
+  --line: #382015;
+  --warn: #2c160e;
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.4);
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
+  --shadow2: 0 16px 44px rgba(0, 0, 0, 0.7);
+  --nav-bg: rgba(20, 12, 8, 0.95);
+  --nav-link: #f5ddd0;
+  --nav-link-hover: #f96344;
+}
 
-/* ══ NAV ══ */
-nav{
-  position:sticky;top:0;z-index:50;
-  background:var(--nav-bg);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--line);
-  display:flex;gap:2px;align-items:center;
-  padding:10px 20px;overflow-x:auto;
-  box-shadow:0 2px 20px var(--shadow);
-  transition:background .3s;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
-nav b{font-family:"Playfair Display",serif;color:var(--red);
-  margin-right:auto;white-space:nowrap;font-size:1.1rem;flex-shrink:0}
-nav a{
-  padding:7px 14px;border-radius:99px;color:var(--ink2);
-  text-decoration:none;font-size:.875rem;font-weight:500;
-  white-space:nowrap;flex-shrink:0;
-  transition:background .18s var(--ease),color .18s;
-}
-nav a:hover{background:var(--red-lt);color:var(--red)}
-nav a.on{background:var(--red);color:#fff}
-.theme-btn{
-  margin-left:8px;flex-shrink:0;
-  background:var(--red-lt);color:var(--red);
-  border:none;border-radius:99px;padding:7px 13px;
-  font:inherit;font-size:.875rem;cursor:pointer;
-  transition:background .18s,transform .18s;
-}
-.theme-btn:hover{background:var(--line);transform:scale(1.05)}
 
-/* ══ MAIN ══ */
-main{max-width:1060px;margin:0 auto;padding:32px 20px 80px}
-.page{display:none}.page.on{display:block;animation:fadeUp .42s var(--ease)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg);
+  background-image: var(--bg-gradient);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
 
-/* ══ HERO ══ */
-.hero{
-  position:relative;overflow:hidden;
-  text-align:center;padding:64px 24px 52px;
-  border-radius:var(--radius);
-  background:
-    radial-gradient(ellipse 90% 70% at 50% -15%,rgba(212,146,44,.22),transparent),
-    radial-gradient(ellipse 70% 50% at 90% 110%,rgba(200,75,47,.16),transparent),
-    radial-gradient(ellipse 50% 40% at 10% 90%,rgba(212,146,44,.10),transparent),
-    var(--card);
-  border:1px solid var(--line);
-  box-shadow:0 6px 40px var(--shadow);
-  margin-bottom:28px;
+main {
+  flex: 1 0 auto;
+  position: relative;
+  z-index: 1;
 }
-.particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.particle{
-  position:absolute;bottom:-10px;border-radius:50%;
-  background:var(--gold);opacity:0;
-  animation:floatUp linear infinite;
-}
-@keyframes floatUp{
-  0%{opacity:0;transform:translateY(0) scale(0)}
-  10%{opacity:.55;transform:translateY(-30px) scale(1)}
-  85%{opacity:.25;transform:translateY(-280px) scale(.4)}
-  100%{opacity:0;transform:translateY(-300px) scale(0)}
-}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--gold-lt);border:1px solid rgba(212,146,44,.3);
-  border-radius:99px;padding:5px 16px;
-  font-size:.78rem;font-weight:600;color:var(--gold);
-  letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px;
-}
-.hero h1{
-  font-size:clamp(2.4rem,6vw,4rem);color:var(--red);
-  margin:.1em 0 .45em;position:relative;
-}
-.hero .sub{max-width:560px;margin:0 auto 30px;color:var(--ink2);font-size:1.05rem}
-.hero-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.hero-stats{
-  display:flex;flex-wrap:wrap;gap:24px;justify-content:center;
-  margin-top:36px;padding-top:28px;border-top:1px solid var(--line);
-}
-.hero-stat .n{font-family:"Playfair Display",serif;font-size:1.8rem;color:var(--red);font-weight:700}
-.hero-stat .l{font-size:.8rem;color:var(--mute);margin-top:2px}
 
-/* ══ BUTTONS ══ */
-.btn{
-  background:var(--red);color:#fff;border:none;
-  border-radius:99px;padding:12px 28px;
-  font:600 .9375rem "Be Vietnam Pro",sans-serif;
-  cursor:pointer;text-decoration:none;
-  display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
-  box-shadow:0 3px 16px rgba(200,75,47,.3);
-  transition:transform .2s var(--ease),box-shadow .2s var(--ease),filter .2s;
+/* ══ BACKGROUND SỢI CHỈ THÊU NGHỆ THUẬT LƯỢN SÓNG ══ */
+.thread-waves {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.28;
 }
-.btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(200,75,47,.42);filter:brightness(1.07)}
-.btn:active{transform:scale(.96)}
-.btn.o{background:transparent;color:var(--red);border:2px solid var(--red);box-shadow:none}
-.btn.o:hover{background:var(--red-lt)}
-.btn.sm{padding:8px 20px;font-size:.875rem}
-.btn.gold{background:var(--gold);box-shadow:0 3px 16px rgba(212,146,44,.3)}
-.btn.gold:hover{box-shadow:0 8px 24px rgba(212,146,44,.42)}
+:root[data-theme="dark"] .thread-waves {
+  opacity: 0.16;
+}
 
-/* ══ FEATURE CARDS ══ */
-.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:20px 0}
-.feat-card{
-  position:relative;background:var(--card);
-  border-radius:var(--radius);padding:24px 20px;
-  box-shadow:0 2px 14px var(--shadow);
-  overflow:hidden;
-  transition:transform .25s var(--ease),box-shadow .25s var(--ease);
+/* ══ THẺ VIỀN CHỈ THÊU MŨI ĐỘT (RUNNING STITCH BORDER) - KHÔNG ĐÈ LÊN NỘI DUNG ══ */
+.stitched-card {
+  position: relative;
+  border: 1.5px dashed var(--gold-border) !important;
 }
-.feat-card::before{
-  content:"";position:absolute;inset:-1px;border-radius:calc(var(--radius)+1px);
-  background:linear-gradient(135deg,var(--gold),transparent 50%,var(--red));
-  opacity:0;z-index:-1;
-  transition:opacity .3s;
-}
-.feat-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px var(--shadow2)}
-.feat-card:hover::before{opacity:1}
-.feat-card .ic{font-size:2.2rem;margin-bottom:12px;display:block}
-.feat-card h3{margin:.05em 0 .35em}
-.feat-card p{color:var(--ink2);font-size:.92rem;margin:0}
-.card{
-  background:var(--card);border:1px solid var(--line);
-  border-radius:var(--radius);padding:20px;
-  box-shadow:0 2px 12px var(--shadow);
-  transition:transform .22s var(--ease),box-shadow .22s var(--ease);
-}
-.card:hover{transform:translateY(-2px);box-shadow:0 6px 24px var(--shadow2)}
 
-/* ══ MIX LAYOUT ══ */
-.lay{display:grid;gap:20px;grid-template-columns:1fr 1.3fr}
-@media(max-width:800px){.lay{grid-template-columns:1fr}}
+h1, h2, h3, h4 {
+  font-family: "Playfair Display", Georgia, serif;
+  margin: 0.12em 0 0.35em;
+  line-height: 1.25;
+  color: var(--ink);
+}
 
-/* ══ CONTROL PANEL ══ */
-label{display:block;font-weight:700;font-size:.78rem;margin:14px 0 6px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
-input[type=text]{
-  width:100%;padding:11px 14px;
-  border-radius:var(--radius-sm);border:1.5px solid var(--line);
-  background:var(--bg2);color:var(--ink);font:inherit;
-  outline:none;transition:border-color .18s;
+a {
+  color: inherit;
+  text-decoration: none;
 }
-input[type=text]:focus{border-color:var(--red)}
-input[type=file]{color:var(--ink2);font-size:.9rem;margin:4px 0}
 
-/* ══ CHIPS ══ */
-.chips{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0}
-.chip{
-  border:1.5px solid var(--line);background:var(--bg2);color:var(--ink2);
-  border-radius:99px;padding:7px 16px;
-  font:500 .875rem "Be Vietnam Pro",sans-serif;
-  cursor:pointer;white-space:nowrap;
-  transition:border-color .16s,background .16s,color .16s,transform .13s;
+/* ══ THANH ĐIỀU HƯỚNG HEADER CỐ ĐỊNH CÓ DẢI CHỈ VÀNG ══ */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 4px 20px rgba(100, 45, 15, 0.04);
 }
-.chip:hover{border-color:var(--red-mid);color:var(--red);background:var(--red-lt)}
-.chip:active{transform:scale(.94)}
-.chip.on{border-color:var(--red);background:var(--red);color:#fff}
 
-/* ══ SWATCHES ══ */
-.sw{
-  width:34px;height:34px;border-radius:50%;
-  border:3px solid var(--card);
-  box-shadow:0 0 0 1.5px var(--line);
-  cursor:pointer;padding:0;
-  transition:transform .18s,box-shadow .18s;
+.header-inner {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
-.sw:hover{transform:scale(1.15)}
-.sw.on{box-shadow:0 0 0 3px var(--red),0 0 0 5.5px var(--card),0 0 0 7.5px var(--red)}
 
-/* ══ STAGE ══ */
-.stage-wrap{position:relative}
-.scene-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.scene-chip{
-  border:1.5px solid var(--line);background:var(--bg2);color:var(--ink2);
-  border-radius:99px;padding:5px 13px;
-  font:500 .8rem "Be Vietnam Pro",sans-serif;cursor:pointer;
-  transition:all .15s;white-space:nowrap;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
 }
-.scene-chip:hover{border-color:var(--gold);color:var(--gold)}
-.scene-chip.on{border-color:var(--gold);background:var(--gold);color:#fff}
-.stage{
-  position:relative;border-radius:var(--radius);
-  overflow:hidden;min-height:320px;
-  display:flex;align-items:flex-end;justify-content:center;
-  border:1px solid rgba(212,146,44,.22);
-  transition:background .5s var(--ease);
-  background:linear-gradient(160deg,#fdefd9,#f5d9a0);
-}
-.stage-scene{
-  position:absolute;inset:0;
-  display:flex;align-items:flex-end;justify-content:center;
-  pointer-events:none;
-}
-.stage-scene svg{width:100%;height:100%;position:absolute;inset:0}
-.stage-char{
-  position:relative;z-index:2;padding:8px;
-  display:flex;align-items:flex-end;justify-content:center;
-}
-.stage-char svg{
-  max-width:220px;width:100%;
-  filter:drop-shadow(0 10px 28px rgba(60,20,5,.22));
-  transition:opacity .3s var(--ease),transform .3s var(--ease);
-  animation:charFloat 4s ease-in-out infinite;
-}
-@keyframes charFloat{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-6px)}
-}
-.stage-char svg.out{opacity:0;transform:scale(.9) translateY(12px);animation:none}
 
-/* ══ TAGS & WARN ══ */
-.tag{display:inline-block;background:var(--gold-lt);color:var(--gold);border:1px solid rgba(212,146,44,.3);border-radius:var(--radius-xs);padding:3px 10px;font-size:.78rem;font-weight:600;margin:2px}
-.warn{background:var(--warn);border-left:4px solid var(--red-mid);padding:10px 14px;border-radius:var(--radius-xs);margin:8px 0;font-size:.9rem;color:var(--ink2)}
-.warn.ok{border-left-color:#52a045;background:#f0fbee;color:#255020}
-.bar{height:10px;border-radius:99px;background:var(--line);overflow:hidden;margin:6px 0 12px}
-.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--red));transition:width .7s var(--ease)}
-
-/* ══ LOOKBOOK ══ */
-.shots{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
-.shot img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--radius-sm);background:#f5d9b5}
-.shot p{margin:8px 0 4px;font-size:.9rem}
-
-/* ══ LEARN TABS ══ */
-.tab-bar{
-  display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px;
-  background:var(--bg2);border-radius:var(--radius);
-  padding:8px;border:1px solid var(--line);
+/* Biểu tượng Khung Thêu Tre & Kim Khâu Lụa Vàng */
+.embroidery-hoop {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2.2px solid var(--gold);
+  background: radial-gradient(circle, #fffaf2 60%, #fae8cc 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(212, 143, 34, 0.22);
+  position: relative;
+  flex-shrink: 0;
 }
-.tab-btn{
-  flex:1;min-width:90px;padding:9px 14px;
-  border:none;border-radius:var(--radius-sm);
-  background:transparent;color:var(--ink2);
-  font:600 .875rem "Be Vietnam Pro",sans-serif;
-  cursor:pointer;white-space:nowrap;text-align:center;
-  transition:background .2s,color .2s,box-shadow .2s;
+:root[data-theme="dark"] .embroidery-hoop {
+  background: radial-gradient(circle, #2d180d 60%, #1a0f08 100%);
 }
-.tab-btn:hover{background:var(--card);color:var(--ink)}
-.tab-btn.on{background:var(--red);color:#fff;box-shadow:0 2px 10px rgba(200,75,47,.28)}
-.tab-panel{display:none}.tab-panel.on{display:block;animation:fadeUp .35s var(--ease)}
-
-/* ══ GARMENT HERO ══ */
-.garment-hero{
-  display:grid;grid-template-columns:180px 1fr;gap:24px;
-  align-items:center;margin-bottom:24px;
-  background:var(--card);border-radius:var(--radius);
-  padding:24px;border:1px solid var(--line);
-  box-shadow:0 3px 16px var(--shadow);
+.embroidery-hoop svg {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.4s var(--ease);
 }
-@media(max-width:600px){.garment-hero{grid-template-columns:1fr;text-align:center}}
-.garment-preview{
-  border-radius:var(--radius-sm);overflow:hidden;
-  aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;
+.brand:hover .embroidery-hoop svg {
+  transform: rotate(20deg) scale(1.1);
 }
-.garment-preview img{width:100%;height:100%;object-fit:cover}
-.garment-meta .period{font-size:.82rem;color:var(--gold);font-weight:600;margin-bottom:8px;letter-spacing:.06em}
-.garment-meta p{color:var(--ink2);font-size:.95rem;line-height:1.7}
-.info-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:20px}
-.info-block{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px}
-.info-block h4{margin:0 0 10px;color:var(--red)}
-.info-block ul{margin:0;padding-left:1.1em}
-.info-block li{color:var(--ink2);font-size:.9rem;margin:.25em 0}
-.info-block p{color:var(--ink2);font-size:.9rem;margin:0}
 
-/* ══ QUIZ ══ */
-.opt{
-  display:block;width:100%;text-align:left;margin:7px 0;
-  padding:12px 18px;border-radius:var(--radius-sm);
-  border:1.5px solid var(--line);background:var(--bg2);
-  font:inherit;color:var(--ink);cursor:pointer;
-  transition:border-color .16s,background .16s,transform .14s;
+.brand-text-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
 }
-.opt:hover:not(:disabled){border-color:var(--red);background:var(--red-lt);transform:translateX(5px)}
-.opt:disabled{opacity:.7;cursor:default}
 
-/* ══ STEPS ══ */
-.step{display:flex;gap:14px;margin:14px 0;align-items:flex-start}
-.step .num{flex:none;width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem;box-shadow:0 2px 8px rgba(200,75,47,.28)}
+.brand-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 800;
+  font-size: 1.55rem;
+  letter-spacing: -0.02em;
+  color: var(--red);
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+}
 
-/* ══ SECTION HEADER ══ */
-.section-header{margin-bottom:24px}
-.section-header h2{margin-bottom:.2em}
-.section-header p{color:var(--mute);font-size:.96rem}
+.brand-motto {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding-left: 8px;
+  border-left: 1.5px solid var(--gold-border);
+}
 
-/* ══ RESPONSIVE ══ */
-@media(max-width:640px){
-  main{padding:20px 14px 60px}
-  .hero{padding:40px 16px 36px}
-  nav{padding:8px 12px}
-  nav a{padding:6px 10px;font-size:.8rem}
-  .btn{padding:10px 20px;font-size:.875rem}
-  .garment-hero{grid-template-columns:1fr}
-  .tab-btn{font-size:.8rem;padding:8px 10px}
+nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+nav a.nav-item {
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--nav-link);
+  transition: all 0.2s var(--ease);
+}
+nav a.nav-item:hover {
+  color: var(--nav-link-hover);
+  background: var(--red-lt);
+}
+nav a.nav-item.on {
+  background: var(--red);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(198, 61, 36, 0.28);
+}
+
+.theme-toggle-btn {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.theme-toggle-btn:hover {
+  border-color: var(--gold);
+  transform: translateY(-1px);
+}
+
+/* Dải chỉ may thêu viền dưới header */
+.header-stitch-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--gold) 0, var(--gold) 8px, transparent 8px, transparent 14px);
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+/* ══ NÚT BẤM (BUTTONS) ══ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  background: var(--red);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.22s var(--ease);
+  box-shadow: 0 4px 16px rgba(198, 61, 36, 0.25);
+  text-decoration: none;
+}
+.btn:hover {
+  background: var(--red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(198, 61, 36, 0.35);
+}
+.btn.gold {
+  background: var(--gold);
+  box-shadow: 0 4px 16px rgba(212, 143, 34, 0.25);
+}
+.btn.gold:hover {
+  background: #e59c28;
+}
+.btn.outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--line);
+  box-shadow: none;
+}
+.btn.outline:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: var(--red-lt);
+}
+.btn.sm {
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  border-radius: 999px;
+}
+
+/* ══ TRANG (PAGE CONTAINER & ROUTING) ══ */
+.page {
+  display: none;
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 24px 24px 60px;
+  animation: fadeIn 0.25s var(--ease);
+}
+.page.on {
+  display: block;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ══ DẢI LỤA TƠ TẰM MỀM MẠI UỐN LƯỢN (SILK RIBBON DECOR) ══ */
+.silk-ribbon-decor {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+.silk-ribbon-hero {
+  top: -20px;
+  left: -5%;
+  width: 110%;
+  height: 140px;
+  opacity: 0.75;
+}
+.silk-ribbon-sub {
+  bottom: -40px;
+  right: -5%;
+  width: 80%;
+  height: 100px;
+  opacity: 0.6;
+}
+
+/* ══ TRANG CHỦ (HERO & TIÊU ĐIỂM CỔ PHỤC) ══ */
+.hero-card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 56px 44px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  background: var(--gold-lt);
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.hero-card h1 {
+  font-size: clamp(2.2rem, 4.8vw, 3.4rem);
+  font-weight: 800;
+  margin: 0 auto 18px;
+  max-width: 880px;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.hero-card h1 span.highlight {
+  color: var(--red);
+  position: relative;
+  display: inline-block;
+}
+.hero-card p.hero-desc {
+  font-size: 1.15rem;
+  color: var(--ink2);
+  max-width: 760px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.home-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 44px;
+}
+.showcase-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+.showcase-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow2);
+}
+.showcase-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--red);
+  background: var(--red-lt);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  align-self: flex-start;
+}
+.showcase-card h3 {
+  font-size: 1.35rem;
+  margin: 0 0 8px;
+}
+.showcase-card p {
+  font-size: 0.92rem;
+  color: var(--ink2);
+  margin: 0 0 16px;
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* ══ TRANG PHỐI ĐỒ: QUY TRÌNH 5 BƯỚC CHUẨN MỰC ══ */
+.mix-header-bar {
+  margin-bottom: 20px;
+}
+.mix-header-bar h2 {
+  font-size: 1.85rem;
+  margin: 0 0 4px;
+}
+.mix-header-bar p {
+  color: var(--mute);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.mix-layout {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 1100px) {
+  .mix-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* BỘ ĐIỀU KHIỂN BÊN TRÁI */
+.control-flow-container {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 5 TABS BƯỚC ĐIỀU HƯỚNG */
+.step-tabs-nav {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-bottom: 18px;
+  background: var(--bg2);
+  padding: 5px;
+  border-radius: 12px;
+}
+.step-tab {
+  border: none;
+  background: transparent;
+  padding: 8px 4px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.2s;
+  color: var(--mute);
+  text-align: center;
+}
+.step-tab.active {
+  background: var(--card);
+  color: var(--red);
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.step-tab .step-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--line);
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step-tab.active .step-circle {
+  background: var(--red);
+  color: #fff;
+}
+.step-tab .step-label {
+  font-size: 0.68rem;
+  white-space: nowrap;
+}
+
+/* KHUNG NỘI DUNG TỪNG BƯỚC */
+.phase-pane {
+  display: none;
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.phase-pane.active {
+  display: block;
+}
+
+.phase-header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--line);
+}
+.phase-header-info h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--red);
+}
+.phase-badge-step {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gold);
+  background: var(--gold-lt);
+  border: 1px solid var(--gold-border);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.control-group-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mute);
+  margin: 14px 0 8px;
+}
+
+/* LƯỚI NÚT CHỌN ĐÃ ĐƯỢC CHIA TỈ LỆ THÍCH ỨNG - KHÔNG LÒI RA NGOÀI */
+.tile-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.tile-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.tile-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.tile-btn {
+  background: var(--bg2);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  transition: all 0.2s var(--ease);
+  color: var(--ink);
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.tile-btn:hover {
+  border-color: var(--gold);
+  background: var(--card);
+}
+.tile-btn.active {
+  background: var(--red);
+  border-color: var(--red);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(198, 61, 36, 0.28);
+}
+.tile-btn.active .tile-sub {
+  color: rgba(255, 255, 255, 0.82);
+}
+.tile-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.tile-info {
+  flex: 1;
+  min-width: 0;
+}
+.tile-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+.tile-sub {
+  font-size: 0.74rem;
+  color: var(--mute);
+  line-height: 1.25;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+/* THẺ BỐI CẢNH ẢNH THỰC TẾ */
+.scene-photo-card {
+  position: relative;
+  height: 80px;
+  border-radius: var(--radius-sm);
+  background-size: cover;
+  background-position: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: all 0.25s var(--ease);
+}
+.scene-photo-card:hover {
+  transform: scale(1.03);
+}
+.scene-photo-card.active {
+  border-color: var(--red);
+  box-shadow: 0 0 0 2px var(--gold), 0 6px 14px rgba(198, 61, 36, 0.35);
+}
+.scene-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.1) 70%);
+  display: flex;
+  align-items: flex-end;
+  padding: 6px;
+}
+.scene-photo-title {
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.scene-photo-badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  font-size: 0.68rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.scene-photo-card.active .scene-photo-badge {
+  display: flex;
+}
+
+/* MÀU SẮC DẠNG TRÒN SWATCH */
+.color-tile {
+  padding: 8px 10px;
+}
+.color-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1px var(--line);
+  flex-shrink: 0;
+}
+
+/* FOOTER ĐIỀU HƯỚNG BƯỚC */
+.phase-footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.btn-nav-step {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg2);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.86rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-nav-step:hover:not(:disabled) {
+  background: var(--card);
+  border-color: var(--gold);
+}
+.btn-nav-step:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn-nav-step.primary {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+.btn-nav-step.primary:hover {
+  background: var(--red-hover);
+}
+.phase-dots {
+  display: flex;
+  gap: 6px;
+}
+.phase-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line);
+  transition: all 0.2s;
+}
+.phase-dot.active {
+  width: 18px;
+  border-radius: 999px;
+  background: var(--red);
+}
+
+/* ══ CỘT PHẢI: SÂN KHẤU CON PHỐ & ĐÁNH GIÁ ══ */
+.stage-column {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* SÂN KHẤU CON PHỐ DI SẢN (HERO STREET-LEVEL RUNWAY) */
+.stage-viewport {
+  position: relative;
+  height: 500px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border: 1.5px solid var(--gold-border);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+  background-size: cover;
+  background-position: center bottom;
+  transition: background-image 0.45s var(--ease);
+}
+
+/* ĐÃ LOẠI BỎ HOÀN TOÀN LỚP PHỦ ĐEN MỜ TRÊN ĐẦU CON PHỐ */
+.stage-viewport::before {
+  display: none !important;
+}
+
+/* Bệ ánh sáng mềm mại sau lưng + mặt đường tiếp đất chân thực */
+.stage-viewport::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: linear-gradient(to top, rgba(12, 6, 3, 0.7) 0%, rgba(12, 6, 3, 0.2) 60%, transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.stage-location-tag {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  background: rgba(18, 10, 5, 0.84);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--gold-border);
+  color: #fff;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+}
+.stage-location-tag span.loc-icon { font-size: 0.95rem; }
+
+.stage-mannequin {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 4px;
+}
+.stage-mannequin svg {
+  width: 100%;
+  height: auto;
+  max-height: 440px;
+  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 16px rgba(255, 245, 225, 0.42));
+  transition: transform 0.28s var(--ease), opacity 0.24s;
+}
+.stage-mannequin svg.anim-out {
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+}
+
+/* THẺ ĐÁNH GIÁ THỜI TRANG DẠNG DỌC */
+.analysis-card-vertical {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  box-shadow: var(--shadow-sm);
+}
+.analysis-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.score-badge {
+  background: var(--red-lt);
+  border: 1px solid var(--red);
+  color: var(--red);
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 4px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.score-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.score-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--red) 100%);
+  border-radius: 999px;
+  transition: width 0.4s var(--ease);
+}
+.analysis-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.badge-tag {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 500;
+}
+.advice-box {
+  background: var(--warn);
+  border-left: 3px solid var(--red);
+  padding: 8px 12px;
+  border-radius: var(--radius-xs);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+.advice-box.success {
+  background: #f0fdf4;
+  border-left-color: #22c55e;
+  color: #14532d;
+}
+:root[data-theme="dark"] .advice-box.success {
+  background: #0f291e;
+  border-left-color: #22c55e;
+  color: #bbf7d0;
+}
+.analysis-actions-row {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ══ TRANG TÌM HIỂU (SIDEBAR CÓ THÒ THỤT & CHUẨN XÁC LỊCH SỬ) ══ */
+.learn-header-bar {
+  margin-bottom: 24px;
+}
+.learn-header-bar h2 {
+  font-size: 1.85rem;
+  margin: 0 0 4px;
+}
+.learn-header-bar p {
+  color: var(--mute);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.learn-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  align-items: start;
+  transition: grid-template-columns 0.3s var(--ease);
+}
+.learn-layout.sidebar-collapsed {
+  grid-template-columns: 72px 1fr;
+}
+
+.learn-sidebar {
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  padding: 12px;
+  position: sticky;
+  top: 80px;
+}
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px 12px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 10px;
+}
+.sidebar-header span.title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--mute);
+}
+.learn-layout.sidebar-collapsed .sidebar-header span.title {
+  display: none;
+}
+.sidebar-toggle-btn {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  color: var(--ink);
+  transition: all 0.2s;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sidebar-item {
+  border: none;
+  background: transparent;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: left;
+  transition: all 0.2s;
+  width: 100%;
+}
+.sidebar-item:hover {
+  background: var(--bg2);
+  color: var(--red);
+}
+.sidebar-item.active {
+  background: var(--red);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(198, 61, 36, 0.25);
+}
+.sidebar-item .side-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+.sidebar-item .side-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sidebar-item .side-badge {
+  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+.sidebar-item:not(.active) .side-badge {
+  background: var(--bg2);
+  color: var(--mute);
+}
+.learn-layout.sidebar-collapsed .sidebar-item .side-text,
+.learn-layout.sidebar-collapsed .sidebar-item .side-badge {
+  display: none;
+}
+.learn-layout.sidebar-collapsed .sidebar-item {
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.learn-content-pane {
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  padding: 36px 40px;
+}
+.learn-tab-pane {
+  display: none;
+  animation: fadeIn 0.25s var(--ease);
+}
+.learn-tab-pane.active {
+  display: block;
+}
+
+/* ══ TRANG LOOKBOOK: THOÁNG ĐÃNG, SPACING RỘNG RÃI ══ */
+.lookbook-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 32px; /* TĂNG KHOẢNG CÁCH CHO THOÁNG */
+}
+.lookbook-header-bar h2 {
+  font-size: 1.85rem;
+  margin: 0 0 4px;
+}
+.lookbook-header-bar p {
+  color: var(--mute);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px; /* TĂNG KHOẢNG CÁCH GIỮA CÁC THẺ CHO THOÁNG ĐÃNG */
+  margin-top: 24px;
+}
+.gallery-item {
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  padding: 16px; /* BỔ SUNG ĐỘ THỞ BÊN TRONG THẺ */
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow2);
+}
+.gallery-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 6px);
+  display: block;
+  background: var(--bg2);
+}
+.gallery-item-desc {
+  padding: 14px 4px 6px;
+}
+.gallery-item-desc b {
+  font-size: 0.95rem;
+  display: block;
+  line-height: 1.4;
+}
+
+/* ══ CHÂN TRANG FOOTER ══ */
+footer {
+  margin-top: auto;
+  border-top: 1px solid var(--line);
+  background: var(--nav-bg);
+  padding: 28px 24px;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--mute);
+  position: relative;
+  z-index: 10;
+}
+footer b {
+  color: var(--ink);
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <b>❖ Việt phục Remix</b>
-  <a href="#home">Trang chủ</a>
-  <a href="#mix">Phối đồ</a>
-  <a href="#look">Lookbook</a>
-  <a href="#learn">Tìm hiểu</a>
-  <a href="#about">Về dự án</a>
-  <button class="theme-btn" id="themeBtn">🌙</button>
-</nav>
+<!-- Background sợi chỉ thêu lượn sóng mờ ảo -->
+<svg class="thread-waves" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M-100 120 C 300 240, 700 -60, 1100 180 C 1350 320, 1500 220, 1600 280" stroke="#d48f22" stroke-width="1.8" stroke-dasharray="10 8" />
+  <path d="M-100 380 C 400 480, 800 260, 1200 420 C 1400 500, 1550 450, 1650 490" stroke="#c63d24" stroke-width="1.4" stroke-dasharray="8 6" />
+  <path d="M-100 680 C 350 780, 850 560, 1250 720 C 1450 800, 1550 760, 1650 800" stroke="#d48f22" stroke-width="1.2" stroke-dasharray="12 10" />
+</svg>
+
+<!-- ══ THANH ĐIỀU HƯỚNG HEADER ══ -->
+<header>
+  <div class="header-inner">
+    <div class="brand" onclick="location.hash='#home'">
+      <div class="embroidery-hoop">
+        <!-- Icon cây kim xâu chỉ vàng -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c63d24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9" stroke="#d48f22" stroke-width="1.8" stroke-dasharray="3 3"/>
+          <line x1="5" y1="19" x2="19" y2="5" stroke="#c63d24" stroke-width="2.2"/>
+          <circle cx="19" cy="5" r="1.5" fill="#d48f22"/>
+          <path d="M8 16 C10 14, 12 18, 14 16" stroke="#284b72" stroke-width="1.6"/>
+        </svg>
+      </div>
+      <div class="brand-text-wrap">
+        <h1 class="brand-title">Thêu Lại</h1>
+        <span class="brand-motto">Dệt Quá Khứ · Phối Hiện Đại</span>
+      </div>
+    </div>
+
+    <nav>
+      <a class="nav-item on" href="#home">Trang chủ</a>
+      <a class="nav-item" href="#mix">Phối đồ</a>
+      <a class="nav-item" href="#learn">Tìm hiểu</a>
+      <a class="nav-item" href="#look">Lookbook</a>
+      <a class="nav-item" href="#about">Về dự án</a>
+      <button class="theme-toggle-btn" id="themeBtn" aria-label="Đổi chế độ sáng tối">
+        <span id="themeIcon">🌙</span>
+        <span id="themeLabel">Tối</span>
+      </button>
+    </nav>
+  </div>
+  <div class="header-stitch-line"></div>
+</header>
 
 <main>
-
-<!-- ═══ HOME ═══ -->
-<section class="page" id="home">
-  <div class="hero">
-    <div class="particles" id="particles"></div>
-    <div class="hero-badge">✦ Việt Phục · Gen Z</div>
-    <h1>Mặc quá khứ,<br>phối theo hiện tại</h1>
-    <p class="sub">Khám phá áo dài, áo tứ thân, áo ngũ thân, áo bà ba và phối cùng đồ hiện đại – vừa cá tính, vừa giữ trọn bản sắc.</p>
-    <div class="hero-btns">
-      <a class="btn" href="#mix">✦ Bắt đầu phối đồ</a>
-      <a class="btn o" href="#learn">Tìm hiểu Việt phục</a>
+<!-- ══ TRANG CHỦ (HOME) ══ -->
+<section class="page on" id="home">
+  <!-- Dải lụa mềm mại cách điệu uốn lượn xung quanh Hero Section -->
+  <div class="hero-card stitched-card">
+    <div class="silk-ribbon-decor silk-ribbon-hero">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" width="100%" height="100%">
+        <path d="M0 60 C300 110 500 10 800 70 C1000 110 1100 40 1200 60 L1200 80 C1100 60 1000 130 800 90 C500 30 300 130 0 80 Z" fill="url(#silkGradientRed)" opacity="0.85"/>
+        <path d="M0 40 C350 10 550 110 850 40 C1050 -10 1150 70 1200 50 L1200 65 C1150 85 1050 5 850 55 C550 125 350 25 0 55 Z" fill="url(#silkGradientGold)" opacity="0.75"/>
+        <path d="M0 50 C320 60 520 60 820 55 C1020 50 1120 55 1200 55" stroke="var(--gold)" stroke-width="2" stroke-dasharray="8 6" fill="none" opacity="0.9"/>
+        <defs>
+          <linearGradient id="silkGradientRed" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#c63d24" stop-opacity="0.25"/>
+            <stop offset="50%" stop-color="#e65335" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#d48f22" stop-opacity="0.35"/>
+          </linearGradient>
+          <linearGradient id="silkGradientGold" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#d48f22" stop-opacity="0.2"/>
+            <stop offset="50%" stop-color="#f4a261" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#c63d24" stop-opacity="0.3"/>
+          </linearGradient>
+        </defs>
+      </svg>
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="n">4</div><div class="l">Loại trang phục</div></div>
-      <div class="hero-stat"><div class="n">6</div><div class="l">Địa danh Việt Nam</div></div>
-      <div class="hero-stat"><div class="n">36+</div><div class="l">Cách phối đồ</div></div>
-      <div class="hero-stat"><div class="n">5</div><div class="l">Câu hỏi văn hóa</div></div>
+
+    <div class="hero-pill">✦ Dệt Nối Di Sản &amp; Phong Cách Đường Phố ✦</div>
+    <h1>Mặc quá khứ, <span class="highlight">phối theo hiện tại</span></h1>
+    <p class="hero-desc">
+      <b>Thêu Lại</b> mở ra không gian giao thoa diệu kỳ: Tự do khoác lên mình Áo Dài, Áo Tứ Thân, Áo Ngũ Thân hay Áo Bà Ba, sải bước tự tin trên những con phố danh lam Việt Nam. Tôn vinh cội nguồn, khẳng định chất riêng đương đại.
+    </p>
+    <div class="hero-actions">
+      <a class="btn" href="#mix">✦ Khám Phá Studio Phối Đồ ➔</a>
+      <a class="btn outline" href="#learn">📖 Tìm Hiểu Cổ Phục Việt</a>
     </div>
   </div>
-  <div class="grid">
-    <div class="feat-card"><span class="ic">🧵</span><h3>Chọn &amp; phối</h3><p>Chọn trang phục, sự kiện, màu, phụ kiện và phong cách để xem mockup tức thì.</p></div>
-    <div class="feat-card"><span class="ic">🗺️</span><h3>Bối cảnh Việt Nam</h3><p>6 địa danh từ Hà Nội đến Hạ Long, Huế, Đà Nẵng – phối đồ trong khung cảnh thực.</p></div>
-    <div class="feat-card"><span class="ic">⚠️</span><h3>Cảnh báo văn hóa</h3><p>Hệ thống nhắc những kết hợp dễ làm sai lệch đặc trưng của Việt phục.</p></div>
-    <div class="feat-card"><span class="ic">📸</span><h3>Lookbook cá nhân</h3><p>Lưu phối đồ và đăng ảnh thật như một trang profile nhỏ của riêng bạn.</p></div>
+
+  <!-- 4 TIÊU ĐIỂM CỔ PHỤC -->
+  <div class="home-grid-4">
+    <div class="showcase-card stitched-card">
+      <span class="showcase-badge">Biểu tượng văn hóa</span>
+      <h3>Áo Dài</h3>
+      <p>Thanh lịch, thướt tha, tôn vinh trọn vẹn nét duyên dáng của người Việt qua nhiều thế kỷ biến chuyển lịch sử.</p>
+      <a class="btn sm outline" href="#mix">Thử phối đồ ➔</a>
+    </div>
+    <div class="showcase-card stitched-card">
+      <span class="showcase-badge">Quan họ Kinh Bắc</span>
+      <h3>Áo Tứ Thân</h3>
+      <p>Yếm thắm, khăn mỏ quạ, dải lụa đào thắt hoa mềm mại rủ dài bên nếp váy đụp mang đậm hồn quê đồng bằng Bắc Bộ.</p>
+      <a class="btn sm outline" href="#mix">Thử phối đồ ➔</a>
+    </div>
+    <div class="showcase-card stitched-card">
+      <span class="showcase-badge">Triều đình Huế</span>
+      <h3>Áo Ngũ Thân</h3>
+      <p>Năm vạt tượng trưng cho tứ thân phụ mẫu và chính mình, cổ đứng lập lĩnh trang nghiêm gắn liền đạo lý làm người.</p>
+      <a class="btn sm outline" href="#mix">Thử phối đồ ➔</a>
+    </div>
+    <div class="showcase-card stitched-card">
+      <span class="showcase-badge">Dân dã Nam Bộ</span>
+      <h3>Áo Bà Ba</h3>
+      <p>Chiếc áo xẻ ngực mộc mạc, hai túi vuông viền chỉ, xẻ tà thanh thoát gắn liền dòng sông và cánh đồng phương Nam hào sảng.</p>
+      <a class="btn sm outline" href="#mix">Thử phối đồ ➔</a>
+    </div>
   </div>
 </section>
 
-<!-- ═══ MIX ═══ -->
+<!-- ══ TRANG PHỐI ĐỒ: QUY TRÌNH 5 BƯỚC CHUẨN MỰC ══ -->
 <section class="page" id="mix">
-  <div class="section-header">
-    <h2>Gợi ý phối đồ</h2>
-    <p>Chọn từng bước – kết quả cập nhật trực tiếp.</p>
+  <div class="mix-header-bar">
+    <h2>Thêu Lại · Studio Phối Đồ Di Sản</h2>
+    <p>Chọn từng chi tiết theo quy trình: Địa danh ➔ Áo ➔ Quần ➔ Giày ➔ Phụ kiện để dệt nên phong cách riêng của bạn.</p>
   </div>
-  <div class="lay">
-    <div class="card" id="ctl" style="align-self:start"></div>
-    <div class="stage-wrap">
-      <div class="scene-bar" id="sceneBar"></div>
-      <div class="stage" id="stage">
-        <div class="stage-scene" id="stageScene"></div>
-        <div class="stage-char" id="stageChar"></div>
+
+  <div class="mix-layout">
+    <!-- CỘT TRÁI: BỘ ĐIỀU KHIỂN 5 BƯỚC -->
+    <div class="control-flow-container stitched-card">
+      <!-- 5 TABS BƯỚC -->
+      <div class="step-tabs-nav">
+        <button class="step-tab active" data-phase="1">
+          <div class="step-circle">1</div>
+          <div class="step-label">Địa danh</div>
+        </button>
+        <button class="step-tab" data-phase="2">
+          <div class="step-circle">2</div>
+          <div class="step-label">Cổ phục</div>
+        </button>
+        <button class="step-tab" data-phase="3">
+          <div class="step-circle">3</div>
+          <div class="step-label">Quần/Váy</div>
+        </button>
+        <button class="step-tab" data-phase="4">
+          <div class="step-circle">4</div>
+          <div class="step-label">Giày/Guốc</div>
+        </button>
+        <button class="step-tab" data-phase="5">
+          <div class="step-circle">5</div>
+          <div class="step-label">Phụ kiện</div>
+        </button>
       </div>
-      <div class="card" style="margin-top:14px" id="res"></div>
+
+      <!-- BƯỚC 1: ĐỊA DANH / BỐI CẢNH CON PHỐ DI SẢN -->
+      <div class="phase-pane active" id="phasePane1">
+        <div class="phase-header-info">
+          <h4>Bước 1: Chọn Địa Danh &amp; Con Phố Sải Bước</h4>
+          <span class="phase-badge-step">Giai đoạn 1/5</span>
+        </div>
+        <div class="control-group-title">1 · Con phố / Cung đường danh lam thực tế (8 địa danh)</div>
+        <div class="tile-grid-4" id="tilesScenes"></div>
+
+        <div class="control-group-title">2 · Không gian / Dịp xuất hiện</div>
+        <div class="tile-grid-2" id="tilesEvents"></div>
+      </div>
+
+      <!-- BƯỚC 2: CỔ PHỤC & BẢNG MÀU ÁO -->
+      <div class="phase-pane" id="phasePane2">
+        <div class="phase-header-info">
+          <h4>Bước 2: Chọn Cổ Phục &amp; Bảng Màu Truyền Thống</h4>
+          <span class="phase-badge-step">Giai đoạn 2/5</span>
+        </div>
+        <div class="control-group-title">1 · Dòng cổ phục truyền thống</div>
+        <div class="tile-grid-2" id="tilesGarments"></div>
+
+        <div class="control-group-title">2 · Bảng màu chủ đạo tơ lụa</div>
+        <div class="tile-grid-3" id="tilesColors"></div>
+      </div>
+
+      <!-- BƯỚC 3: QUẦN / CHÂN VÁY -->
+      <div class="phase-pane" id="phasePane3">
+        <div class="phase-header-info">
+          <h4>Bước 3: Chọn Quần Hoặc Chân Váy Hiện Đại</h4>
+          <span class="phase-badge-step">Giai đoạn 3/5</span>
+        </div>
+        <div class="control-group-title">1 · Đồ phối thân dưới (kín đáo, tinh tế)</div>
+        <div class="tile-grid-2" id="tilesBottoms"></div>
+      </div>
+
+      <!-- BƯỚC 4: GIÀY / GUỐC (UNIQUE SELECTION - KHÔNG OVERLAPPING) -->
+      <div class="phase-pane" id="phasePane4">
+        <div class="phase-header-info">
+          <h4>Bước 4: Chọn Giày Hoặc Guốc (Chọn 1 loại duy nhất)</h4>
+          <span class="phase-badge-step">Giai đoạn 4/5</span>
+        </div>
+        <div class="control-group-title">1 · Giày dép sải bước (Unique Footwear)</div>
+        <div class="tile-grid-2" id="tilesShoes"></div>
+      </div>
+
+      <!-- BƯỚC 5: PHỤ KIỆN & PHONG CÁCH -->
+      <div class="phase-pane" id="phasePane5">
+        <div class="phase-header-info">
+          <h4>Bước 5: Phụ Kiện &amp; Định Hướng Phong Cách</h4>
+          <span class="phase-badge-step">Giai đoạn 5/5</span>
+        </div>
+        <div class="control-group-title">1 · Phụ kiện điểm xuyết (chọn nhiều)</div>
+        <div class="tile-grid-2" id="tilesAccessories"></div>
+
+        <div class="control-group-title">2 · Định hướng style</div>
+        <div class="tile-grid-2" id="tilesStyles"></div>
+      </div>
+
+      <!-- FOOTER ĐIỀU HƯỚNG BƯỚC -->
+      <div class="phase-footer-nav">
+        <button class="btn-nav-step" id="btnPrevPhase" disabled>◀ Quay lại</button>
+        <div class="phase-dots">
+          <div class="phase-dot active" data-dot="1"></div>
+          <div class="phase-dot" data-dot="2"></div>
+          <div class="phase-dot" data-dot="3"></div>
+          <div class="phase-dot" data-dot="4"></div>
+          <div class="phase-dot" data-dot="5"></div>
+        </div>
+        <button class="btn-nav-step primary" id="btnNextPhase">Tiếp theo: Bước 2 ▶</button>
+      </div>
+    </div>
+
+    <!-- CỘT PHẢI: SÂN KHẤU CON PHỐ THỰC TẾ & BẢNG ĐÁNH GIÁ DỌC -->
+    <div class="stage-column">
+      <!-- Sân khấu thời trang không còn dải đen mờ trên đầu -->
+      <div class="stage-viewport stitched-card" id="stageViewport">
+        <div class="stage-location-tag" id="stageLocationTag">
+          <span class="loc-icon">📍</span>
+          <span id="stageLocationText">Phố Cổ Hà Nội (Đường Tạ Hiện - Hàng Bạc)</span>
+        </div>
+        <div class="stage-mannequin" id="stageMannequin"></div>
+      </div>
+
+      <!-- Thẻ đánh giá thời trang dạng dọc -->
+      <div class="analysis-card-vertical stitched-card" id="mixAnalysis"></div>
     </div>
   </div>
 </section>
 
-<!-- ═══ LOOKBOOK ═══ -->
-<section class="page" id="look">
-  <div class="section-header">
-    <h2>Lookbook Việt phục</h2>
-    <p>Ảnh lưu trên trình duyệt của bạn.</p>
-  </div>
-  <div class="card" style="margin-bottom:20px">
-    <label for="cap">Tên / chú thích</label>
-    <input type="text" id="cap" placeholder="VD: Áo dài trắng + sneaker đi cà phê">
-    <label for="file">Ảnh trang phục của bạn</label>
-    <input type="file" id="file" accept="image/*">
-    <button class="btn" id="up" style="margin-top:14px">📸 Đăng vào lookbook</button>
-  </div>
-  <div class="shots" id="shots"></div>
-</section>
-
-<!-- ═══ LEARN ═══ -->
+<!-- ══ TRANG TÌM HIỂU (SIDEBAR CÓ THÒ THỤT & CHUẨN XÁC LỊCH SỬ) ══ -->
 <section class="page" id="learn">
-  <div class="section-header">
-    <h2>Tìm hiểu Việt phục</h2>
-    <p>Khám phá lịch sử, đặc điểm và cách phối đồ từng loại trang phục.</p>
+  <div class="learn-header-bar">
+    <h2>Kho Tàng Kiến Thức Di Sản Y Phục Việt</h2>
+    <p>Khám phá cội nguồn, cấu tạo giải phẫu và chuẩn mực văn hóa y phục qua các thời kỳ lịch sử.</p>
   </div>
 
-  <div class="tab-bar">
-    <button class="tab-btn on" data-tab="aodai">Áo dài</button>
-    <button class="tab-btn" data-tab="tuthan">Áo tứ thân</button>
-    <button class="tab-btn" data-tab="nguthan">Áo ngũ thân</button>
-    <button class="tab-btn" data-tab="baba">Áo bà ba</button>
-    <button class="tab-btn" data-tab="phukien">Phụ kiện</button>
-    <button class="tab-btn" data-tab="mausac">Màu &amp; Hoa văn</button>
-  </div>
+  <div class="learn-layout" id="learnLayout">
+    <!-- SIDEBAR BÊN TRÁI CÓ THỂ THÒ THỤT -->
+    <aside class="learn-sidebar stitched-card">
+      <div class="sidebar-header">
+        <span class="title">Danh Mục</span>
+        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Thu gọn / Mở rộng sidebar">
+          <span id="sidebarToggleIcon">◀</span>
+        </button>
+      </div>
+      <div class="sidebar-menu">
+        <button class="sidebar-item active" data-tab="aodai">
+          <span class="side-icon">🪷</span>
+          <span class="side-text">Áo Dài Truyền Thống</span>
+          <span class="side-badge">Kinh điển</span>
+        </button>
+        <button class="sidebar-item" data-tab="tuthan">
+          <span class="side-icon">🌸</span>
+          <span class="side-text">Áo Tứ Thân</span>
+          <span class="side-badge">Kinh Bắc</span>
+        </button>
+        <button class="sidebar-item" data-tab="nguthan">
+          <span class="side-icon">👑</span>
+          <span class="side-text">Áo Ngũ Thân</span>
+          <span class="side-badge">Triều đình</span>
+        </button>
+        <button class="sidebar-item" data-tab="baba">
+          <span class="side-icon">🌾</span>
+          <span class="side-text">Áo Bà Ba</span>
+          <span class="side-badge">Nam Bộ</span>
+        </button>
+        <button class="sidebar-item" data-tab="quiz">
+          <span class="side-icon">🎯</span>
+          <span class="side-text">Quiz Văn Hóa</span>
+          <span class="side-badge">Đố vui</span>
+        </button>
+      </div>
+    </aside>
 
-  <!-- Áo dài -->
-  <div class="tab-panel on" data-tab="aodai">
-    <div class="garment-hero">
-      <div class="garment-preview">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Ao_dai_in_Hue.jpg/400px-Ao_dai_in_Hue.jpg"
-             onerror="this.style.background='linear-gradient(145deg,#fdefd9,#c84b2f20)';this.alt=''"
-             alt="Áo dài truyền thống">
-      </div>
-      <div class="garment-meta">
-        <div class="period">⏳ Thế kỷ 17 – nay · Phổ biến toàn quốc</div>
-        <h3 style="margin-top:0">Áo dài</h3>
-        <p>Biểu tượng thời trang của phụ nữ Việt Nam, áo dài kết hợp nét thanh lịch phương Đông với đường cắt hiện đại. Được UNESCO ghi nhận là di sản văn hóa phi vật thể, áo dài phù hợp từ lễ hội, tốt nghiệp đến đời thường.</p>
-      </div>
-    </div>
-    <div class="info-grid">
-      <div class="info-block">
-        <h4>📖 Lịch sử</h4>
-        <p>Bắt nguồn từ áo ngũ thân thời chúa Nguyễn (TK 17). Đến thập niên 1930, họa sĩ Cát Tường (Le Mur) cải cách với đường cắt ôm dáng, tạo nên áo dài hiện đại. Sau 1975, áo dài tiếp tục phát triển qua nhiều thế hệ thiết kế.</p>
-      </div>
-      <div class="info-block">
-        <h4>✨ Đặc điểm nhận biết</h4>
-        <ul>
-          <li>2 tà trước và sau, dài qua đầu gối</li>
-          <li>Cổ cao hình thuyền hoặc cổ tàu</li>
-          <li>Tà xẻ từ eo lên đến nách</li>
-          <li>Thường mặc cùng quần ống rộng</li>
-          <li>Chất liệu: lụa, nhung, voan, gấm</li>
-        </ul>
-      </div>
-      <div class="info-block">
-        <h4>💃 Phối đồ Gen Z</h4>
-        <ul>
-          <li>Áo dài + quần jeans cạp cao – cá tính, năng động</li>
-          <li>Áo dài ngắn + boots cổ thấp – streetwear Đông Dương</li>
-          <li>Áo dài trắng + sneaker trắng – clean, học đường</li>
-          <li>Tránh: quần short, hoodie che kín áo</li>
-        </ul>
-      </div>
-      <div class="info-block">
-        <h4>🎭 Dịp phù hợp</h4>
-        <ul>
-          <li>Tốt nghiệp – áo dài truyền thống trắng</li>
-          <li>Tết Nguyên Đán – đỏ, vàng, hồng</li>
-          <li>Lễ hội, đám cưới – gấm, thêu</li>
-          <li>Đi học, đi làm – chất liệu nhẹ, màu pastel</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+    <!-- NỘI DUNG CHI TIẾT BÊN PHẢI -->
+    <div class="learn-content-pane stitched-card">
+      <!-- TAB 1: ÁO DÀI (CHUẨN XÁC LỊCH SỬ, KHÔNG TỰ TIỆN GỌI QUỐC PHỤC) -->
+      <div class="learn-tab-pane active" id="tabPane_aodai">
+        <div style="display:flex;align-items:center;gap:18px;margin-bottom:20px;flex-wrap:wrap;">
+          <div style="width:120px;height:160px;background:var(--bg2);border-radius:var(--radius-sm);overflow:hidden;flex-shrink:0;" id="illusAoDai"></div>
+          <div>
+            <div class="showcase-badge" style="margin-bottom:8px;">⏳ Thế kỷ 18 – Nay · Trang phục truyền thống tiêu biểu</div>
+            <h3 style="font-size:1.6rem;margin:0 0 8px;color:var(--red);">Áo Dài Việt Nam</h3>
+            <p style="font-size:0.95rem;color:var(--ink2);line-height:1.65;">
+              Biểu tượng thanh tao, trang nhã gắn liền với hình tượng người phụ nữ Việt Nam qua nhiều thăng trầm lịch sử.
+            </p>
+          </div>
+        </div>
 
-  <!-- Áo tứ thân -->
-  <div class="tab-panel" data-tab="tuthan">
-    <div class="garment-hero">
-      <div class="garment-preview" style="background:linear-gradient(145deg,#c25a6b22,#d9a21b22)">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Ao_tu_than.jpg/400px-Ao_tu_than.jpg"
-             onerror="this.style.cssText='background:linear-gradient(145deg,#c25a6b,#8b3a4a);display:flex;align-items:center;justify-content:center;font-size:4rem'"
-             alt="Áo tứ thân">
-      </div>
-      <div class="garment-meta">
-        <div class="period">⏳ Thế kỷ 17–18 · Bắc Bộ</div>
-        <h3 style="margin-top:0">Áo tứ thân</h3>
-        <p>Trang phục đặc trưng của phụ nữ đồng bằng Bắc Bộ, gắn liền với hình ảnh các liền chị Quan họ Bắc Ninh. Áo tứ thân có 4 vạt: hai vạt sau khâu liền, hai vạt trước buộc thả thành tà duyên dáng.</p>
-      </div>
-    </div>
-    <div class="info-grid">
-      <div class="info-block">
-        <h4>📖 Lịch sử</h4>
-        <p>Phổ biến từ TK 17–18 tại Bắc Bộ. Được mặc trong sinh hoạt hằng ngày và lễ hội Quan họ. Áo tứ thân là tiền thân của áo dài hiện đại với cách tạo tà và cổ đứng.</p>
-      </div>
-      <div class="info-block">
-        <h4>✨ Đặc điểm</h4>
-        <ul>
-          <li>4 vạt áo: 2 vạt sau + 2 vạt trước</li>
-          <li>Vạt trước buộc thành nơ hoặc thả dài</li>
-          <li>Mặc cùng yếm (đào/cánh sen), váy đen, thắt lưng bao</li>
-          <li>Khăn vấn đầu hoặc nón quai thao</li>
-          <li>Màu nền thường nâu, đen, tím thẫm</li>
-        </ul>
-      </div>
-      <div class="info-block">
-        <h4>💃 Phối đồ hiện đại</h4>
-        <ul>
-          <li>Vạt trước buộc lại như áo crop – layer với áo ống</li>
-          <li>Phối cùng quần ống rộng màu trung tính</li>
-          <li>Thêm thắt lưng bao vải để nhấn eo</li>
-          <li>Khăn vấn mỏng màu tương đồng</li>
-        </ul>
-      </div>
-      <div class="info-block">
-        <h4>🎭 Dịp phù hợp</h4>
-        <ul>
-          <li>Lễ hội dân gian Bắc Bộ</li>
-          <li>Hội Quan họ, hát xẩm</li>
-          <li>Chụp ảnh kỷ yếu phong cách làng quê</li>
-          <li>Festival văn hóa truyền thống</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+        <div class="advice-box" style="background:var(--warn);border-left:4px solid var(--gold);margin-bottom:20px;">
+          <b>📌 Đính chính văn hóa &amp; nghiên cứu di sản:</b> Cho đến thời điểm hiện tại, Việt Nam chưa có văn bản quy phạm pháp luật chính thức công nhận bất kỳ loại trang phục nào là <i>"Quốc phục"</i>. Áo Dài là <b>trang phục truyền thống tiêu biểu</b> mang tính biểu tượng sâu rộng trong tâm thức người Việt và được công nhận rộng rãi trên trường quốc tế.
+        </div>
 
-  <!-- Áo ngũ thân -->
-  <div class="tab-panel" data-tab="nguthan">
-    <div class="garment-hero">
-      <div class="garment-preview" style="background:linear-gradient(145deg,#2c4a7322,#d9a21b22)">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Ao_ngu_than.jpg/400px-Ao_ngu_than.jpg"
-             onerror="this.style.cssText='background:linear-gradient(145deg,#2c4a73,#1a2d48);display:flex;align-items:center;justify-content:center;font-size:4rem'"
-             alt="Áo ngũ thân">
-      </div>
-      <div class="garment-meta">
-        <div class="period">⏳ Thời Nguyễn (TK 19) · Toàn quốc</div>
-        <h3 style="margin-top:0">Áo ngũ thân</h3>
-        <p>Trang phục hoàng triều và quý tộc thời Nguyễn, là nền tảng trực tiếp của áo dài hiện đại. Áo ngũ thân toát lên sự trang trọng, uy nghiêm với 5 vạt và đường may tinh xảo.</p>
-      </div>
-    </div>
-    <div class="info-grid">
-      <div class="info-block">
-        <h4>📖 Lịch sử</h4>
-        <p>Áo ngũ thân được chuẩn hóa dưới triều Minh Mạng (1820). Gồm 5 vạt: 2 vạt sau, 2 vạt trước và 1 vạt con nhỏ. Từng là trang phục bắt buộc ở triều đình, nay được phục dựng và phổ biến trở lại.</p>
-      </div>
-      <div class="info-block">
-        <h4>✨ Đặc điểm</h4>
-        <ul>
-          <li>5 vạt (thêm vạt con bên trái trong)</li>
-          <li>Cổ đứng cao, cài khuy lệch sang phải</li>
-          <li>Khuy cài bằng đồng hoặc ngọc</li>
-          <li>Ống tay rộng, dài qua đầu gối</li>
-          <li>Chất liệu: lụa tơ tằm, gấm, sa tanh</li>
-        </ul>
-      </div>
-      <div class="info-block">
-        <h4>💃 Phối đồ hiện đại</h4>
-        <ul>
-          <li>Mặc cùng quần ta ống thẳng cùng màu</li>
-          <li>Phụ kiện: khăn đóng, trâm, hài thêu</li>
-          <li>Màu navy, đen, trắng – thanh lịch và dễ phối</li>
-          <li>Không nên: jeans, hoodie, mũ lưỡi trai</li>
-        </ul>
-      </div>
-      <div class="info-block">
-        <h4>🎭 Dịp phù hợp</h4>
-        <ul>
-          <li>Lễ hội cung đình, tế lễ</li>
-          <li>Triển lãm, sự kiện văn hóa</li>
-          <li>Tết cổ truyền – chụp ảnh gia đình</li>
-          <li>Đám cưới trang trọng phong cách cổ phong</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+        <h4 style="color:var(--gold);margin-top:24px;">1. Lịch sử tiến hóa &amp; cách tân</h4>
+        <p style="font-size:0.92rem;color:var(--ink2);line-height:1.7;">
+          Áo dài bắt nguồn trực tiếp từ <b>Áo Ngũ Thân</b> thời chúa Nguyễn Phúc Khoát (1744) và vua Minh Mạng (1827 - 1837). Đến những năm 1930, họa sĩ Le Mur Cát Tường và Lê Phổ (trường Mỹ thuật Đông Dương) đã thực hiện cuộc cách tân táo bạo: thu gọn 5 thân thành 2 vạt (vạt trước và vạt sau), nhấn eo thon gọn, kết hợp tay raglan ôm sát, tạo nên dáng dấp Áo Dài tân thời trang nhã ngày nay.
+        </p>
 
-  <!-- Áo bà ba -->
-  <div class="tab-panel" data-tab="baba">
-    <div class="garment-hero">
-      <div class="garment-preview" style="background:linear-gradient(145deg,#4e704022,#d9a21b22)">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Ao_ba_ba.jpg/400px-Ao_ba_ba.jpg"
-             onerror="this.style.cssText='background:linear-gradient(145deg,#4e7040,#2d4a20);display:flex;align-items:center;justify-content:center;font-size:4rem'"
-             alt="Áo bà ba">
-      </div>
-      <div class="garment-meta">
-        <div class="period">⏳ Thế kỷ 19 – nay · Nam Bộ</div>
-        <h3 style="margin-top:0">Áo bà ba</h3>
-        <p>Trang phục dân dã đặc trưng của Nam Bộ, gắn với hình ảnh người phụ nữ miệt vườn. Áo bà ba gọn gàng, mát mẻ, phù hợp khí hậu nhiệt đới với thiết kế thực dụng nhưng đậm tình quê hương.</p>
-      </div>
-    </div>
-    <div class="info-grid">
-      <div class="info-block">
-        <h4>📖 Lịch sử</h4>
-        <p>Áo bà ba xuất hiện tại Nam Bộ cuối TK 19, có nguồn gốc từ trang phục người Hoa (Phúc Kiến). Được người Việt cải biến thành chiếc áo gần gũi, trở thành biểu tượng văn hóa sông nước.</p>
-      </div>
-      <div class="info-block">
-        <h4>✨ Đặc điểm</h4>
-        <ul>
-          <li>Cổ tròn hoặc cổ tim, xẻ ngực nhỏ</li>
-          <li>2 túi ngực vuông hoặc tròn</li>
-          <li>Xẻ tà hai bên hông ngắn</li>
-          <li>Thường may bằng vải lụa, lãnh Mỹ A</li>
-          <li>Màu đơn sắc hoặc kẻ ô, hoa nhỏ</li>
+        <h4 style="color:var(--gold);margin-top:20px;">2. Cấu tạo giải phẫu chuẩn mực</h4>
+        <ul style="font-size:0.92rem;color:var(--ink2);line-height:1.8;">
+          <li><b>Cổ áo:</b> Cổ cao 3 phân hoặc cổ thuyền, cổ tròn bọc nẹp thanh tú.</li>
+          <li><b>Khuy áo:</b> Cài chéo từ chân cổ qua xương quai xanh xuống nách và mạn sườn phải bằng khuy bấm kín đáo.</li>
+          <li><b>Tà áo:</b> Xẻ cao ngang eo chia làm hai vạt dài buông thướt tha chạm mu bàn chân.</li>
+          <li><b>Quần:</b> Quần lụa ống rộng dài chấm gót, thường có màu trắng ngà hoặc đen tuyền.</li>
         </ul>
       </div>
-      <div class="info-block">
-        <h4>💃 Phối đồ hiện đại</h4>
-        <ul>
-          <li>Áo bà ba + quần lụa đen – cổ điển Nam Bộ</li>
-          <li>Áo bà ba crop + jeans cạp cao – hiện đại, trẻ trung</li>
-          <li>Phụ kiện: nón lá, dép guốc, túi cói</li>
-          <li>Thoải mái đi cà phê, đi chợ, du lịch miệt vườn</li>
+
+      <!-- TAB 2: ÁO TỨ THÂN -->
+      <div class="learn-tab-pane" id="tabPane_tuthan">
+        <div style="display:flex;align-items:center;gap:18px;margin-bottom:20px;flex-wrap:wrap;">
+          <div style="width:120px;height:160px;background:var(--bg2);border-radius:var(--radius-sm);overflow:hidden;flex-shrink:0;" id="illusTuThan"></div>
+          <div>
+            <div class="showcase-badge" style="margin-bottom:8px;">🌾 Y phục dân gian Bắc Bộ · Quan họ Kinh Bắc</div>
+            <h3 style="font-size:1.6rem;margin:0 0 8px;color:var(--red);">Áo Tứ Thân</h3>
+            <p style="font-size:0.95rem;color:var(--ink2);line-height:1.65;">
+              Chiếc áo gắn liền với sự cần lao, thuần hậu và nét duyên dáng đằm thắm của người phụ nữ Kinh Bắc xưa.
+            </p>
+          </div>
+        </div>
+
+        <h4 style="color:var(--gold);margin-top:20px;">1. Cội nguồn &amp; Ý nghĩa</h4>
+        <p style="font-size:0.92rem;color:var(--ink2);line-height:1.7;">
+          Áo Tứ Thân có từ xa xưa, thể hiện sự mộc mạc và đức hy sinh của người phụ nữ nông thôn Bắc Bộ. Bốn vạt áo tượng trưng cho tứ thân phụ mẫu (cha mẹ mình và cha mẹ chồng).
+        </p>
+
+        <h4 style="color:var(--gold);margin-top:20px;">2. Cấu tạo tầng lớp tinh tế</h4>
+        <ul style="font-size:0.92rem;color:var(--ink2);line-height:1.8;">
+          <li><b>Yếm thắm:</b> Yếm cổ sen hoặc cổ nhạn (màu đỏ điều, hồng cánh sen hoặc nâu) e ấp bên trong, phối cùng kiềng bạc sáng lấp lánh.</li>
+          <li><b>Áo cánh trong:</b> Áo lụa trắng ngà hoặc màu mỡ gà khoác hờ sau lớp yếm.</li>
+          <li><b>Áo tứ thân ngoài:</b> Hai vạt sau may sống lưng, hai vạt trước buông lửng để buộc múi hoặc thả tà tha thướt.</li>
+          <li><b>Dải lụa thắt lưng:</b> Ruột tượng lụa đào và lụa xanh cốm thắt múi hoa giữa eo, rủ hai dải lụa mềm mại dọc thân.</li>
+          <li><b>Váy đụp:</b> Váy lụa sồi xòe rộng màu đen tuyền tiện cho việc lao động và di chuyển duyên dáng.</li>
         </ul>
       </div>
-      <div class="info-block">
-        <h4>🎭 Dịp phù hợp</h4>
-        <ul>
-          <li>Đi chơi, đi cà phê hằng ngày</li>
-          <li>Du lịch miệt vườn, sông nước</li>
-          <li>Chụp ảnh phong cách retro Nam Bộ</li>
-          <li>Lễ hội dân gian Nam Bộ</li>
+
+      <!-- TAB 3: ÁO NGŨ THÂN -->
+      <div class="learn-tab-pane" id="tabPane_nguthan">
+        <div style="display:flex;align-items:center;gap:18px;margin-bottom:20px;flex-wrap:wrap;">
+          <div style="width:120px;height:160px;background:var(--bg2);border-radius:var(--radius-sm);overflow:hidden;flex-shrink:0;" id="illusNguThan"></div>
+          <div>
+            <div class="showcase-badge" style="margin-bottom:8px;">👑 Thế kỷ 18-19 · Trang phục chính thống triều Nguyễn</div>
+            <h3 style="font-size:1.6rem;margin:0 0 8px;color:var(--red);">Áo Ngũ Thân (Lập Lĩnh)</h3>
+            <p style="font-size:0.95rem;color:var(--ink2);line-height:1.65;">
+              Y phục chuẩn mực thời chúa Nguyễn Phúc Khoát và vua Minh Mạng, áp dụng cho cả nam và nữ từ quan lại đến thứ dân.
+            </p>
+          </div>
+        </div>
+
+        <h4 style="color:var(--gold);margin-top:20px;">1. Đạo lý Nhân sinh trong từng nếp áo</h4>
+        <p style="font-size:0.92rem;color:var(--ink2);line-height:1.7;">
+          Năm vạt áo gồm 4 vạt ngoài tượng trưng cho tứ thân phụ mẫu, vạt thứ năm nằm bên trong che chắn lồng ngực tượng trưng cho chính người mặc được cha mẹ chở che. <b>Năm hạt cúc</b> cài lệch sang nách phải tượng trưng cho <b>Ngũ Thường</b> (Nhân, Lễ, Nghĩa, Trí, Tín) hoặc <b>Ngũ Luân</b> trong gia đình xã hội.
+        </p>
+
+        <h4 style="color:var(--gold);margin-top:20px;">2. Đặc trưng nhận diện</h4>
+        <ul style="font-size:0.92rem;color:var(--ink2);line-height:1.8;">
+          <li><b>Cổ đứng lập lĩnh:</b> Cổ áo dựng thẳng cao khoảng 3cm ôm khít gáy, tạo phong thái trang nghiêm, đoan chính.</li>
+          <li><b>Khuy ngọc/đồng:</b> Hàng 5 cúc cài lệch chéo sang mạn sườn phải.</li>
+          <li><b>Dáng thụng chữ A:</b> Áo buông suông rộng rãi quý phái, không bó sát eo, lót lớp áo cánh trắng tinh khôi bên trong.</li>
         </ul>
+      </div>
+
+      <!-- TAB 4: ÁO BÀ BA -->
+      <div class="learn-tab-pane" id="tabPane_baba">
+        <div style="display:flex;align-items:center;gap:18px;margin-bottom:20px;flex-wrap:wrap;">
+          <div style="width:120px;height:160px;background:var(--bg2);border-radius:var(--radius-sm);overflow:hidden;flex-shrink:0;" id="illusBaBa"></div>
+          <div>
+            <div class="showcase-badge" style="margin-bottom:8px;">🌴 Nam Bộ thế kỷ 19 – Nay · Hồn sông nước hào sảng</div>
+            <h3 style="font-size:1.6rem;margin:0 0 8px;color:var(--red);">Áo Bà Ba Nam Bộ</h3>
+            <p style="font-size:0.95rem;color:var(--ink2);line-height:1.65;">
+              Chiếc áo thân thương gắn liền với hình ảnh người con gái miền Tây chèo xuồng ba lá trên dòng kênh xanh.
+            </p>
+          </div>
+        </div>
+
+        <h4 style="color:var(--gold);margin-top:20px;">1. Nguồn gốc &amp; Đời sống</h4>
+        <p style="font-size:0.92rem;color:var(--ink2);line-height:1.7;">
+          Xuất hiện phổ biến từ nửa cuối thế kỷ 19 tại Nam Bộ, áo bà ba phù hợp với khí hậu ấm áp và lối sống sông nước kênh rạch phương Nam, vừa thanh lịch vừa linh hoạt khi làm việc.
+        </p>
+
+        <h4 style="color:var(--gold);margin-top:20px;">2. Cấu tạo giải phẫu</h4>
+        <ul style="font-size:0.92rem;color:var(--ink2);line-height:1.8;">
+          <li><b>Cổ áo:</b> Cổ tròn hoặc cổ tim thanh thoát để lộ hõm cổ duyên dáng.</li>
+          <li><b>Hàng cúc giữa:</b> Thân trước xẻ dọc giữa, cài cúc bấm hoặc cúc bọc vải chạy dài xuống chân áo.</li>
+          <li><b>Hai túi vuông:</b> May viền hai bên vạt trước phía dưới, dùng đựng trầu cau, khăn tay nhỏ hoặc vật dụng hàng ngày.</li>
+          <li><b>Xẻ tà hông:</b> Tà áo ngắn xẻ hai bên hông tạo đường lượn eo mềm mại và sự thoải mái khi di chuyển.</li>
+        </ul>
+      </div>
+
+      <!-- TAB 5: QUIZ VĂN HÓA CỔ PHỤC -->
+      <div class="learn-tab-pane" id="tabPane_quiz">
+        <h3 style="font-size:1.5rem;color:var(--red);margin-top:0;">🎯 Thử Thách Hiểu Biết Di Sản Y Phục</h3>
+        <p style="color:var(--ink2);margin-bottom:20px;">Cùng kiểm tra kiến thức về các dòng cổ phục truyền thống Việt Nam!</p>
+        <div id="quizContainer" style="background:var(--bg2);padding:24px;border-radius:var(--radius);border:1px solid var(--line);"></div>
       </div>
     </div>
   </div>
-
-  <!-- Phụ kiện -->
-  <div class="tab-panel" data-tab="phukien">
-    <div class="info-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
-      <div class="card">
-        <div style="font-size:2.5rem;margin-bottom:10px">🎋</div>
-        <h3>Nón lá</h3>
-        <p style="font-size:.9rem;color:var(--ink2)">Làm từ lá cọ hoặc lá dừa, khâu tay thủ công. Nón Bài thơ Huế nổi tiếng nhất, mỏng có thể nhìn thấu trong. Đi cùng áo dài, tứ thân, bà ba. Tránh phối với áo ngũ thân trang trọng.</p>
-      </div>
-      <div class="card">
-        <div style="font-size:2.5rem;margin-bottom:10px">🎀</div>
-        <h3>Khăn vấn</h3>
-        <p style="font-size:.9rem;color:var(--ink2)">Dải lụa dài vấn quanh đầu, phổ biến ở Bắc Bộ. Màu đen, nâu hoặc cùng màu áo. Đặc trưng của áo tứ thân, cũng hợp với áo ngũ thân phong cách cổ phong.</p>
-      </div>
-      <div class="card">
-        <div style="font-size:2.5rem;margin-bottom:10px">💛</div>
-        <h3>Trâm cài</h3>
-        <p style="font-size:.9rem;color:var(--ink2)">Trâm cài tóc bằng bạc, vàng hoặc đồng, thường có hoa sen, phượng hoàng. Cài bên mái tóc búi hoặc tết. Phù hợp mọi loại Việt phục, điểm nhấn dịu dàng.</p>
-      </div>
-      <div class="card">
-        <div style="font-size:2.5rem;margin-bottom:10px">👘</div>
-        <h3>Yếm</h3>
-        <p style="font-size:.9rem;color:var(--ink2)">Áo lót truyền thống, có 4 dây buộc sau lưng và cổ. Mặc bên trong áo tứ thân hoặc áo cánh. Màu đỏ (yếm đào) tượng trưng tình yêu, trắng cho cô gái chưa chồng.</p>
-      </div>
-      <div class="card">
-        <div style="font-size:2.5rem;margin-bottom:10px">🪡</div>
-        <h3>Thắt lưng bao</h3>
-        <p style="font-size:.9rem;color:var(--ink2)">Dải lụa rộng quấn quanh eo, nhiều màu sắc rực rỡ. Đặc trưng của áo tứ thân Bắc Bộ. Nhấn eo, tạo điểm nhấn màu sắc sinh động cho trang phục.</p>
-      </div>
-      <div class="card">
-        <div style="font-size:2.5rem;margin-bottom:10px">👟</div>
-        <h3>Giày &amp; Guốc</h3>
-        <p style="font-size:.9rem;color:var(--ink2)">Guốc mộc (dép quai hậu gỗ) truyền thống. Hài thêu cho áo ngũ thân. Sneaker trắng hợp áo dài đi học. Sandal thổ cẩm cho bà ba. Tránh giày thể thao nặng màu với áo dài trang trọng.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Màu sắc -->
-  <div class="tab-panel" data-tab="mausac">
-    <div class="info-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:20px">
-      <div class="card" style="border-left:5px solid #c84b2f">
-        <h4 style="color:#c84b2f">🔴 Đỏ son</h4>
-        <p style="font-size:.9rem;color:var(--ink2)">May mắn, hỷ sự, lễ hội. Màu chủ đạo dịp Tết, cưới hỏi. Áo dài đỏ là biểu tượng truyền thống Việt Nam được nhận biết toàn cầu.</p>
-      </div>
-      <div class="card" style="border-left:5px solid #d9a21b">
-        <h4 style="color:#d9a21b">🟡 Vàng nghệ</h4>
-        <p style="font-size:.9rem;color:var(--ink2)">Cao quý, thịnh vượng, hoàng gia. Màu đặc trưng của triều Nguyễn. Áo ngũ thân vàng – uy phong nhưng hiện đại khi phối đúng cách.</p>
-      </div>
-      <div class="card" style="border-left:5px solid #2c4a73">
-        <h4 style="color:#2c4a73">🔵 Xanh chàm</h4>
-        <p style="font-size:.9rem;color:var(--ink2)">Gần gũi, mộc mạc, lao động. Màu truyền thống của làng quê Bắc Bộ. Hợp áo tứ thân, bà ba. Phối cùng vàng – contrasting đẹp mắt.</p>
-      </div>
-      <div class="card" style="border-left:5px solid #9c7060">
-        <h4 style="color:#9c7060">⬜ Trắng ngà</h4>
-        <p style="font-size:.9rem;color:var(--ink2)">Thanh khiết, học đường, tinh tế. Áo dài trắng là đồng phục học sinh truyền thống. Phối phụ kiện đỏ/vàng để tránh đơn điệu.</p>
-      </div>
-      <div class="card" style="border-left:5px solid #7a4a2b">
-        <h4 style="color:#7a4a2b">🟤 Nâu đất</h4>
-        <p style="font-size:.9rem;color:var(--ink2)">Mộc mạc, tự nhiên, ấm áp. Màu của đất, của lúa chín. Hợp phong cách cổ điển, vintage. Dễ phối cùng vàng và xanh lá.</p>
-      </div>
-      <div class="card" style="border-left:5px solid #4e7040">
-        <h4 style="color:#4e7040">🟢 Xanh rêu</h4>
-        <p style="font-size:.9rem;color:var(--ink2)">Tươi mát, tự nhiên, đương đại. Xu hướng Việt phục Gen Z yêu thích. Tông màu sage green hợp áo bà ba, tứ thân phong cách hiện đại.</p>
-      </div>
-    </div>
-    <div class="card">
-      <h4>🌸 Hoa văn truyền thống</h4>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:12px">
-        <div><b style="color:var(--red)">Hoa sen</b><p style="font-size:.88rem;color:var(--ink2);margin:.3em 0">Quốc hoa Việt Nam, biểu tượng thanh khiết. Thêu trên áo dài, áo ngũ thân cao cấp.</p></div>
-        <div><b style="color:var(--red)">Rồng phụng</b><p style="font-size:.88rem;color:var(--ink2);margin:.3em 0">Biểu tượng hoàng gia. Xuất hiện trên gấm cung đình, chỉ dùng áo ngũ thân trang trọng.</p></div>
-        <div><b style="color:var(--red)">Dây leo hoa</b><p style="font-size:.88rem;color:var(--ink2);margin:.3em 0">Hoa văn dân gian phổ biến, mềm mại, hợp với áo dài và tứ thân đời thường.</p></div>
-        <div><b style="color:var(--red)">Thổ cẩm</b><p style="font-size:.88rem;color:var(--ink2);margin:.3em 0">Hoa văn dệt của các dân tộc thiểu số, được đưa vào thiết kế Việt phục đương đại.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <h2 style="margin-top:40px">Quiz văn hóa</h2>
-  <div class="card" id="quiz"></div>
 </section>
 
-<!-- ═══ ABOUT ═══ -->
+<!-- ══ TRANG LOOKBOOK: THOÁNG ĐÃNG, SPACING RỘNG RÃI ══ -->
+<section class="page" id="look">
+  <div class="lookbook-header-bar">
+    <div>
+      <h2>Lookbook Cá Nhân &amp; Cộng Đồng</h2>
+      <p>Lưu giữ các bản phối tâm đắc hoặc tải lên hình ảnh diện Việt phục thực tế của chính bạn.</p>
+    </div>
+    <label class="btn" style="cursor:pointer;">
+      📷 Tải ảnh thực tế lên
+      <input type="file" id="lookFile" accept="image/*" style="display:none;">
+    </label>
+  </div>
+
+  <div class="gallery-grid" id="lookbookGallery"></div>
+</section>
+
+<!-- ══ TRANG VỀ DỰ ÁN ══ -->
 <section class="page" id="about">
-  <div class="section-header"><h2>Về dự án</h2></div>
-  <div class="card" style="margin-bottom:16px">
-    <h3>Mục đích</h3>
-    <p>Việt phục Remix giúp học sinh, sinh viên đưa trang phục truyền thống vào đời sống hằng ngày: hiện đại nhưng vẫn <b>làm nổi bật</b> Việt phục chứ không làm mờ bản sắc.</p>
-  </div>
-  <h3 style="margin-top:24px;margin-bottom:8px">Quy trình hoạt động</h3>
-  <div class="step"><div class="num">1</div><div><b>Chọn</b> trang phục, sự kiện, màu sắc và phong cách.</div></div>
-  <div class="step"><div class="num">2</div><div><b>Chọn bối cảnh</b> địa danh Việt Nam phù hợp với dịp.</div></div>
-  <div class="step"><div class="num">3</div><div><b>Phối</b> với đồ hiện đại và phụ kiện, xem mockup trực tiếp.</div></div>
-  <div class="step"><div class="num">4</div><div><b>Kiểm tra</b> độ hài hòa màu và cảnh báo văn hóa.</div></div>
-  <div class="step"><div class="num">5</div><div><b>Tìm hiểu</b> nguồn gốc, ý nghĩa của từng loại trang phục.</div></div>
-  <div class="step"><div class="num">6</div><div><b>Lưu &amp; chia sẻ</b> vào lookbook cá nhân.</div></div>
-  <div class="card" style="margin-top:20px">
-    <h3>Bảo đảm thông tin văn hóa</h3>
-    <p>Mỗi trang phục có thẻ thông tin ngắn; quy tắc phối do người làm sản phẩm biên soạn từ tài liệu phổ biến và cần được thẩm định bởi nhà nghiên cứu trước khi phát hành. Tinh thần: gợi ý, không áp đặt; cảnh báo, không cấm.</p>
+  <div style="max-width:800px;margin:0 auto;text-align:center;">
+    <div class="hero-pill">✦ Sứ Mệnh Dự Án ✦</div>
+    <h2 style="font-size:2.2rem;margin-bottom:16px;">Về Dự Án Thêu Lại</h2>
+    <p style="font-size:1.1rem;color:var(--ink2);line-height:1.75;margin-bottom:40px;">
+      <b>Thêu Lại</b> ra đời với khát vọng nối dài sợi chỉ văn hóa ngàn năm của dân tộc vào nhịp sống hiện đại. Chúng tôi tin rằng trang phục truyền thống không chỉ nằm trong bảo tàng hay ngày lễ tết, mà hoàn toàn có thể trở thành ngôn ngữ thời trang hằng ngày đầy tự hào của thế hệ trẻ khi sải bước trên mọi nẻo đường quê hương.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:24px;text-align:left;">
+      <div class="showcase-card stitched-card">
+        <div style="font-size:1.8rem;margin-bottom:8px;">🪡</div>
+        <h4>Dệt Lại Quá Khứ</h4>
+        <p>Nghiên cứu tỉ mỉ cấu tạo của từng nếp áo, từ đường viền cổ đứng của Áo Ngũ Thân đến yếm thắm và dải lụa thắt của Áo Tứ Thân, bảo đảm tính chân thực và tôn trọng lịch sử.</p>
+      </div>
+      <div class="showcase-card stitched-card">
+        <div style="font-size:1.8rem;margin-bottom:8px;">⚡</div>
+        <h4>Hơi Thở Đương Đại</h4>
+        <p>Phối kết phóng khoáng cùng quần ống rộng, giày sneaker, chân váy lụa và phụ kiện tối giản, tạo nên những bản phối thời thượng, ứng dụng cao.</p>
+      </div>
+      <div class="showcase-card stitched-card">
+        <div style="font-size:1.8rem;margin-bottom:8px;">🌏</div>
+        <h4>Tự Hào Bản Sắc</h4>
+        <p>Mỗi bức hình là một thông điệp lan tỏa tình yêu văn hóa dân tộc đến cộng đồng trong nước và bạn bè quốc tế.</p>
+      </div>
+    </div>
   </div>
 </section>
-
 </main>
 
+<!-- ══ FOOTER ══ -->
+<footer>
+  <p style="margin:0 0 6px;">
+    &copy; 2026 <b>Thêu Lại</b> · Mặc quá khứ, phối theo hiện tại. Dự án tôn vinh và sáng tạo di sản thời trang Việt Nam.
+  </p>
+  <p style="font-size:0.8rem;color:var(--mute);margin:0;">
+    Thiết kế &amp; phát triển với tình yêu sâu sắc dành cho cổ phục Việt Nam.
+  </p>
+</footer>
+
+<!-- ══ JAVASCRIPT LOGIC V3 ══ -->
 <script>
-/* ══ DATA ══ */
-const G={
-  aodai: {n:"Áo dài",   sh:"long",o:"Định hình nét hiện đại từ thế kỷ 20, bắt nguồn từ áo ngũ thân và áo giao lĩnh. Thanh lịch, ôm dáng, hợp lễ hội, tốt nghiệp, chụp ảnh."},
-  tuthan:{n:"Áo tứ thân",sh:"tu", o:"Phổ biến ở Bắc Bộ; hai tà trước buộc lại, gắn với hình ảnh các liền chị Quan họ. Kết hợp yếm, váy và thắt lưng bao."},
-  nguthan:{n:"Áo ngũ thân",sh:"ngu",o:"Áo cổ đứng, cài lệch, có thêm vạt con; phổ biến thời Nguyễn. Trang trọng, hợp lễ, sự kiện văn hóa và cung đình phục dựng."},
-  baba:  {n:"Áo bà ba", sh:"ba",  o:"Áo thường ngày Nam Bộ, cổ tròn hoặc cổ tim, gọn gàng, hợp khí hậu nóng ẩm; thường đi với quần lụa hoặc jeans."}
-};
-const EV=["Lễ hội / Tết","Tốt nghiệp","Đi cà phê","Chụp ảnh kỷ yếu"];
-const COL=[["Đỏ son","#c84b2f"],["Vàng nghệ","#d9a21b"],["Xanh chàm","#2c4a73"],["Trắng ngà","#f4ecd8"],["Nâu đất","#7a4a2b"],["Xanh rêu","#4e7040"]];
-const MOD=[["Quần jeans","#4d6a8f"],["Quần ống rộng trắng","#f0ece4"],["Chân váy dài","#5a4040"],["Quần short","#5a7090"]];
-const ACC=["Nón lá","Khăn vấn","Trâm/hoa tai","Sneaker","Hoodie","Mũ lưỡi trai"];
-const STY=["Thanh lịch","Streetwear nhẹ","Cổ điển"];
-let S={g:"aodai",e:0,c:0,m:1,a:new Set(["Trâm/hoa tai"]),s:0,sc:0};
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => document.querySelectorAll(sel);
 
-/* ══ SCENES ══ */
-const SCENES=[
-  {id:"none",label:"Nền mộc",
-   bg:"linear-gradient(160deg,#fdefd9,#f5d9a0)",
-   svg:""},
-  {id:"hanoi",label:"Hồ Gươm – HN",
-   bg:"linear-gradient(to bottom,#ff8c42 0%,#ffc06e 28%,#ffe8b8 55%,#b8d4a0 75%,#3a6025 100%)",
-   svg:'<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="400" height="240" fill="none"/><ellipse cx="200" cy="220" rx="200" ry="30" fill="rgba(70,130,90,.35)"/><rect x="0" y="180" width="400" height="60" fill="rgba(50,100,60,.3)"/><path d="M170 105 L175 85 L180 75 L185 85 L190 105" fill="rgba(25,15,5,.75)"/><rect x="165" y="105" width="30" height="14" rx="2" fill="rgba(25,15,5,.75)"/><rect x="158" y="119" width="44" height="18" rx="2" fill="rgba(25,15,5,.75)"/><rect x="152" y="137" width="56" height="22" rx="2" fill="rgba(25,15,5,.75)"/><ellipse cx="68" cy="148" rx="32" ry="38" fill="rgba(40,70,30,.65)"/><rect x="65" y="168" width="6" height="32" fill="rgba(35,22,8,.5)"/><ellipse cx="330" cy="142" rx="28" ry="34" fill="rgba(40,70,30,.65)"/><rect x="327" y="162" width="6" height="38" fill="rgba(35,22,8,.5)"/><ellipse cx="100" cy="155" rx="20" ry="26" fill="rgba(45,80,35,.55)"/><ellipse cx="310" cy="152" rx="18" ry="24" fill="rgba(45,80,35,.55)"/><rect x="0" y="175" width="400" height="65" fill="rgba(80,160,140,.22)"/><path d="M30 188 Q100 182 170 188 Q240 194 310 188 Q350 185 380 188" stroke="rgba(255,255,255,.25)" stroke-width="2" fill="none"/></svg>'},
-  {id:"halong",label:"Hạ Long",
-   bg:"linear-gradient(to bottom,#5bc8e8 0%,#38a8d8 30%,#1878a8 58%,#0a5078 78%,#1878a8 79%,#78c8e0 100%)",
-   svg:'<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><path d="M0 240 L0 130 Q30 75 55 100 Q70 45 95 85 Q115 20 140 75 Q160 40 185 80 L400 80 L400 240Z" fill="rgba(25,45,35,.55)"/><path d="M120 240 L120 108 Q148 55 168 85 Q185 30 205 75 Q225 42 250 80 Q270 50 295 82 L400 82 L400 240Z" fill="rgba(18,35,28,.68)"/><path d="M0 108 Q80 95 140 100 Q200 105 260 98 Q320 92 400 100" stroke="rgba(255,255,255,.22)" stroke-width="10" fill="none"/><path d="M60 148 Q74 142 88 148 L85 154 L63 154Z" fill="rgba(130,90,40,.7)"/><line x1="74" y1="142" x2="74" y2="126" stroke="rgba(100,65,25,.65)" stroke-width="1.5"/><path d="M15 165 Q50 160 88 165" stroke="rgba(255,255,255,.18)" stroke-width="2" fill="none"/><path d="M180 170 Q220 165 260 170" stroke="rgba(255,255,255,.18)" stroke-width="2" fill="none"/><path d="M310 158 Q350 153 390 158" stroke="rgba(255,255,255,.18)" stroke-width="2" fill="none"/><rect x="0" y="175" width="400" height="65" fill="rgba(10,60,90,.25)"/></svg>'},
-  {id:"hue",label:"Cố đô Huế",
-   bg:"linear-gradient(to bottom,#6b2080 0%,#b03030 22%,#d85020 45%,#e89030 68%,#1a0e08 100%)",
-   svg:'<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect x="100" y="108" width="200" height="95" fill="rgba(8,4,2,.8)"/><path d="M92 108 L308 108 L298 88 Q200 62 102 88Z" fill="rgba(8,4,2,.8)"/><path d="M86 88 Q118 62 200 54 Q282 62 314 88 Q260 72 200 68 Q140 72 86 88Z" fill="rgba(8,4,2,.8)"/><path d="M80 90 L72 96 L82 100Z" fill="rgba(180,120,30,.6)"/><path d="M320 90 L328 96 L318 100Z" fill="rgba(180,120,30,.6)"/><rect x="170" y="155" width="60" height="48" fill="rgba(50,28,10,.65)"/><path d="M170 155 Q200 138 230 155" fill="rgba(8,4,2,.8)"/><ellipse cx="48" cy="162" rx="28" ry="34" fill="rgba(15,35,12,.65)"/><rect x="45" y="180" width="6" height="30" fill="rgba(30,18,5,.5)"/><ellipse cx="352" cy="155" rx="25" ry="30" fill="rgba(15,35,12,.65)"/><rect x="349" y="172" width="6" height="30" fill="rgba(30,18,5,.5)"/><rect x="0" y="195" width="400" height="45" fill="rgba(180,80,20,.12)"/></svg>'},
-  {id:"danang",label:"Cầu Rồng – ĐN",
-   bg:"linear-gradient(to bottom,#f09020 0%,#e05010 22%,#c03010 48%,#600010 72%,#0a0520 100%)",
-   svg:'<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><path d="M0 148 Q80 120 160 135 Q240 150 320 130 Q370 118 400 125" stroke="rgba(18,18,18,.75)" stroke-width="5" fill="none"/><rect x="0" y="148" width="400" height="16" fill="rgba(22,22,22,.85)"/><line x1="148" y1="72" x2="118" y2="150" stroke="rgba(22,22,22,.7)" stroke-width="2"/><line x1="148" y1="72" x2="148" y2="150" stroke="rgba(22,22,22,.7)" stroke-width="2"/><line x1="148" y1="72" x2="178" y2="150" stroke="rgba(22,22,22,.7)" stroke-width="2"/><line x1="252" y1="62" x2="222" y2="150" stroke="rgba(22,22,22,.7)" stroke-width="2"/><line x1="252" y1="62" x2="252" y2="150" stroke="rgba(22,22,22,.7)" stroke-width="2"/><line x1="252" y1="62" x2="282" y2="150" stroke="rgba(22,22,22,.7)" stroke-width="2"/><ellipse cx="360" cy="122" rx="32" ry="16" fill="rgba(160,90,28,.78)"/><path d="M352 112 L375 104 L370 116Z" fill="rgba(160,90,28,.78)"/><circle cx="340" cy="120" r="4" fill="rgba(255,200,50,.6)"/><circle cx="380" cy="118" r="3" fill="rgba(255,180,30,.5)"/><rect x="0" y="164" width="400" height="76" fill="rgba(15,40,80,.32)"/><path d="M0 178 Q80 172 160 178 Q240 184 320 178 Q360 175 400 178" stroke="rgba(255,120,50,.2)" stroke-width="3" fill="none"/><circle cx="50" cy="58" r="3" fill="rgba(255,220,80,.7)"/><circle cx="56" cy="50" r="2" fill="rgba(255,200,60,.6)"/><circle cx="44" cy="50" r="2" fill="rgba(255,200,60,.6)"/><circle cx="58" cy="60" r="2" fill="rgba(255,200,60,.6)"/><circle cx="42" cy="60" r="2" fill="rgba(255,200,60,.6)"/></svg>'},
-  {id:"tet",label:"Tết Nguyên Đán",
-   bg:"linear-gradient(to bottom,#180808 0%,#7a0000 18%,#cc0000 38%,#ff3300 58%,#ffaa00 78%,#180808 100%)",
-   svg:'<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><path d="M0 18 Q100 12 200 8 Q300 12 400 18" stroke="rgba(160,100,0,.5)" stroke-width="1.5" fill="none"/><ellipse cx="80" cy="45" rx="18" ry="24" fill="rgba(220,80,0,.75)" stroke="rgba(255,190,0,.4)" stroke-width="1.5"/><line x1="80" y1="69" x2="80" y2="82" stroke="rgba(255,190,0,.55)" stroke-width="1.5"/><ellipse cx="200" cy="32" rx="22" ry="28" fill="rgba(180,0,0,.85)" stroke="rgba(255,200,0,.45)" stroke-width="1.5"/><line x1="200" y1="60" x2="200" y2="74" stroke="rgba(255,200,0,.55)" stroke-width="1.5"/><ellipse cx="320" cy="50" rx="16" ry="20" fill="rgba(220,80,0,.75)" stroke="rgba(255,190,0,.4)" stroke-width="1.5"/><line x1="320" y1="70" x2="320" y2="83" stroke="rgba(255,190,0,.55)" stroke-width="1.5"/><path d="M22 240 Q45 195 65 160 Q85 128 102 108" stroke="rgba(70,35,15,.65)" stroke-width="4" fill="none"/><path d="M22 240 Q38 210 48 185" stroke="rgba(70,35,15,.5)" stroke-width="2.5" fill="none"/><circle cx="68" cy="122" r="7" fill="rgba(255,160,190,.75)"/><circle cx="85" cy="107" r="5" fill="rgba(255,140,175,.7)"/><circle cx="57" cy="138" r="8" fill="rgba(255,170,200,.75)"/><circle cx="78" cy="150" r="4" fill="rgba(255,150,180,.65)"/><circle cx="350" cy="38" r="3" fill="rgba(255,220,0,.85)"/><circle cx="356" cy="30" r="2" fill="rgba(255,200,0,.75)"/><circle cx="344" cy="30" r="2" fill="rgba(255,200,0,.75)"/><circle cx="358" cy="40" r="2" fill="rgba(255,200,0,.75)"/><circle cx="342" cy="40" r="2" fill="rgba(255,200,0,.75)"/><circle cx="88" cy="185" r="2.5" fill="rgba(255,220,0,.75)"/><circle cx="92" cy="178" r="1.5" fill="rgba(255,200,0,.65)"/><circle cx="84" cy="178" r="1.5" fill="rgba(255,200,0,.65)"/><rect x="0" y="195" width="400" height="45" fill="rgba(80,0,0,.25)"/></svg>'}
-];
-let curScene=0;
+// ══════════════════════════════════════════════════════════════
+// DỮ LIỆU CỔ PHỤC, ĐỊA DANH, TRANG PHỤC & PHỤ KIỆN
+// ══════════════════════════════════════════════════════════════
 
-const $=q=>document.querySelector(q);
-
-/* ══ SCENE BAR ══ */
-function initSceneBar(){
-  const bar=$("#sceneBar");
-  bar.innerHTML=SCENES.map((sc,i)=>'<button class="scene-chip'+(i===0?" on":"")
-    +'" data-sc="'+i+'">'+sc.label+"</button>").join("");
-}
-function setScene(i){
-  curScene=i;
-  const sc=SCENES[i];
-  const stage=$("#stage");
-  stage.style.background=sc.bg;
-  $("#stageScene").innerHTML=sc.svg;
-  document.querySelectorAll(".scene-chip").forEach((b,j)=>b.classList.toggle("on",j===i));
-}
-document.addEventListener("click",e=>{
-  const sc=e.target.closest("[data-sc]");
-  if(sc){setScene(+sc.dataset.sc);return;}
-  const t=e.target.closest("[data-k]");
-  if(!t)return;
-  const k=t.dataset.k,v=t.dataset.v;
-  if(k==="a"){S.a.has(v)?S.a.delete(v):S.a.add(v);}else S[k]=k==="g"?v:+v;
-  ctl();analyze();
-});
-
-/* ══ CONTROLS ══ */
-function chips(k,arr,multi){
-  return'<div class="chips">'+arr.map((x,i)=>{
-    const on=multi?S.a.has(x):S[k]==(k=="g"?x[0]:i);
-    return'<button class="chip'+(on?" on":'')
-      +'" data-k="'+k+'" data-v="'+(k=="g"?x[0]:multi?x:i)+'">'
-      +(k=="g"?x[1]:x)+"</button>";
-  }).join("")+"</div>";
-}
-function swatches(k,arr){
-  return'<div class="chips">'+arr.map((x,i)=>
-    '<button class="sw'+(S[k]==i?" on":"")
-    +'" data-k="'+k+'" data-v="'+i+'" title="'+x[0]+'" style="background:'+x[1]+'"></button>'
-  ).join("")+"</div>";
-}
-function ctl(){
-  $("#ctl").innerHTML=
-    "<label>1 · Trang phục</label>"+chips("g",Object.entries(G).map(([k,v])=>[k,v.n]))+
-    "<label>2 · Sự kiện</label>"+chips("e",EV)+
-    "<label>3 · Màu chủ đạo</label>"+swatches("c",COL)+
-    "<label>4 · Đồ hiện đại phối cùng</label>"+chips("m",MOD.map(x=>x[0]))+
-    "<label>5 · Phụ kiện</label>"+chips("a",ACC,true)+
-    "<label>6 · Phong cách</label>"+chips("s",STY);
-}
-
-/* ══ IMPROVED SVG CHARACTER ══ */
-function buildSVG(){
-  const c=COL[S.c][1],m=MOD[S.m][1],g=G[S.g],a=S.a,skin="#e8b080";
-  const dark=["#2c4a73","#7a4a2b","#4e7040","#c84b2f"].includes(c);
-  const tr=dark?"#fceee0":"#3a1a0a";
-
-  /* Legs */
-  let leg;
-  if(S.m===2){
-    /* Skirt – flowing */
-    leg='<path d="M96 198 Q90 250 82 305 L158 305 Q150 250 144 198Z" fill="'+m+'"/>';
-  }else if(S.m===3){
-    /* Shorts + exposed legs */
-    leg='<rect x="97" y="198" width="37" height="46" rx="6" fill="'+m+'"/>'
-      +'<rect x="138" y="198" width="37" height="46" rx="6" fill="'+m+'"/>'
-      +'<path d="M100 242 Q108 295 108 305 L130 305 Q128 295 136 242Z" fill="'+skin+'"/>'
-      +'<path d="M145 242 Q148 295 148 305 L170 305 Q168 295 164 242Z" fill="'+skin+'"/>';
-  }else{
-    /* Pants – smooth */
-    leg='<path d="M97 198 Q93 255 90 305 L120 305 Q122 255 120 198Z" fill="'+m+'"/>'
-      +'<path d="M150 198 Q152 255 150 305 L178 305 Q180 255 180 198Z" fill="'+m+'"/>'
-      +'<path d="M120 198 L150 198 L152 220 L118 220Z" fill="rgba(0,0,0,.08)"/>';
+// 1. CỔ PHỤC (ÁO TRUYỀN THỐNG)
+const GARMENTS = {
+  aodai: {
+    name: "Áo Dài",
+    sub: "Thanh lịch, thướt tha",
+    icon: "🪷",
+    desc: "Biểu tượng duyên dáng của người phụ nữ Việt qua các thời kỳ."
+  },
+  tuthan: {
+    name: "Áo Tứ Thân",
+    sub: "Quan họ Kinh Bắc",
+    icon: "🌸",
+    desc: "Nét duyên mộc mạc, đậm tình người quan họ Kinh Bắc."
+  },
+  nguthan: {
+    name: "Áo Ngũ Thân",
+    sub: "Trang trọng triều đình",
+    icon: "👑",
+    desc: "Cổ đứng trang nghiêm, 5 vạt tượng trưng đạo làm người."
+  },
+  baba: {
+    name: "Áo Bà Ba",
+    sub: "Dân dã Nam Bộ",
+    icon: "🌾",
+    desc: "Gắn liền với sông nước Cửu Long hào sảng và đôn hậu."
   }
-
-  /* Shoes */
-  const sh=a.has("Sneaker")?"#f8f8f5":"#2a1810";
-  const shoes='<path d="M84 300 Q108 296 128 300 Q128 308 84 308Z" fill="'+sh+'" stroke="rgba(0,0,0,.18)" stroke-width="1"/>'
-    +'<path d="M145 300 Q165 296 192 300 Q190 308 145 308Z" fill="'+sh+'" stroke="rgba(0,0,0,.18)" stroke-width="1"/>';
-
-  /* Garment body */
-  let body="";
-  if(g.sh==="long"||g.sh==="ngu"){
-    const hem=g.sh==="ngu"?248:270;
-    /* Flowing ao dai shape */
-    body='<path d="M93 96 C90 130 88 160 86 '+hem+' C110 '+(hem+8)+' 130 '+(hem+10)+' 138 '+(hem+10)+'C146 '+(hem+10)+' 168 '+(hem+8)+' 190 '+hem+' C188 160 186 130 183 96Z" fill="'+c+'"/>'
-      +'<path d="M138 96 C138 160 138 200 138 '+hem+'" stroke="'+tr+'" stroke-width="1.5" opacity=".38"/>'
-      +(g.sh==="ngu"?'<path d="M112 96 C118 130 128 170 136 195" stroke="'+tr+'" stroke-width="2.5" opacity=".5" fill="none"/>':'')
-      +'<path d="M93 96 C70 130 52 165 46 195 L68 202 C76 176 88 140 98 110Z" fill="'+c+'"/>'
-      +'<path d="M183 96 C205 130 225 165 230 195 L208 202 C200 176 188 140 178 110Z" fill="'+c+'"/>'
-      +'<path d="M93 96 C70 130 52 165 46 195 L68 202 C76 176 88 140 98 110Z" fill="rgba(0,0,0,.06)"/>'
-      +'<path d="M183 96 C205 130 225 165 230 195 L208 202 C200 176 188 140 178 110Z" fill="rgba(0,0,0,.06)"/>'
-      +'<path d="M93 96 C100 102 118 106 138 106 C158 106 175 102 183 96" stroke="'+tr+'" stroke-width="1" opacity=".3" fill="none"/>';
-  }else if(g.sh==="tu"){
-    /* Ao tu than – front panels tied */
-    body='<path d="M100 96 C105 130 108 165 108 200 L168 200 C168 165 172 130 176 96Z" fill="#b85068"/>'
-      +'<path d="M100 96 C92 130 88 200 84 262 L116 262 C118 200 116 130 114 96Z" fill="'+c+'"/>'
-      +'<path d="M176 96 C184 130 188 200 192 262 L160 262 C158 200 160 130 162 96Z" fill="'+c+'"/>'
-      +'<path d="M92 96 C68 130 50 168 44 196 L66 202 C74 178 86 145 96 115Z" fill="'+c+'"/>'
-      +'<path d="M184 96 C208 130 225 168 232 196 L210 202 C202 178 190 145 180 115Z" fill="'+c+'"/>'
-      +'<rect x="100" y="180" width="76" height="6" rx="3" fill="#d9a21b" opacity=".85"/>'
-      +'<path d="M108 200 C116 216 132 224 138 228 C144 224 160 216 168 200Z" fill="'+c+'" opacity=".7"/>';
-  }else{
-    /* Ba ba – rounded collar, pockets */
-    body='<path d="M98 96 C96 130 95 165 95 214 L181 214 C181 165 180 130 178 96Z" fill="'+c+'"/>'
-      +'<path d="M98 96 C70 128 56 168 50 195 L72 202 C80 178 90 145 100 115Z" fill="'+c+'"/>'
-      +'<path d="M178 96 C205 128 220 168 226 195 L204 202 C196 178 186 145 176 115Z" fill="'+c+'"/>'
-      +'<circle cx="130" cy="108" r="12" fill="'+c+'" stroke="'+tr+'" stroke-width="1" opacity=".6"/>'
-      +'<circle cx="130" cy="108" r="8" fill="'+c+'"/>'
-      +'<circle cx="138" cy="124" r="3.5" fill="'+tr+'" opacity=".65"/>'
-      +'<circle cx="138" cy="148" r="3.5" fill="'+tr+'" opacity=".65"/>'
-      +'<circle cx="138" cy="172" r="3.5" fill="'+tr+'" opacity=".65"/>'
-      +'<rect x="100" y="152" width="28" height="22" rx="4" fill="rgba(0,0,0,.1)"/>'
-      +'<rect x="148" y="152" width="28" height="22" rx="4" fill="rgba(0,0,0,.1)"/>';
-  }
-
-  /* Hoodie overlay */
-  const hoodie=a.has("Hoodie")
-    ?'<path d="M86 88 C86 140 84 180 84 196 L192 196 C192 180 190 140 190 88 C175 82 155 78 138 78 C122 78 102 82 86 88Z" fill="#888" opacity=".52"/>'
-     +'<path d="M114 88 C118 78 128 72 138 70 C148 72 158 78 162 88" stroke="#777" stroke-width="2.5" fill="none" stroke-linecap="round"/>':""  ;
-
-  /* Hat / headwear */
-  const hat=a.has("Nón lá")
-    ?'<path d="M60 66 L138 12 L218 66Z" fill="#e8cc88" stroke="#b5943a" stroke-width="1.5"/>'
-     +'<line x1="60" y1="66" x2="218" y2="66" stroke="#b5943a" stroke-width="1.5"/>'
-     +'<line x1="138" y1="12" x2="138" y2="66" stroke="#c8a848" stroke-width=".8" opacity=".5"/>'
-    :a.has("Khăn vấn")
-    ?'<path d="M104 50 C106 35 122 28 138 28 C154 28 170 35 172 50 C168 58 154 63 138 64 C122 63 108 58 104 50Z" fill="'+c+'" stroke="'+tr+'" stroke-width="1.5"/>'
-     +'<path d="M104 50 C108 44 122 40 138 40 C154 40 168 44 172 50" stroke="rgba(255,255,255,.2)" stroke-width="1" fill="none"/>'
-    :a.has("Mũ lưỡi trai")
-    ?'<path d="M106 46 C114 24 162 24 170 46Z" fill="#222"/>'
-     +'<path d="M164 46 C178 44 206 48 204 54 C198 52 170 50 164 46Z" fill="#1a1a1a"/>'
-    :"";
-
-  /* Earrings */
-  const earring=a.has("Trâm/hoa tai")
-    ?'<circle cx="106" cy="72" r="5" fill="#d9a21b"/>'
-     +'<circle cx="106" cy="80" r="3" fill="#d9a21b" opacity=".68"/>'
-     +'<line x1="106" y1="77" x2="106" y2="83" stroke="#d9a21b" stroke-width="1.5" opacity=".6"/>'
-     +'<circle cx="170" cy="72" r="5" fill="#d9a21b"/>'
-     +'<circle cx="170" cy="80" r="3" fill="#d9a21b" opacity=".68"/>'
-     +'<line x1="170" y1="77" x2="170" y2="83" stroke="#d9a21b" stroke-width="1.5" opacity=".6"/>'
-    :"";
-
-  /* Face – naturalistic */
-  const face='<circle cx="138" cy="62" r="30" fill="'+skin+'"/>'
-    +'<path d="M118 56 C120 42 128 36 138 34 C148 36 156 42 158 56 L158 46 C155 30 142 24 138 24 C134 24 121 30 118 46Z" fill="#1c1008"/>'
-    +'<path d="M128 52 C130 50 134 50 138 50 C142 50 146 50 148 52" stroke="#2a1808" stroke-width="1.2" fill="none" opacity=".5"/>'
-    +'<ellipse cx="130" cy="64" rx="4.5" ry="3" fill="#1c1008" opacity=".7"/>'
-    +'<ellipse cx="146" cy="64" rx="4.5" ry="3" fill="#1c1008" opacity=".7"/>'
-    +'<path d="M134 72 C136 74 140 74 142 72" stroke="'+skin+'" stroke-width="1.2" fill="none" opacity=".6"/>'
-    +'<circle cx="130" cy="64" r="1.5" fill="rgba(255,255,255,.5)"/>'
-    +'<circle cx="146" cy="64" r="1.5" fill="rgba(255,255,255,.5)"/>'
-    +'<path d="M126 70 C130 73 138 74 142 73 C146 72 150 70 150 70" stroke="#c07060" stroke-width="1.5" fill="none" opacity=".6" stroke-linecap="round"/>';
-
-  return'<svg viewBox="0 0 276 316" xmlns="http://www.w3.org/2000/svg">'
-    +'<ellipse cx="138" cy="310" rx="72" ry="6" fill="rgba(0,0,0,.14)"/>'
-    +leg+shoes+body+hoodie
-    +'<rect x="128" y="84" width="20" height="14" rx="5" fill="'+skin+'"/>'
-    +face+earring+hat
-    +"</svg>";
-}
-
-/* ══ ANALYZE ══ */
-let _anim=false;
-function analyze(){
-  const g=G[S.g],A=S.a,mo=MOD[S.m][0];let w=[],sc=78;
-  if(mo==="Quần short"){w.push("Quần short làm mất tính trang nhã của "+g.n+"; hãy chọn quần ống rộng hoặc chân váy dài.");sc-=25;}
-  if(A.has("Hoodie")&&(S.g==="nguthan"||S.g==="tuthan")){w.push("Hoodie che vạt và cổ áo – đặc trưng chính của "+g.n+". Thử khoác cardigan/blazer mỏng.");sc-=20;}
-  else if(A.has("Hoodie")){w.push("Hoodie dễ che mất kiểu cổ và nếp áo; nếu dùng, nên chọn tông trơn và ngắn hơn áo.");sc-=10;}
-  if(A.has("Mũ lưỡi trai")&&(A.has("Nón lá")||A.has("Khăn vấn"))){w.push("Không nên đội nhiều loại mũ/khăn cùng lúc.");sc-=12;}
-  if(A.has("Nón lá")&&A.has("Khăn vấn")){w.push("Nón lá và khăn vấn thuộc hai phong cách khác nhau – chọn một.");sc-=10;}
-  if(S.g==="tuthan"&&!A.has("Khăn vấn")&&S.s===2)w.push("Gợi ý: kiểu cổ điển của áo tứ thân hợp khăn mỏ quạ.");
-  if(A.has("Sneaker")&&S.g==="nguthan"&&S.e===0){w.push("Lễ hội trang trọng: sneaker hơi lệch tinh thần, hãy thử giày bệt hoặc guốc.");sc-=6;}
-  if(S.g==="baba"&&S.e===1){w.push("Áo bà ba hợp không khí gần gũi; với tốt nghiệp nên cân nhắc áo dài hoặc ngũ thân.");sc-=6;}
-  if(S.c===3&&mo==="Quần ống rộng trắng"){w.push("Trắng ngà + quần trắng: dễ nhạt – thêm phụ kiện đỏ/vàng để có điểm nhấn.");sc-=4;}
-  const isC=S.c===2||S.c===4||S.c===5;
-  if(S.s===1&&isC)sc+=6;if(S.s===0&&(S.c===0||S.c===3))sc+=6;if(S.s===2&&(S.c===0||S.c===4||S.c===1))sc+=6;
-  sc=Math.max(20,Math.min(98,sc));
-  if(!w.length)w.push("Kết hợp hài hòa – Việt phục vẫn là điểm nhấn chính ✨");
-  const ok=w.length===1&&sc>=78;
-
-  /* Animate character swap */
-  const charEl=$("#stageChar");
-  const svgEl=charEl?charEl.querySelector("svg"):null;
-  const doRender=()=>{if(charEl)charEl.innerHTML=buildSVG();};
-  if(svgEl&&!_anim){_anim=true;svgEl.classList.add("out");setTimeout(()=>{doRender();_anim=false;},280);}
-  else if(!svgEl){doRender();}
-
-  const tips=[
-    "Giữ Việt phục là điểm nhấn; đồ hiện đại chọn tông trơn.",
-    "Thêm chi tiết đỏ hoặc vàng ở phụ kiện để kết nối bảng màu truyền thống.",
-    "Với "+EV[S.e].toLowerCase()+": "+["ưu tiên màu rực, phụ kiện trang trọng.","tông nhã, dễ chụp ảnh.","phong cách gọn, đi lại thoải mái.","tránh họa tiết rối để nổi bật trên ảnh."][S.e]
-  ];
-  $("#res").innerHTML="<h3>"+g.n+" · "+STY[S.s]+"</h3>"
-    +'<div style="margin-bottom:10px">'
-    +'<span class="tag">'+EV[S.e]+"</span>"
-    +'<span class="tag">'+COL[S.c][0]+"</span>"
-    +'<span class="tag">'+MOD[S.m][0]+"</span>"
-    +'<span class="tag">'+SCENES[curScene].label+"</span></div>"
-    +"<label>Độ hài hòa · "+sc+"/100</label>"
-    +'<div class="bar"><i style="width:'+sc+'%"></i></div>'
-    +w.map(x=>'<div class="warn'+(ok?' ok':'')+'">'+(ok?'✅':'⚠️')+' '+x+'</div>').join('')
-    +'<p style="margin-top:12px"><b>💡 Gợi ý:</b> '+tips.join(" ")+"</p>"
-    +'<p style="color:var(--mute);font-size:.9rem"><b>📜 Nguồn gốc:</b> '+g.o+"</p>"
-    +'<button class="btn sm" id="sv" style="margin-top:12px">💾 Lưu vào lookbook</button>';
-  $("#sv").onclick=()=>{
-    add("data:image/svg+xml;charset=utf-8,"+encodeURIComponent(buildSVG()),
-      g.n+" · "+STY[S.s]+" · "+COL[S.c][0]+" · "+SCENES[curScene].label);
-    location.hash="#look";
-  };
-}
-
-/* ══ LOOKBOOK ══ */
-let L=[];try{L=JSON.parse(localStorage.getItem("vpr")||"[]");}catch(e){}
-function save(){try{localStorage.setItem("vpr",JSON.stringify(L));}catch(e){}}
-function add(src,cap){L.unshift({src,cap:cap||"Phối đồ của tôi"});save();shots();}
-function shots(){
-  $("#shots").innerHTML=L.length
-    ?L.map((x,i)=>'<div class="card shot"><img src="'+x.src+'" alt=""><p><b>'+x.cap.replace(/</g,"&lt;")+"</b></p>"
-      +'<button class="chip" onclick="L.splice('+i+",1);save();shots()">🗑 Xóa</button></div>").join("")
-    :'<p style="color:var(--mute)">Chưa có ảnh nào. Lưu phối đồ hoặc đăng ảnh của bạn.</p>';
-}
-$("#up").onclick=()=>{
-  const f=$("#file").files[0];if(!f)return alert("Hãy chọn một ảnh");
-  const r=new FileReader();r.onload=()=>{
-    const im=new Image();im.onload=()=>{
-      const k=Math.min(1,480/im.width);
-      const cv=document.createElement("canvas");cv.width=im.width*k;cv.height=im.height*k;
-      cv.getContext("2d").drawImage(im,0,0,cv.width,cv.height);
-      add(cv.toDataURL("image/jpeg",.78),$("#cap").value);
-      $("#cap").value="";$("#file").value="";
-    };im.src=r.result;
-  };r.readAsDataURL(f);
 };
 
-/* ══ LEARN TABS ══ */
-document.querySelectorAll(".tab-btn").forEach(btn=>{
-  btn.onclick=()=>{
-    const t=btn.dataset.tab;
-    document.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("on",b===btn));
-    document.querySelectorAll(".tab-panel").forEach(p=>p.classList.toggle("on",p.dataset.tab===t));
-  };
-});
-
-/* ══ QUIZ ══ */
-const Q=[
-  ["Áo dài hiện đại có nền tảng từ trang phục nào?",["Áo ngũ thân","Áo bà ba","Áo cổ tròn Tây"],0],
-  ["Áo tứ thân gắn với vùng nào?",["Nam Bộ","Bắc Bộ","Tây Nguyên"],1],
-  ["Áo bà ba phổ biến ở đâu?",["Nam Bộ","Bắc Bộ","Trung Bộ"],0],
-  ["Khi phối Việt phục nên…",["Che hết bằng hoodie lớn","Giữ Việt phục là điểm nhấn","Mặc quần short"],1],
-  ["Áo tứ thân có mấy tà trước buộc lại?",["Hai","Bốn","Không có"],0],
-  ["Màu đỏ trong Việt phục tượng trưng điều gì?",["Tang lễ","May mắn, hỷ sự","Thanh khiết"],1],
-  ["Yếm đào là phụ kiện của loại áo nào?",["Áo bà ba","Áo tứ thân","Áo ngũ thân"],1]
-];
-let qi=0,qs=0;
-function quiz(){
-  const q=$("#quiz");
-  if(qi>=Q.length){
-    q.innerHTML="<h3>Điểm: "+qs+"/"+Q.length+"</h3><p>"+(qs>=5?"Xuất sắc! Bạn rất hiểu Việt phục 🎉":"Đọc lại phần Tìm hiểu rồi thử lại nhé!")+"</p>"
-      +'<button class="btn sm" onclick="qi=0;qs=0;quiz()">Làm lại</button>';
-    return;
+// 2. 8 BỐI CẢNH CON PHỐ / CUNG ĐƯỜNG THỰC TẾ (EYE-LEVEL WALKING PERSPECTIVE)
+const SCENES = [
+  {
+    id: "hanoi",
+    label: "Phố Cổ HN",
+    icon: "🌸",
+    fullLabel: "Phố Cổ Hà Nội (Đường Tạ Hiện - Hàng Bạc)",
+    photo: "assets/scenes/hanoi_street.jpg",
+    thumb: "assets/scenes/hanoi_street.jpg",
+    desc: "Sải bước trên con phố cổ rêu phong ngập tràn sắc vàng Hà Nội xưa"
+  },
+  {
+    id: "hoian",
+    label: "Phố Hội An",
+    icon: "🏮",
+    fullLabel: "Phố Cổ Hội An (Đường Trần Phú Hoa Giấy & Lồng Đèn)",
+    photo: "assets/scenes/hoian_street.jpg",
+    thumb: "assets/scenes/hoian_street.jpg",
+    desc: "Dạo bước trên phố đèn lồng lung linh tường vàng hoa giấy"
+  },
+  {
+    id: "hue",
+    label: "Đường Cố Đô",
+    icon: "🏯",
+    fullLabel: "Cung Đình Huế (Đường Ngọ Môn & Hành Lang Son Thếp)",
+    photo: "assets/scenes/hue_citadel.jpg",
+    thumb: "assets/scenes/hue_citadel.jpg",
+    desc: "Dáng xưa thanh nhã trước sân rồng và hành lang hoàng cung thâm nghiêm"
+  },
+  {
+    id: "danang",
+    label: "Phố Đà Nẵng",
+    icon: "🐉",
+    fullLabel: "Phố Đi Bộ Sông Hàn (Đường Bạch Đằng ven Cầu Rồng)",
+    photo: "assets/scenes/danang_promenade.jpg",
+    thumb: "assets/scenes/danang_promenade.jpg",
+    desc: "Phố đi bộ lung linh ánh đèn hiện đại thoáng đãng ven sông"
+  },
+  {
+    id: "halong",
+    label: "Đường Hạ Long",
+    icon: "🌊",
+    fullLabel: "Cung Đường Ven Vịnh Hạ Long",
+    photo: "assets/scenes/halong_baywalk.jpg",
+    thumb: "assets/scenes/halong_baywalk.jpg",
+    desc: "Thả dáng bên cung đường dạo bộ nhìn ra non nước kỳ quan"
+  },
+  {
+    id: "tet",
+    label: "Phố Hoa Tết",
+    icon: "🧧",
+    fullLabel: "Đường Hoa Tết Nguyên Đán (Đường Hoa Mai Đào)",
+    photo: "assets/scenes/tet_flowers.jpg",
+    thumb: "assets/scenes/tet_flowers.jpg",
+    desc: "Rực rỡ sắc xuân ngập tràn hoa mai, đào thắm và câu đối đỏ đón Tết"
+  },
+  {
+    id: "mientay",
+    label: "Đường Làng",
+    icon: "🌴",
+    fullLabel: "Đường Làng Nam Bộ (Bến Tre / Cần Thơ Rợp Bóng Dừa)",
+    photo: "assets/scenes/mekong_village.jpg",
+    thumb: "assets/scenes/mekong_village.jpg",
+    desc: "Mộc mạc, yên bình bên rặng dừa xanh mướt và dòng kênh nhỏ"
+  },
+  {
+    id: "studio",
+    label: "Studio Di Sản",
+    icon: "🎨",
+    fullLabel: "Studio Di Sản Tối Giản (Sàn Gỗ & Sen Thanh Tịnh)",
+    photo: "assets/scenes/heritage_studio.jpg",
+    thumb: "assets/scenes/heritage_studio.jpg",
+    desc: "Không gian nhiếp ảnh đương đại tôn vinh tinh hoa tơ lụa Việt"
   }
-  q.innerHTML='<p style="color:var(--mute)">Câu '+(qi+1)+"/"+Q.length+"</p><h3>"+Q[qi][0]+"</h3>"
-    +Q[qi][1].map((o,i)=>'<button class="opt" data-q="'+i+'">'+o+"</button>").join("")
-    +'<div id="fb"></div>';
-  q.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{
-    const ok=+b.dataset.q===Q[qi][2];if(ok)qs++;
-    q.querySelectorAll("[data-q]").forEach(x=>x.disabled=true);
-    if(ok)b.style.cssText="border-color:#48a045;background:#edfbec;color:#245820";
-    else   b.style.cssText="border-color:#c84b2f;background:#fef0ee;color:#a03020";
-    $("#fb").innerHTML='<div class="warn '+(ok?"ok":"")
-      +'" style="margin-top:10px">'+(ok?"✅ Chính xác!":"❌ Đáp án: "+Q[qi][1][Q[qi][2]])+"</div>"
-      +'<button class="btn sm" style="margin-top:10px" onclick="qi++;quiz()">Tiếp →</button>';
+];
+
+// 3. DỊP XUẤT HIỆN
+const EVENTS = [
+  { name: "Lễ hội / Tết", icon: "🏮", sub: "Rực rỡ, trang nghiêm" },
+  { name: "Tốt nghiệp / Kỷ yếu", icon: "🎓", sub: "Thanh xuân, trong sáng" },
+  { name: "Dạo phố / Cà phê", icon: "☕", sub: "Năng động, trẻ trung" },
+  { name: "Triển lãm / Sự kiện", icon: "🏛️", sub: "Nghệ thuật, cổ phong" }
+];
+
+// 4. BẢNG MÀU CHỦ ĐẠO
+const COLORS = [
+  { name: "Đỏ son", hex: "#c63d24", meaning: "May mắn, hỷ sự" },
+  { name: "Vàng nghệ", hex: "#d48f22", meaning: "Cao quý, ấm áp" },
+  { name: "Xanh chàm", hex: "#284b72", meaning: "Mộc mạc, yên bình" },
+  { name: "Trắng ngà", hex: "#f5eee6", meaning: "Thanh khiết, tinh khôi" },
+  { name: "Nâu sồng", hex: "#6e4228", meaning: "Cổ điển, trầm tĩnh" },
+  { name: "Xanh rêu", hex: "#486638", meaning: "Tự nhiên, đương đại" }
+];
+
+// 5. TRANG PHỤC THÂN DƯỚI (QUẦN / VÁY)
+const MODERN_BOTTOMS = [
+  { name: "Quần ống rộng trắng", icon: "👖", color: "#f8f5ee", sub: "Thanh thoát, chuẩn mực" },
+  { name: "Quần Jeans xanh", icon: "👖", color: "#46658d", sub: "Cá tính, đường phố" },
+  { name: "Chân váy suông lụa", icon: "👗", color: "#3d2b25", sub: "Mềm mại, thướt tha" },
+  { name: "Quần tây đen", icon: "👖", color: "#22201e", sub: "Chững chạc, lịch sự" },
+  { name: "Chân váy xếp ly midi", icon: "👗", color: "#6d597a", sub: "Duyên dáng, hoài niệm" },
+  { name: "Quần short ngắn", icon: "🩳", color: "#415a77", sub: "Năng động, cá tính" }
+];
+
+// 6. GIÀY / GUỐC (FOOTWEAR - CHỌN DUY NHẤT 1 LOẠI, TRÁNH OVERLAPPING)
+const SHOES = [
+  { name: "Hài thêu hoa sen", icon: "🥿", sub: "Thanh nhã cổ truyền" },
+  { name: "Guốc mộc quai gấm", icon: "🪵", sub: "Mộc mạc dân gian" },
+  { name: "Giày Sneaker trắng", icon: "👟", sub: "Năng động, Gen Z" },
+  { name: "Giày da Oxford", icon: "👞", sub: "Tân thời, lịch lãm" }
+];
+
+// 7. PHỤ KIỆN ĐIỂM XUYẾT (MULTI-SELECT KHÔNG CÒN GIÀY)
+const ACCESSORIES = [
+  { name: "Nón lá", icon: "🎋", sub: "Thuần hậu, che nắng" },
+  { name: "Khăn vấn", icon: "👑", sub: "Kiêu sa, trang trọng" },
+  { name: "Trâm cài tóc", icon: "🌸", sub: "Hoa sen đài các" },
+  { name: "Khăn rằn Nam Bộ", icon: "🧣", sub: "Đậm chất phương Nam" },
+  { name: "Túi cói thủ công", icon: "👜", sub: "Dân dã, thân thiện" },
+  { name: "Áo Hoodie", icon: "🧥", sub: "Streetwear mùa lạnh" }
+];
+
+// 8. PHONG CÁCH ĐỊNH HƯỚNG
+const STYLES = [
+  { name: "Thanh lịch tao nhã", icon: "🪷", sub: "Tôn vinh nét duyên dáng truyền thống" },
+  { name: "Streetwear đương đại", icon: "⚡", sub: "Giao thoa cá tính năng động của Gen Z" },
+  { name: "Cổ phong truyền thống", icon: "📜", sub: "Chuẩn mực trang nghiêm phong thái xưa" },
+  { name: "Lễ hội rực rỡ", icon: "🏮", sub: "Tươi vui, nổi bật trong ngày hội văn hóa" }
+];
+
+// ══════════════════════════════════════════════════════════════
+// TRẠNG THÁI ỨNG DỤNG (APP STATE)
+// ══════════════════════════════════════════════════════════════
+const AppState = {
+  currentPhase: 1, // 1: Địa danh, 2: Cổ phục, 3: Quần, 4: Giày, 5: Phụ kiện
+  sceneIdx: 0,
+  eventIdx: 0,
+  garment: "aodai",
+  colorIdx: 0,
+  bottomIdx: 0,
+  shoeIdx: 0, // Unique Footwear selection
+  accessories: new Set(["Trâm cài tóc"]),
+  styleIdx: 0
+};
+
+// ══════════════════════════════════════════════════════════════
+// VẼ HÌNH NHÂN VẬT THỜI TRANG V3 (HOÀN HẢO ANATOMY, MỀM MẠI VIỆT)
+// ══════════════════════════════════════════════════════════════
+function generateCharacterSVG(state) {
+  const gType = state.garment;
+  const color = COLORS[state.colorIdx] ? COLORS[state.colorIdx].hex : "#c63d24";
+  const bot = MODERN_BOTTOMS[state.bottomIdx] || MODERN_BOTTOMS[0];
+  const botColor = bot.color;
+  const botName = bot.name;
+  const shoeIdx = state.shoeIdx || 0;
+  const acc = state.accessories || new Set();
+
+  const skin = "#fdeddc";
+  const skinShadow = "#eecfb4";
+  const blush = "rgba(224, 86, 74, 0.28)";
+  const hair = "#1a0f0a";
+  const lip = "#c93426";
+  const goldAcc = "#d48f22";
+
+  // 1. THÂN DƯỚI: QUẦN / VÁY / SHORTS (LIỀN KHỐI, KÍN ĐÁO, KHÔNG KHE HỞ)
+  let lowerBodySvg = "";
+  if (botName.includes("short")) {
+    // QUẦN SHORTS: Đáy quần liền khối chắc chắn + Đôi chân thon dài đầy đủ từ đùi qua gối xuống mắt cá chân
+    lowerBodySvg = `
+      <!-- Thân quần short cạp cao liền khối kín đáo -->
+      <path d="M120 202 L180 202 L182 268 C172 270 156 270 151 268 L150 252 L149 268 C144 270 128 270 118 268 Z" fill="${botColor}" filter="drop-shadow(0 2px 6px rgba(0,0,0,0.15))"/>
+      <line x1="150" y1="202" x2="150" y2="252" stroke="rgba(0,0,0,0.2)" stroke-width="1.2"/>
+      
+      <!-- Đôi chân thon thả tỉ lệ chuẩn Á Đông nối liền từ ống quần xuống giày -->
+      <!-- Chân trái -->
+      <path d="M122 268 C122 288 120 315 124 344 L142 344 C144 315 143 288 147 268 Z" fill="${skin}"/>
+      <ellipse cx="133" cy="296" rx="6" ry="3.5" fill="${skinShadow}" opacity="0.35"/>
+      <!-- Chân phải -->
+      <path d="M153 268 C157 288 156 315 158 344 L176 344 C180 315 178 288 178 268 Z" fill="${skin}"/>
+      <ellipse cx="167" cy="296" rx="6" ry="3.5" fill="${skinShadow}" opacity="0.35"/>
+    `;
+  } else if (botName.includes("váy")) {
+    // Chân váy suông lụa hoặc xếp ly midi
+    lowerBodySvg = `
+      <!-- Chân váy lụa xòe rủ mềm mại -->
+      <path d="M120 202 C114 245 94 310 90 345 C125 352 175 352 210 345 C206 310 186 245 180 202 Z" fill="${botColor}" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.12))"/>
+      <path d="M125 210 C120 260 115 315 112 348" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" fill="none"/>
+      <path d="M150 210 C150 260 150 315 150 350" stroke="rgba(0,0,0,0.06)" stroke-width="1.5" fill="none"/>
+      <path d="M175 210 C180 260 185 315 188 348" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" fill="none"/>
+    `;
+  } else {
+    // Quần lụa ống rộng / Quần jeans / Quần tây: Bọc kín hoàn toàn từ hông đến chân, không bao giờ có khoảng trống
+    lowerBodySvg = `
+      <!-- Thân quần bao bọc kín đáo, kết nối liền mạch hai ống quần -->
+      <path d="M120 202 C135 204 165 204 180 202 L180 240 C194 285 198 325 198 346 C180 348 160 348 155 346 C153 305 152 265 150 250 C148 265 147 305 145 346 C140 348 120 348 102 346 C102 325 106 285 120 240 Z" fill="${botColor}" filter="drop-shadow(0 2px 6px rgba(0,0,0,0.12))"/>
+      <!-- Nếp gấp vải rủ mềm mại -->
+      <path d="M116 260 C114 295 110 335 110 344" stroke="rgba(0,0,0,0.07)" stroke-width="1.2" fill="none"/>
+      <path d="M184 260 C186 295 190 335 190 344" stroke="rgba(0,0,0,0.07)" stroke-width="1.2" fill="none"/>
+    `;
+  }
+
+  // 2. GIÀY / GUỐC (FOOTWEAR - CHỌN 1 LOẠI DUY NHẤT, RÕ RÀNG)
+  let shoesSvg = "";
+  if (shoeIdx === 2) {
+    // Giày Sneaker hiện đại
+    shoesSvg = `
+      <g filter="drop-shadow(0 2px 4px rgba(0,0,0,0.22))">
+        <path d="M114 344 C114 340 125 338 138 340 C143 343 143 348 138 349 C126 350 114 348 114 344 Z" fill="#ffffff"/>
+        <path d="M162 340 C175 338 186 340 186 344 C186 348 174 350 162 349 C157 348 157 343 162 340 Z" fill="#ffffff"/>
+        <line x1="120" y1="343" x2="132" y2="343" stroke="#d0d0d0" stroke-width="1.2"/>
+        <line x1="168" y1="343" x2="180" y2="343" stroke="#d0d0d0" stroke-width="1.2"/>
+      </g>
+    `;
+  } else if (shoeIdx === 1) {
+    // Guốc mộc quai gấm
+    shoesSvg = `
+      <g filter="drop-shadow(0 2px 3px rgba(0,0,0,0.25))">
+        <ellipse cx="126" cy="346" rx="14" ry="4" fill="#a0633b"/>
+        <path d="M118 344 C122 340 130 340 134 344" stroke="#c63d24" stroke-width="2.5" fill="none"/>
+        <ellipse cx="174" cy="346" rx="14" ry="4" fill="#a0633b"/>
+        <path d="M166 344 C170 340 178 340 182 344" stroke="#c63d24" stroke-width="2.5" fill="none"/>
+      </g>
+    `;
+  } else if (shoeIdx === 3) {
+    // Giày da Oxford / búp bê thanh lịch
+    shoesSvg = `
+      <g filter="drop-shadow(0 2px 3px rgba(0,0,0,0.25))">
+        <path d="M115 344 C115 340 125 338 137 340 C141 343 141 347 137 348 C126 349 115 348 115 344 Z" fill="#2b170e"/>
+        <path d="M163 340 C175 338 185 340 185 344 C185 348 174 349 163 348 C159 347 159 343 163 340 Z" fill="#2b170e"/>
+        <circle cx="126" cy="344" r="1.5" fill="${goldAcc}"/>
+        <circle cx="174" cy="344" r="1.5" fill="${goldAcc}"/>
+      </g>
+    `;
+  } else {
+    // Hài thêu hoa sen cổ truyền
+    shoesSvg = `
+      <g filter="drop-shadow(0 2px 3px rgba(0,0,0,0.2))">
+        <ellipse cx="126" cy="346" rx="13" ry="4.5" fill="#30150d"/>
+        <ellipse cx="174" cy="346" rx="13" ry="4.5" fill="#30150d"/>
+        <circle cx="126" cy="345" r="1.8" fill="${goldAcc}"/>
+        <circle cx="174" cy="345" r="1.8" fill="${goldAcc}"/>
+      </g>
+    `;
+  }
+
+  // 3. THÂN TRANG PHỤC CỔ TRUYỀN (MỀM MẠI, NẾP GẤP TỰ NHIÊN, DÁNG VIỆT)
+  let garmentSvg = "";
+
+  if (gType === "aodai") {
+    // ÁO DÀI: Eo thon mềm, tà xẻ cao thướt tha lượn sóng, tay e ấp
+    garmentSvg = `
+      <!-- Tà sau lụa rủ mềm mại -->
+      <path d="M124 165 C112 220 98 290 92 332 C130 339 170 339 208 332 C202 290 188 220 176 165 Z" fill="${color}" filter="brightness(0.88)"/>
+
+      <!-- Tà trước bay thướt tha, đường cong S mềm mại -->
+      <path d="M125 108 C120 135 116 165 120 185 C124 200 132 208 130 220 C122 250 106 295 98 335 C132 344 168 344 202 335 C194 295 178 250 170 220 C168 208 176 200 180 185 C184 165 180 135 175 108 Z" fill="${color}" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.18))"/>
+
+      <!-- Nếp lụa óng ả dọc tà áo (Silk Highlights) -->
+      <path d="M136 120 C130 160 126 215 120 270 C116 305 112 328 112 334" stroke="rgba(255,255,255,0.22)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M164 120 C170 160 174 215 180 270 C184 305 188 328 188 334" stroke="rgba(0,0,0,0.12)" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+      <!-- Cổ cao 3 phân bọc viền vàng/ngọc -->
+      <path d="M141 94 C141 92 145 90 150 90 C155 90 159 92 159 94 L158 108 C155 109 145 109 142 108 Z" fill="${color}" stroke="${goldAcc}" stroke-width="1"/>
+      <circle cx="150" cy="111" r="2" fill="${goldAcc}"/>
+
+      <!-- Đường khuy ngực chéo tinh tế -->
+      <path d="M150 108 C158 112 165 120 172 130" stroke="${goldAcc}" stroke-width="1.2" stroke-dasharray="2,3" fill="none"/>
+      <circle cx="162" cy="118" r="1.5" fill="#ffffff"/>
+      <circle cx="170" cy="128" r="1.5" fill="#ffffff"/>
+
+      <!-- Tay áo raglan lụa rủ mềm mại, e ấp khép nhẹ bên hông -->
+      <path d="M125 108 C114 130 102 168 98 204 C104 208 112 206 116 198 C120 168 126 138 132 118 Z" fill="${color}"/>
+      <path d="M175 108 C186 130 198 168 202 204 C196 208 188 206 184 198 C180 168 174 138 168 118 Z" fill="${color}"/>
+
+      <!-- Bàn tay búp măng thon nhỏ e ấp khép nhẹ -->
+      <ellipse cx="102" cy="209" rx="4.5" ry="6.5" fill="${skin}" transform="rotate(10, 102, 209)"/>
+      <ellipse cx="198" cy="209" rx="4.5" ry="6.5" fill="${skin}" transform="rotate(-10, 198, 209)"/>
+    `;
+  } else if (gType === "tuthan") {
+    // ÁO TỨ THÂN KINH BẮC CHUẨN MỰC
+    // Cổ yếm thắm e ấp + Kiềng bạc + Dải lụa đào xanh thắt hoa sen mềm mại
+    garmentSvg = `
+      <!-- Váy lót đụp xòe dài phía sau -->
+      <path d="M120 200 C110 245 92 305 88 335 C125 342 175 342 212 335 C208 305 190 245 180 200 Z" fill="#2b2320"/>
+
+      <!-- Yếm thắm cổ sen đỏ ruby e ấp -->
+      <path d="M136 100 C142 96 158 96 164 100 C172 135 174 185 168 205 C156 208 144 208 132 205 C126 185 128 135 136 100 Z" fill="#d93829" filter="drop-shadow(0 2px 6px rgba(0,0,0,0.15))"/>
+      <!-- Kiềng bạc thanh mảnh sáng bóng -->
+      <path d="M140 102 C146 107 154 107 160 102" stroke="#e9ecef" stroke-width="1.8" fill="none"/>
+      <circle cx="150" cy="111" r="3" fill="#e9ecef"/>
+
+      <!-- Áo cánh trắng ngà lót bên trong -->
+      <path d="M126 106 C134 116 134 140 134 150 L126 150 Z" fill="#f8f9fa"/>
+      <path d="M174 106 C166 116 166 140 166 150 L174 150 Z" fill="#f8f9fa"/>
+
+      <!-- Vạt áo sau buông dài -->
+      <path d="M120 180 C112 230 102 285 96 330 C125 336 175 336 204 330 C198 285 188 230 180 180 Z" fill="${color}" filter="brightness(0.9)"/>
+      <line x1="150" y1="180" x2="150" y2="334" stroke="rgba(0,0,0,0.18)" stroke-width="1.2"/>
+
+      <!-- Hai tà trước xẻ ngực buông lượn sóng tự nhiên -->
+      <path d="M125 106 C118 135 116 175 118 215 C120 255 110 300 104 328 C116 330 126 330 130 326 C134 290 136 250 136 210 C136 170 134 135 132 106 Z" fill="${color}"/>
+      <path d="M175 106 C182 135 184 175 182 215 C180 255 190 300 196 328 C184 330 174 330 170 326 C166 290 164 250 164 210 C164 170 166 135 168 106 Z" fill="${color}"/>
+
+      <!-- DẢI THẮT LƯNG LỤA ĐÀO & XANH CỐM THẮT NÚT HOA SEN -->
+      <path d="M122 188 C135 193 165 193 178 188 C176 198 174 204 172 206 C158 209 142 209 128 206 Z" fill="#2a9d8f" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.15))"/>
+      <ellipse cx="150" cy="198" rx="8" ry="6" fill="#f4a261"/>
+      <circle cx="150" cy="198" r="3.5" fill="#e76f51"/>
+
+      <!-- 2 Dải lụa buông rủ dài thướt tha mềm mại -->
+      <path d="M146 200 C140 230 135 270 138 310 C140 312 145 312 146 308 C144 270 148 230 149 201 Z" fill="#e76f51" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.15))"/>
+      <path d="M152 200 C156 230 164 270 160 312 C158 314 153 314 152 310 C154 270 151 230 150 201 Z" fill="#2a9d8f" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.15))"/>
+
+      <!-- Tay áo tứ thân lụa rủ mềm mại -->
+      <path d="M125 106 C114 130 102 168 98 204 C104 208 112 206 116 198 C120 168 126 138 132 118 Z" fill="${color}"/>
+      <path d="M175 106 C186 130 198 168 202 204 C196 208 188 206 184 198 C180 168 174 138 168 118 Z" fill="${color}"/>
+
+      <!-- Bàn tay búp măng -->
+      <ellipse cx="102" cy="209" rx="4.5" ry="6.5" fill="${skin}" transform="rotate(10, 102, 209)"/>
+      <ellipse cx="198" cy="209" rx="4.5" ry="6.5" fill="${skin}" transform="rotate(-10, 198, 209)"/>
+    `;
+  } else if (gType === "nguthan") {
+    // ÁO NGŨ THÂN TRIỀU NGUYỄN: Dáng thụng chữ A quý phái, 5 khuy cài lệch sang sườn phải
+    garmentSvg = `
+      <!-- Thân áo ngũ thân dáng thụng trang nhã chữ A -->
+      <path d="M125 106 C120 145 114 210 106 295 C102 320 98 335 96 340 C130 346 170 346 204 340 C202 335 198 320 194 295 C186 210 180 145 175 106 Z" fill="${color}" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.18))"/>
+
+      <path d="M136 125 C130 180 124 250 120 325" stroke="rgba(255,255,255,0.18)" stroke-width="2" fill="none"/>
+      <path d="M164 125 C170 180 176 250 180 325" stroke="rgba(0,0,0,0.12)" stroke-width="2" fill="none"/>
+
+      <!-- Cổ đứng lập lĩnh cao 3cm trang nghiêm bọc nẹp đôi -->
+      <rect x="139" y="93" width="22" height="15" rx="3" fill="${color}" stroke="${goldAcc}" stroke-width="1.2"/>
+
+      <!-- Hàng 5 khuy ngọc/đồng cài lệch sang nách phải truyền thống -->
+      <path d="M148 108 C156 112 166 122 176 138 C178 155 178 175 178 190" stroke="${goldAcc}" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <circle cx="149" cy="108" r="2.5" fill="#f4a261" stroke="#331505" stroke-width="0.8"/>
+      <circle cx="156" cy="116" r="2.5" fill="#f4a261" stroke="#331505" stroke-width="0.8"/>
+      <circle cx="165" cy="126" r="2.5" fill="#f4a261" stroke="#331505" stroke-width="0.8"/>
+      <circle cx="173" cy="138" r="2.5" fill="#f4a261" stroke="#331505" stroke-width="0.8"/>
+      <circle cx="177" cy="154" r="2.5" fill="#f4a261" stroke="#331505" stroke-width="0.8"/>
+
+      <!-- Tay áo ngũ thân chẽn gọn gàng quý tộc -->
+      <path d="M125 106 C112 132 100 172 96 206 C102 210 110 208 114 200 C118 170 124 140 132 118 Z" fill="${color}"/>
+      <path d="M175 106 C188 132 200 172 204 206 C198 210 190 208 186 200 C182 170 176 140 168 118 Z" fill="${color}"/>
+
+      <ellipse cx="100" cy="211" rx="4.5" ry="6.5" fill="${skin}" transform="rotate(12, 100, 211)"/>
+      <ellipse cx="200" cy="211" rx="4.5" ry="6.5" fill="${skin}" transform="rotate(-12, 200, 211)"/>
+    `;
+  } else {
+    // ÁO BÀ BA NAM BỘ: Cổ tim/tròn thanh thoát, thân áo phủ qua hông che kín cạp quần, khuy giữa, 2 túi vuông
+    garmentSvg = `
+      <!-- Thân áo bà ba phủ dài qua eo và hông che kín cạp quần tự nhiên -->
+      <path d="M125 108 C120 135 116 168 118 190 C120 205 114 220 110 236 C136 242 164 242 190 236 C186 220 180 205 182 190 C184 168 180 135 175 108 Z" fill="${color}" filter="drop-shadow(0 3px 8px rgba(0,0,0,0.16))"/>
+
+      <!-- Cổ tim xẻ nông thanh thoát lộ cổ ngọc ngà -->
+      <path d="M141 100 C146 110 154 110 159 100" stroke="#f8f5ee" stroke-width="1.8" fill="none"/>
+
+      <!-- Hàng cúc bọc vải chạy dọc chính giữa thân áo -->
+      <line x1="150" y1="108" x2="150" y2="238" stroke="rgba(0,0,0,0.2)" stroke-width="1.2"/>
+      <circle cx="150" cy="116" r="2" fill="#ffffff" stroke="${goldAcc}" stroke-width="0.8"/>
+      <circle cx="150" cy="134" r="2" fill="#ffffff" stroke="${goldAcc}" stroke-width="0.8"/>
+      <circle cx="150" cy="154" r="2" fill="#ffffff" stroke="${goldAcc}" stroke-width="0.8"/>
+      <circle cx="150" cy="174" r="2" fill="#ffffff" stroke="${goldAcc}" stroke-width="0.8"/>
+      <circle cx="150" cy="194" r="2" fill="#ffffff" stroke="${goldAcc}" stroke-width="0.8"/>
+      <circle cx="150" cy="214" r="2" fill="#ffffff" stroke="${goldAcc}" stroke-width="0.8"/>
+
+      <!-- Hai túi áo vuông viền nhỏ phía trước vạt đặc trưng Nam Bộ -->
+      <rect x="124" y="206" width="16" height="18" rx="2" fill="${color}" filter="brightness(0.92)" stroke="rgba(0,0,0,0.15)" stroke-width="1"/>
+      <rect x="160" y="206" width="16" height="18" rx="2" fill="${color}" filter="brightness(0.92)" stroke="rgba(0,0,0,0.15)" stroke-width="1"/>
+
+      <!-- Đường xẻ tà mềm mại hai bên hông -->
+      <path d="M110 236 C112 222 116 210 118 200" stroke="rgba(0,0,0,0.18)" stroke-width="1.5" fill="none"/>
+      <path d="M190 236 C188 222 184 210 182 200" stroke="rgba(0,0,0,0.18)" stroke-width="1.5" fill="none"/>
+
+      <!-- Tay áo dài suông rủ tự nhiên của người phụ nữ Nam Bộ -->
+      <path d="M124 110 C114 132 102 170 98 204 C104 208 112 206 116 198 C120 168 126 138 132 118 Z" fill="${color}"/>
+      <path d="M176 110 C186 132 198 170 202 204 C196 208 188 206 184 198 C180 168 174 138 168 118 Z" fill="${color}"/>
+
+      <!-- Bàn tay búp măng -->
+      <ellipse cx="102" cy="209" rx="4.5" ry="6.5" fill="${skin}" transform="rotate(10, 102, 209)"/>
+      <ellipse cx="198" cy="209" rx="4.5" ry="6.5" fill="${skin}" transform="rotate(-10, 198, 209)"/>
+    `;
+  }
+
+  // 4. PHỤ KIỆN LỚP NGOÀI
+  let hoodieSvg = "";
+  if (acc.has("Áo Hoodie")) {
+    hoodieSvg = `
+      <g filter="drop-shadow(0 3px 8px rgba(0,0,0,0.22))">
+        <path d="M120 110 C108 138 98 185 96 210 L112 212 C116 188 124 148 130 120 Z" fill="#3a3d40"/>
+        <path d="M180 110 C192 138 202 185 204 210 L188 212 C184 188 176 148 170 120 Z" fill="#3a3d40"/>
+        <path d="M128 106 C138 90 162 90 172 106 C166 98 134 98 128 106 Z" fill="#2d3033"/>
+      </g>
+    `;
+  }
+
+  let khanRanSvg = "";
+  if (acc.has("Khăn rằn Nam Bộ")) {
+    khanRanSvg = `
+      <g filter="drop-shadow(0 2px 4px rgba(0,0,0,0.25))">
+        <path d="M136 100 C146 116 146 160 144 200 L140 200 C140 160 138 116 132 102 Z" fill="#f8f9fa"/>
+        <path d="M164 100 C154 116 154 160 156 200 L160 200 C160 160 162 116 168 102 Z" fill="#212529"/>
+        <line x1="140" y1="130" x2="144" y2="130" stroke="#212529" stroke-width="2"/>
+        <line x1="140" y1="150" x2="144" y2="150" stroke="#212529" stroke-width="2"/>
+        <line x1="140" y1="170" x2="144" y2="170" stroke="#212529" stroke-width="2"/>
+        <line x1="140" y1="190" x2="144" y2="190" stroke="#212529" stroke-width="2"/>
+        <line x1="156" y1="130" x2="160" y2="130" stroke="#f8f9fa" stroke-width="2"/>
+        <line x1="156" y1="150" x2="160" y2="150" stroke="#f8f9fa" stroke-width="2"/>
+        <line x1="156" y1="170" x2="160" y2="170" stroke="#f8f9fa" stroke-width="2"/>
+        <line x1="156" y1="190" x2="160" y2="190" stroke="#f8f9fa" stroke-width="2"/>
+      </g>
+    `;
+  }
+
+  let tuiCoiSvg = "";
+  if (acc.has("Túi cói thủ công")) {
+    tuiCoiSvg = `
+      <g filter="drop-shadow(0 3px 5px rgba(0,0,0,0.2))">
+        <rect x="68" y="215" width="24" height="28" rx="4" fill="#c49a6c" stroke="#936639" stroke-width="1.2"/>
+        <path d="M74 215 C74 198 86 198 86 215" stroke="#936639" stroke-width="1.8" fill="none"/>
+        <line x1="72" y1="225" x2="88" y2="225" stroke="#936639" stroke-width="0.8" stroke-dasharray="2,2"/>
+        <line x1="72" y1="233" x2="88" y2="233" stroke="#936639" stroke-width="0.8" stroke-dasharray="2,2"/>
+      </g>
+    `;
+  }
+
+  // 5. CỔ CAO BA NGẤN, GƯƠNG MẶT & MÁI TÓC THANH TÚ
+  const faceAndHairSvg = `
+    <!-- Cổ cao ba ngấn ngọc ngà -->
+    <path d="M142 80 L142 98 C146 101 154 101 158 98 L158 80 Z" fill="${skinShadow}"/>
+    <path d="M143 80 L143 96 C146 98 154 98 157 96 L157 80 Z" fill="${skin}"/>
+
+    <!-- Gương mặt trái xoan thanh tú -->
+    <ellipse cx="150" cy="65" rx="17" ry="22" fill="${skin}" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.12))"/>
+
+    <!-- Má ửng hồng phớt duyên dáng -->
+    <circle cx="140" cy="69" r="4.5" fill="${blush}"/>
+    <circle cx="160" cy="69" r="4.5" fill="${blush}"/>
+
+    <!-- Chân mày lá liễu mềm mại cong vút -->
+    <path d="M138 58 C142 56 146 58 147 60" stroke="#3d2114" stroke-width="1" stroke-linecap="round" fill="none"/>
+    <path d="M153 60 C154 58 158 56 162 58" stroke="#3d2114" stroke-width="1" stroke-linecap="round" fill="none"/>
+
+    <!-- Đôi mắt phượng Á Đông huyền ảo -->
+    <ellipse cx="142" cy="63" rx="2.8" ry="1.6" fill="#1c0f0a"/>
+    <ellipse cx="158" cy="63" rx="2.8" ry="1.6" fill="#1c0f0a"/>
+    <circle cx="143" cy="62.5" r="0.9" fill="#ffffff"/>
+    <circle cx="159" cy="62.5" r="0.9" fill="#ffffff"/>
+
+    <!-- Sống mũi thon thanh thoát -->
+    <path d="M150 63 L149 69 L151 69" stroke="#e0b89b" stroke-width="0.8" fill="none"/>
+
+    <!-- Đôi môi son cánh sen chúm chím -->
+    <path d="M146 73 C148 72 152 72 154 73 C153 76 147 76 146 73 Z" fill="${lip}"/>
+
+    <!-- Mái tóc đen óng ả mượt mà -->
+    <path d="M133 60 C130 38 170 38 167 60 C162 48 138 48 133 60 Z" fill="${hair}"/>
+    <!-- Lọn tóc mai e ấp bên tai -->
+    <path d="M133 60 C131 66 132 72 134 76" stroke="#1a0f0a" stroke-width="1.2" fill="none"/>
+    <path d="M167 60 C169 66 168 72 166 76" stroke="#1a0f0a" stroke-width="1.2" fill="none"/>
+  `;
+
+  // 6. PHỤ KIỆN ĐẦU (NÓN LÁ, KHĂN VẤN, TRÂM CÀI)
+  let headwearSvg = "";
+  if (acc.has("Nón lá")) {
+    headwearSvg = `
+      <g filter="drop-shadow(0 4px 8px rgba(0,0,0,0.28))">
+        <polygon points="150,14 90,62 210,62" fill="#f0e2b6" stroke="#cbb282" stroke-width="1.2"/>
+        <line x1="150" y1="14" x2="150" y2="62" stroke="#d5be8e" stroke-width="1"/>
+        <path d="M96 62 C130 72 170 72 204 62" stroke="#d5be8e" stroke-width="1.2" fill="none"/>
+        <path d="M132 62 C130 85 142 105 146 120" stroke="#f4978e" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+      </g>
+    `;
+  } else if (acc.has("Khăn vấn")) {
+    headwearSvg = `
+      <g filter="drop-shadow(0 3px 6px rgba(0,0,0,0.3))">
+        <path d="M130 50 C140 32 160 32 170 50 C162 42 138 42 130 50 Z" fill="#212529"/>
+        <path d="M132 44 C142 28 158 28 168 44 C160 36 140 36 132 44 Z" fill="#343a40"/>
+        <circle cx="150" cy="40" r="2.5" fill="${goldAcc}"/>
+      </g>
+    `;
+  }
+
+  let tramCaiSvg = "";
+  if (acc.has("Trâm cài tóc") && !acc.has("Nón lá")) {
+    tramCaiSvg = `
+      <g filter="drop-shadow(0 2px 4px rgba(0,0,0,0.25))">
+        <line x1="165" y1="50" x2="186" y2="34" stroke="${goldAcc}" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="186" cy="34" r="4.5" fill="#e76f51"/>
+        <circle cx="186" cy="34" r="2" fill="#ffd166"/>
+        <circle cx="184" cy="41" r="1.8" fill="#ffffff"/>
+      </g>
+    `;
+  }
+
+  return `
+    <svg viewBox="0 0 300 370" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="charGroundShadow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(10, 5, 2, 0.65)"/>
+          <stop offset="60%" stop-color="rgba(10, 5, 2, 0.28)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+      </defs>
+      <!-- Bóng tiếp xúc mặt đường chân thực -->
+      <ellipse cx="150" cy="346" rx="55" ry="11" fill="url(#charGroundShadow)"/>
+      ${lowerBodySvg}
+      ${shoesSvg}
+      ${garmentSvg}
+      ${hoodieSvg}
+      ${khanRanSvg}
+      ${tuiCoiSvg}
+      ${faceAndHairSvg}
+      ${headwearSvg}
+      ${tramCaiSvg}
+    </svg>
+  `;
+}
+
+// ══════════════════════════════════════════════════════════════
+// VẼ GIAO DIỆN BỘ ĐIỀU KHIỂN THEO 5 BƯỚC MỚI
+// ══════════════════════════════════════════════════════════════
+function renderPhaseControls() {
+  // BƯỚC 1: 8 BỐI CẢNH CON PHỐ DI SẢN (Grid 4x2)
+  const scEl = $("#tilesScenes");
+  if (scEl) {
+    scEl.innerHTML = SCENES.map((sc, i) => `
+      <div class="scene-photo-card ${AppState.sceneIdx === i ? 'active' : ''}" data-type="scene" data-val="${i}" style="background-image: url('${sc.thumb}');" title="${sc.fullLabel}">
+        <div class="scene-photo-overlay">
+          <span class="scene-photo-title"><span class="scene-photo-icon">${sc.icon}</span>${sc.label}</span>
+        </div>
+        <div class="scene-photo-badge">✓</div>
+      </div>
+    `).join('');
+  }
+
+  // BƯỚC 1: 4 DỊP LỄ (Grid 2x2)
+  const evEl = $("#tilesEvents");
+  if (evEl) {
+    evEl.innerHTML = EVENTS.map((ev, i) => `
+      <button class="tile-btn ${AppState.eventIdx === i ? 'active' : ''}" data-type="event" data-val="${i}">
+        <span class="tile-icon">${ev.icon}</span>
+        <div class="tile-info">
+          <span class="tile-title">${ev.name}</span>
+          <span class="tile-sub">${ev.sub}</span>
+        </div>
+      </button>
+    `).join('');
+  }
+
+  // BƯỚC 2: 4 CỔ PHỤC (Grid 2x2)
+  const gEl = $("#tilesGarments");
+  if (gEl) {
+    gEl.innerHTML = Object.entries(GARMENTS).map(([key, val]) => `
+      <button class="tile-btn ${AppState.garment === key ? 'active' : ''}" data-type="garment" data-val="${key}">
+        <span class="tile-icon">${val.icon}</span>
+        <div class="tile-info">
+          <span class="tile-title">${val.name}</span>
+          <span class="tile-sub">${val.sub}</span>
+        </div>
+      </button>
+    `).join('');
+  }
+
+  // BƯỚC 2: 6 BẢNG MÀU CHỦ ĐẠO (Grid 3x2)
+  const colEl = $("#tilesColors");
+  if (colEl) {
+    colEl.innerHTML = COLORS.map((col, i) => `
+      <button class="tile-btn color-tile ${AppState.colorIdx === i ? 'active' : ''}" data-type="color" data-val="${i}">
+        <span class="color-dot" style="background:${col.hex};"></span>
+        <div class="tile-info">
+          <span class="tile-title">${col.name}</span>
+          <span class="tile-sub">${col.meaning}</span>
+        </div>
+      </button>
+    `).join('');
+  }
+
+  // BƯỚC 3: 6 ĐỒ PHỐI THÂN DƯỚI (Grid 2x3)
+  const botEl = $("#tilesBottoms");
+  if (botEl) {
+    botEl.innerHTML = MODERN_BOTTOMS.map((bot, i) => `
+      <button class="tile-btn ${AppState.bottomIdx === i ? 'active' : ''}" data-type="bottom" data-val="${i}">
+        <span class="tile-icon">${bot.icon}</span>
+        <div class="tile-info">
+          <span class="tile-title">${bot.name}</span>
+          <span class="tile-sub">${bot.sub}</span>
+        </div>
+      </button>
+    `).join('');
+  }
+
+  // BƯỚC 4: 4 GIÀY / GUỐC (Grid 2x2, UNIQUE FOOTWEAR SELECTION)
+  const shoeEl = $("#tilesShoes");
+  if (shoeEl) {
+    shoeEl.innerHTML = SHOES.map((sh, i) => `
+      <button class="tile-btn ${AppState.shoeIdx === i ? 'active' : ''}" data-type="shoe" data-val="${i}">
+        <span class="tile-icon">${sh.icon}</span>
+        <div class="tile-info">
+          <span class="tile-title">${sh.name}</span>
+          <span class="tile-sub">${sh.sub}</span>
+        </div>
+      </button>
+    `).join('');
+  }
+
+  // BƯỚC 5: 6 PHỤ KIỆN (Grid 2x3, MULTI-SELECT)
+  const accEl = $("#tilesAccessories");
+  if (accEl) {
+    accEl.innerHTML = ACCESSORIES.map((ac) => {
+      const isChecked = AppState.accessories.has(ac.name);
+      return `
+        <button class="tile-btn ${isChecked ? 'active' : ''}" data-type="acc" data-val="${ac.name}">
+          <span class="tile-icon">${ac.icon}</span>
+          <div class="tile-info">
+            <span class="tile-title">${ac.name}</span>
+            <span class="tile-sub">${ac.sub}</span>
+          </div>
+        </button>
+      `;
+    }).join('');
+  }
+
+  // BƯỚC 5: 4 ĐỊNH HƯỚNG PHONG CÁCH
+  const stEl = $("#tilesStyles");
+  if (stEl) {
+    stEl.innerHTML = STYLES.map((st, i) => `
+      <button class="tile-btn ${AppState.styleIdx === i ? 'active' : ''}" data-type="style" data-val="${i}">
+        <span class="tile-icon">${st.icon}</span>
+        <div class="tile-info">
+          <span class="tile-title">${st.name}</span>
+          <span class="tile-sub">${st.sub}</span>
+        </div>
+      </button>
+    `).join('');
+  }
+
+  setPhase(AppState.currentPhase);
+}
+
+function setPhase(p) {
+  AppState.currentPhase = p;
+
+  $$(".step-tab").forEach(tab => {
+    tab.classList.toggle("active", parseInt(tab.dataset.phase, 10) === p);
+  });
+
+  $$(".phase-pane").forEach((pane, idx) => {
+    pane.classList.toggle("active", (idx + 1) === p);
+  });
+
+  $$(".phase-dot").forEach(dot => {
+    dot.classList.toggle("active", parseInt(dot.dataset.dot, 10) === p);
+  });
+
+  const btnPrev = $("#btnPrevPhase");
+  const btnNext = $("#btnNextPhase");
+
+  if (btnPrev) {
+    btnPrev.disabled = (p === 1);
+  }
+
+  if (btnNext) {
+    if (p < 5) {
+      btnNext.textContent = `Tiếp theo: Bước ${p + 1} ▶`;
+      btnNext.classList.add("primary");
+    } else {
+      btnNext.textContent = "✦ Lưu vào Lookbook";
+      btnNext.classList.add("primary");
+    }
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+// CẬP NHẬT SÂN KHẤU & ĐÁNH GIÁ THỜI TRANG DỌC
+// ══════════════════════════════════════════════════════════════
+function updateStage(animate = true) {
+  const sc = SCENES[AppState.sceneIdx];
+  const stage = $("#stageViewport");
+  const man = $("#stageMannequin");
+  const locText = $("#stageLocationText");
+
+  if (stage) {
+    stage.style.backgroundImage = `url('${sc.photo}')`;
+  }
+  if (locText) {
+    locText.textContent = sc.fullLabel;
+  }
+
+  if (man) {
+    if (animate) {
+      const curSvg = man.querySelector("svg");
+      if (curSvg) {
+        curSvg.classList.add("anim-out");
+        setTimeout(() => {
+          man.innerHTML = generateCharacterSVG(AppState);
+        }, 150);
+      } else {
+        man.innerHTML = generateCharacterSVG(AppState);
+      }
+    } else {
+      man.innerHTML = generateCharacterSVG(AppState);
+    }
+  }
+}
+
+function analyzeOutfit() {
+  const g = GARMENTS[AppState.garment];
+  const col = COLORS[AppState.colorIdx];
+  const bot = MODERN_BOTTOMS[AppState.bottomIdx];
+  const sh = SHOES[AppState.shoeIdx];
+  const acc = AppState.accessories;
+  const ev = EVENTS[AppState.eventIdx];
+  const sc = SCENES[AppState.sceneIdx];
+
+  let score = 92;
+  let warnings = [];
+  let tips = [];
+
+  if (bot.name.includes("short")) {
+    if (AppState.eventIdx === 0) { // Lễ hội / Tết
+      score -= 20;
+      warnings.push(`Quần short ngắn khi đi lễ hội trang nghiêm chưa thật sự chuẩn mực với ${g.name}. Hãy thử thay bằng quần ống rộng hoặc chân váy suông.`);
+    } else {
+      tips.push(`Bản phối quần short với ${g.name} mang đậm tinh thần Streetwear phá cách trẻ trung của thế hệ Gen Z.`);
+    }
+  }
+
+  if (acc.has("Áo Hoodie")) {
+    if (AppState.garment === "nguthan" || AppState.garment === "tuthan") {
+      score -= 15;
+      warnings.push(`Áo hoodie che khuất phần cổ đứng và tà áo đặc trưng của ${g.name}. Nên khoác hờ mở khóa để tôn dáng áo.`);
+    }
+  }
+
+  if (acc.has("Nón lá") && acc.has("Khăn vấn")) {
+    score -= 15;
+    warnings.push("Không nên đội đồng thời nón lá và khăn vấn; chỉ nên chọn 1 điểm nhấn trên đầu để tôn trọn vẻ thanh thoát.");
+  }
+
+  if (sh.name.includes("Sneaker") && AppState.eventIdx === 0 && AppState.garment === "nguthan") {
+    tips.push("Trong các đại lễ truyền thống, hài thêu hoặc guốc mộc sẽ tôn nét tôn nghiêm chuẩn mực hơn giày sneaker.");
+  }
+
+  score = Math.max(30, Math.min(98, score));
+  const isHarmonious = (warnings.length === 0 && score >= 75);
+
+  const analysisEl = $("#mixAnalysis");
+  if (!analysisEl) return;
+
+  const warnHtml = warnings.map(w => `<div class="advice-box">⚠️ ${w}</div>`).join('');
+  const tipsHtml = tips.map(t => `<div class="advice-box success">💡 ${t}</div>`).join('');
+
+  analysisEl.innerHTML = `
+    <div class="analysis-header-row">
+      <div>
+        <h3 style="margin:0;">${g.name} · ${STYLES[AppState.styleIdx].name}</h3>
+        <p style="margin:2px 0 0;font-size:0.84rem;color:var(--mute);">${g.desc}</p>
+      </div>
+      <div class="score-badge">✦ Độ hài hòa: ${score}/100</div>
+    </div>
+
+    <div class="score-progress">
+      <div class="score-progress-bar" style="width: ${score}%;"></div>
+    </div>
+
+    <div class="analysis-chips-row">
+      <span class="badge-tag">📍 ${sc.label}</span>
+      <span class="badge-tag">📅 ${ev.name}</span>
+      <span class="badge-tag">🎨 ${col.name}</span>
+      <span class="badge-tag">👖 ${bot.name}</span>
+      <span class="badge-tag">👟 ${sh.name}</span>
+      ${Array.from(acc).map(a => `<span class="badge-tag">✨ ${a}</span>`).join('')}
+    </div>
+
+    ${isHarmonious ? '<div class="advice-box success">✅ Phối đồ rất hài hòa! Giữ trọn vẻ trang nhã và tôn nghiêm của di sản Việt khi dạo bước trên phố.</div>' : ''}
+    ${warnHtml}
+    ${tipsHtml}
+
+    <div class="analysis-actions-row">
+      <button class="btn" id="btnSaveToLookbook">✦ Lưu bản phối vào Lookbook</button>
+    </div>
+  `;
+
+  const saveBtn = $("#btnSaveToLookbook");
+  if (saveBtn) {
+    saveBtn.onclick = function() {
+      const svgCode = generateCharacterSVG(AppState);
+      const dataUri = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgCode);
+      const caption = `${g.name} (${col.name}) · Phối ${bot.name} & ${sh.name} tại ${sc.fullLabel}`;
+      addLookbookItem(dataUri, caption);
+      location.hash = "#look";
+    };
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+// VẼ MINH HỌA TRANG TÌM HIỂU
+// ══════════════════════════════════════════════════════════════
+function renderLearnIllustrations() {
+  const gAoDai = { garment: "aodai", colorIdx: 0, bottomIdx: 0, shoeIdx: 0, accessories: new Set(["Trâm cài tóc"]), styleIdx: 0 };
+  const gTuThan = { garment: "tuthan", colorIdx: 1, bottomIdx: 2, shoeIdx: 1, accessories: new Set(["Nón lá"]), styleIdx: 0 };
+  const gNguThan = { garment: "nguthan", colorIdx: 2, bottomIdx: 3, shoeIdx: 3, accessories: new Set(["Khăn vấn"]), styleIdx: 2 };
+  const gBaBa = { garment: "baba", colorIdx: 5, bottomIdx: 0, shoeIdx: 1, accessories: new Set(["Khăn rằn Nam Bộ"]), styleIdx: 0 };
+
+  const elAD = $("#illusAoDai");
+  if (elAD) elAD.innerHTML = generateCharacterSVG(gAoDai);
+  const elTT = $("#illusTuThan");
+  if (elTT) elTT.innerHTML = generateCharacterSVG(gTuThan);
+  const elNT = $("#illusNguThan");
+  if (elNT) elNT.innerHTML = generateCharacterSVG(gNguThan);
+  const elBB = $("#illusBaBa");
+  if (elBB) elBB.innerHTML = generateCharacterSVG(gBaBa);
+}
+
+// ══════════════════════════════════════════════════════════════
+// SIDEBAR THÒ THỤT TRANG TÌM HIỂU
+// ══════════════════════════════════════════════════════════════
+function initSidebar() {
+  const toggleBtn = $("#sidebarToggleBtn");
+  const layout = $("#learnLayout");
+  const icon = $("#sidebarToggleIcon");
+
+  if (toggleBtn && layout) {
+    toggleBtn.onclick = () => {
+      const isCollapsed = layout.classList.toggle("sidebar-collapsed");
+      if (icon) {
+        icon.textContent = isCollapsed ? "▶" : "◀";
+      }
+    };
+  }
+
+  $$(".sidebar-item").forEach(item => {
+    item.onclick = function() {
+      const tabId = this.dataset.tab;
+      $$(".sidebar-item").forEach(b => b.classList.remove("active"));
+      this.classList.add("active");
+
+      $$(".learn-tab-pane").forEach(p => p.classList.remove("active"));
+      const targetPane = $(`#tabPane_${tabId}`);
+      if (targetPane) {
+        targetPane.classList.add("active");
+      }
+
+      if (tabId === "quiz") {
+        renderQuiz();
+      }
+    };
   });
 }
 
-/* ══ THEME ══ */
-const themeBtn=$("#themeBtn");
-function applyTheme(dark){
-  document.documentElement.dataset.theme=dark?"dark":"light";
-  themeBtn.textContent=dark?"☀️":"🌙";
-  localStorage.setItem("vpTheme",dark?"dark":"light");
-}
-const saved=localStorage.getItem("vpTheme");
-if(saved)applyTheme(saved==="dark");
-themeBtn.onclick=()=>applyTheme(document.documentElement.dataset.theme!=="dark");
-
-/* ══ PARTICLES ══ */
-(function(){
-  const pc=$("#particles");
-  if(!pc)return;
-  for(let i=0;i<14;i++){
-    const d=document.createElement("div");
-    d.className="particle";
-    const sz=3+Math.random()*6;
-    d.style.cssText="left:"+Math.round(Math.random()*95)+"%;width:"+sz+"px;height:"+sz
-      +"px;animation-duration:"+(4+Math.random()*8)+"s;animation-delay:"+(Math.random()*8)+"s;"
-      +(Math.random()>.5?"background:var(--red);":"");
-    pc.appendChild(d);
+// ══════════════════════════════════════════════════════════════
+// QUIZ VĂN HÓA DI SẢN Y PHỤC (CHUẨN XÁC, KHÔNG NHẦM QUỐC PHỤC)
+// ══════════════════════════════════════════════════════════════
+const QUIZ_DATA = [
+  {
+    q: "Áo dài tân thời (hiện đại) được phát triển và cách tân từ loại trang phục nào trong lịch sử?",
+    options: ["Áo Ngũ Thân thời chúa Nguyễn và vua Minh Mạng", "Áo Bà Ba Nam Bộ", "Áo Giao Lĩnh thời Lý - Trần", "Áo váy phương Tây du nhập"],
+    correct: 0,
+    exp: "Áo dài bắt nguồn trực tiếp từ áo ngũ thân lập lĩnh, sau đó được các họa sĩ Le Mur Cát Tường và Lê Phổ cách tân vào thập niên 1930."
+  },
+  {
+    q: "Việt Nam hiện nay đã có văn bản pháp luật chính thức công nhận 'Quốc phục' chưa?",
+    options: ["Chưa có văn bản pháp luật chính thức", "Đã công nhận Áo Dài từ năm 1975", "Đã công nhận Áo Ngũ Thân", "Đã công nhận Áo Tứ Thân"],
+    correct: 0,
+    exp: "Chính xác! Cho đến nay Việt Nam chưa từng ban hành văn bản pháp luật chính thức nào phong danh hiệu 'Quốc phục'. Áo dài là trang phục truyền thống tiêu biểu của dân tộc."
+  },
+  {
+    q: "Trong Áo Ngũ Thân truyền thống, năm thân áo và năm hạt cúc mang hàm nghĩa biểu tượng gì?",
+    options: ["Tứ thân phụ mẫu cùng bản thân người mặc & Ngũ Thường (Nhân, Lễ, Nghĩa, Trí, Tín)", "Năm phương trời đất và ngũ hành tương sinh", "Năm điều răn dạy của cửa Phật", "Năm mùa hoa trái trong năm"],
+    correct: 0,
+    exp: "Năm vạt tượng trưng cho tứ thân phụ mẫu và chính mình; năm hạt cúc tượng trưng cho Ngũ Thường (Nhân - Lễ - Nghĩa - Trí - Tín) rèn dũa đạo đức người mặc."
+  },
+  {
+    q: "Vạt áo của Áo Tứ Thân truyền thống vùng Kinh Bắc gồm có bao nhiêu phần?",
+    options: ["2 vạt sau may liền thành sống lưng, 2 vạt trước buông dài thắt múi", "4 vạt đều rời nhau hoàn toàn", "1 vạt trước và 3 vạt sau", "3 vạt trước và 1 vạt sau"],
+    correct: 0,
+    exp: "Áo Tứ Thân có 2 vạt sau may liền thành đường sống lưng thẳng tắp, 2 vạt trước buông dài buộc chéo hoặc để mở khoe yếm thắm bên trong."
   }
-})();
+];
 
-/* ══ ROUTER ══ */
-function route(){
-  const h=(location.hash||"#home").slice(1);
-  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("on",p.id===h));
-  document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.hash==="#"+h));
-  scrollTo(0,0);
+let quizIdx = 0;
+let quizScore = 0;
+
+function renderQuiz() {
+  const box = $("#quizContainer");
+  if (!box) return;
+
+  if (quizIdx >= QUIZ_DATA.length) {
+    box.innerHTML = `
+      <div style="text-align:center;padding:24px 12px;">
+        <div style="font-size:3.2rem;margin-bottom:12px;">🎉</div>
+        <h3 style="margin:0 0 10px;font-size:1.6rem;color:var(--red);">Chúc Mừng Bạn Đã Hoàn Thành!</h3>
+        <p style="font-size:1.05rem;color:var(--ink2);margin-bottom:20px;">
+          Bạn đạt điểm số: <b>${quizScore} / ${QUIZ_DATA.length}</b> câu chính xác.
+        </p>
+        <button class="btn" onclick="quizIdx=0;quizScore=0;renderQuiz();">Làm lại thử thách ↻</button>
+      </div>
+    `;
+    return;
+  }
+
+  const cur = QUIZ_DATA[quizIdx];
+  const optionsHtml = cur.options.map((opt, i) => `
+    <button class="quiz-option-btn" data-opt="${i}" style="display:block;width:100%;text-align:left;margin-bottom:8px;padding:12px 16px;background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius-sm);cursor:pointer;font-size:0.92rem;color:var(--ink);transition:all 0.2s;">
+      <b>${String.fromCharCode(65 + i)}.</b> ${opt}
+    </button>
+  `).join('');
+
+  box.innerHTML = `
+    <div style="display:flex;justify-content:space-between;color:var(--mute);font-size:0.85rem;margin-bottom:8px;">
+      <span>Câu hỏi ${quizIdx + 1} / ${QUIZ_DATA.length}</span>
+      <span>Điểm hiện tại: ${quizScore}</span>
+    </div>
+    <h3 style="margin-top:0;font-size:1.18rem;line-height:1.4;">${cur.q}</h3>
+    ${optionsHtml}
+    <div id="quizFeedback"></div>
+  `;
+
+  box.querySelectorAll(".quiz-option-btn").forEach(btn => {
+    btn.onclick = function() {
+      const chosen = parseInt(this.dataset.opt, 10);
+      const isRight = (chosen === cur.correct);
+      if (isRight) quizScore++;
+
+      box.querySelectorAll(".quiz-option-btn").forEach(b => b.disabled = true);
+      if (isRight) {
+        this.style.borderColor = "#2e8b57";
+        this.style.background = "#eefbf3";
+        this.style.color = "#155724";
+      } else {
+        this.style.borderColor = "#c63d24";
+        this.style.background = "#fdf0ec";
+        this.style.color = "#721c24";
+      }
+
+      const fb = $("#quizFeedback");
+      if (fb) {
+        fb.innerHTML = `
+          <div class="advice-box ${isRight ? 'success' : ''}" style="margin-top:14px;">
+            <b>${isRight ? '✓ Hoàn toàn chính xác!' : '✗ Chưa chính xác!'}</b><br>
+            ${cur.exp}
+          </div>
+          <button class="btn sm" id="btnNextQuiz" style="margin-top:12px;">Tiếp tục câu tiếp theo ➔</button>
+        `;
+        const nextBtn = $("#btnNextQuiz");
+        if (nextBtn) {
+          nextBtn.onclick = () => { quizIdx++; renderQuiz(); };
+        }
+      }
+    };
+  });
 }
-addEventListener("hashchange",route);
-route();initSceneBar();setScene(0);ctl();analyze();shots();quiz();
+
+// ══════════════════════════════════════════════════════════════
+// QUẢN LÝ LOOKBOOK
+// ══════════════════════════════════════════════════════════════
+let LookbookItems = [];
+try {
+  LookbookItems = JSON.parse(localStorage.getItem("theulai_lookbook") || "[]");
+} catch (e) {
+  LookbookItems = [];
+}
+
+function saveLookbook() {
+  try {
+    localStorage.setItem("theulai_lookbook", JSON.stringify(LookbookItems));
+  } catch (e) {}
+}
+
+function addLookbookItem(src, cap) {
+  LookbookItems.unshift({ src, cap: cap || "Phối đồ Thêu Lại", time: new Date().toLocaleDateString("vi-VN") });
+  saveLookbook();
+  renderLookbookGallery();
+}
+
+function renderLookbookGallery() {
+  const gal = $("#lookbookGallery");
+  if (!gal) return;
+
+  if (LookbookItems.length === 0) {
+    gal.innerHTML = `
+      <div style="grid-column: 1 / -1; text-align: center; padding: 48px 16px; color: var(--mute);">
+        <div style="font-size:2.8rem;margin-bottom:8px;">🪡</div>
+        <p style="font-size:1.05rem;">Chưa có tác phẩm nào trong bộ sưu tập. Hãy vào tab <b>Phối đồ</b> để tạo mẫu hoặc bấm <b>Tải ảnh thực tế lên</b>!</p>
+      </div>
+    `;
+    return;
+  }
+
+  gal.innerHTML = LookbookItems.map((item, idx) => `
+    <div class="gallery-item stitched-card">
+      <img src="${item.src}" alt="${item.cap}">
+      <div class="gallery-item-desc">
+        <b>${item.cap}</b>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;">
+          <span style="font-size:0.76rem;color:var(--mute);">${item.time || ''}</span>
+          <button class="btn sm outline" data-del="${idx}" style="padding:2px 10px;font-size:0.75rem;">Xóa</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  gal.querySelectorAll("[data-del]").forEach(btn => {
+    btn.onclick = function() {
+      const idx = parseInt(this.dataset.del, 10);
+      LookbookItems.splice(idx, 1);
+      saveLookbook();
+      renderLookbookGallery();
+    };
+  });
+}
+
+function applyTheme(isDark) {
+  document.documentElement.dataset.theme = isDark ? "dark" : "light";
+  const icon = $("#themeIcon");
+  const label = $("#themeLabel");
+  if (icon) icon.textContent = isDark ? "☀️" : "🌙";
+  if (label) label.textContent = isDark ? "Sáng" : "Tối";
+  try {
+    localStorage.setItem("theulai_theme", isDark ? "dark" : "light");
+  } catch (e) {}
+}
+
+function route() {
+  let targetId = (location.hash || "#home").replace(/^#/, "").trim();
+  if (!targetId || targetId === "") targetId = "home";
+
+  let matchedPage = document.getElementById(targetId);
+  if (!matchedPage || !matchedPage.classList.contains("page")) {
+    targetId = "home";
+    matchedPage = document.getElementById("home");
+  }
+
+  $$(".page").forEach(p => {
+    p.classList.toggle("on", p.id === targetId);
+  });
+
+  $$("nav a.nav-item").forEach(a => {
+    const aHash = a.getAttribute("href") ? a.getAttribute("href").replace(/^#/, "") : "";
+    a.classList.toggle("on", aHash === targetId);
+  });
+
+  window.scrollTo(0, 0);
+}
+
+// ══════════════════════════════════════════════════════════════
+// HIỆU ỨNG BỤI TƠ VÀNG THÊU KHI CLICK (SILK SPARKLE PARTICLES)
+// ══════════════════════════════════════════════════════════════
+function createSilkSparkle(x, y) {
+  for (let i = 0; i < 6; i++) {
+    const p = document.createElement("div");
+    p.style.cssText = `
+      position: fixed;
+      left: ${x}px;
+      top: ${y}px;
+      width: ${3 + Math.random() * 4}px;
+      height: ${3 + Math.random() * 4}px;
+      border-radius: 50%;
+      background: ${Math.random() > 0.5 ? '#d48f22' : '#c63d24'};
+      box-shadow: 0 0 6px rgba(212, 143, 34, 0.8);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+      opacity: 1;
+    `;
+    document.body.appendChild(p);
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 18 + Math.random() * 32;
+    requestAnimationFrame(() => {
+      p.style.transform = `translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist}px) scale(0)`;
+      p.style.opacity = "0";
+    });
+    setTimeout(() => p.remove(), 650);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+// KHỞI CHẠY ỨNG DỤNG (INITIALIZATION)
+// ══════════════════════════════════════════════════════════════
+document.addEventListener("DOMContentLoaded", () => {
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem("theulai_theme"); } catch (e) {}
+  if (savedTheme) {
+    applyTheme(savedTheme === "dark");
+  } else {
+    applyTheme(false);
+  }
+
+  const themeBtn = $("#themeBtn");
+  if (themeBtn) {
+    themeBtn.onclick = () => {
+      const isDark = document.documentElement.dataset.theme === "dark";
+      applyTheme(!isDark);
+    };
+  }
+
+  window.addEventListener("hashchange", route);
+  route();
+
+  renderPhaseControls();
+  updateStage(false);
+  analyzeOutfit();
+  renderLearnIllustrations();
+  initSidebar();
+
+  $$(".step-tab").forEach(tab => {
+    tab.onclick = function() {
+      const p = parseInt(this.dataset.phase, 10);
+      setPhase(p);
+    };
+  });
+
+  const btnPrev = $("#btnPrevPhase");
+  if (btnPrev) {
+    btnPrev.onclick = () => {
+      if (AppState.currentPhase > 1) {
+        setPhase(AppState.currentPhase - 1);
+      }
+    };
+  }
+
+  const btnNext = $("#btnNextPhase");
+  if (btnNext) {
+    btnNext.onclick = () => {
+      if (AppState.currentPhase < 5) {
+        setPhase(AppState.currentPhase + 1);
+      } else {
+        const btnSave = $("#btnSaveToLookbook");
+        if (btnSave) btnSave.click();
+      }
+    };
+  }
+
+  document.addEventListener("click", (e) => {
+    createSilkSparkle(e.clientX, e.clientY);
+
+    const tileBtn = e.target.closest("[data-type]");
+    if (tileBtn) {
+      const type = tileBtn.dataset.type;
+      const val = tileBtn.dataset.val;
+
+      if (type === "garment") {
+        AppState.garment = val;
+      } else if (type === "scene") {
+        AppState.sceneIdx = parseInt(val, 10);
+      } else if (type === "event") {
+        AppState.eventIdx = parseInt(val, 10);
+      } else if (type === "color") {
+        AppState.colorIdx = parseInt(val, 10);
+      } else if (type === "bottom") {
+        AppState.bottomIdx = parseInt(val, 10);
+      } else if (type === "shoe") {
+        AppState.shoeIdx = parseInt(val, 10);
+      } else if (type === "acc") {
+        if (AppState.accessories.has(val)) {
+          AppState.accessories.delete(val);
+        } else {
+          AppState.accessories.add(val);
+        }
+      } else if (type === "style") {
+        AppState.styleIdx = parseInt(val, 10);
+      }
+
+      renderPhaseControls();
+      updateStage(true);
+      analyzeOutfit();
+    }
+  });
+
+  renderLookbookGallery();
+
+  const fileInput = $("#lookFile");
+  if (fileInput) {
+    fileInput.onchange = () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        addLookbookItem(e.target.result, "Ảnh diện Việt phục thực tế");
+      };
+      reader.readAsDataURL(file);
+    };
+  }
+});
 </script>
 </body>
 </html>
