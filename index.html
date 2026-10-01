@@ -9,6 +9,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
 <style>
+/* ══ PHÔNG CHỮ DI SẢN ĐỘC BẢN ══ */
+@font-face {
+  font-family: "TQ Kingston";
+  src: url("./TQ-Kingston.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ══ HỆ THỐNG MÀU SẮC & DESIGN TOKENS (GẤM THÊU, SƠN MÀI & TƠ LỤA) ══ */
 :root {
   --bg: #fcf8f3;
@@ -233,19 +242,21 @@ header {
 
 .brand-text-wrap {
   display: flex;
-  align-items: baseline;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
 }
 
 .brand-title {
-  font-family: "Playfair Display", Georgia, serif;
-  font-weight: 800;
-  font-size: 1.55rem;
-  letter-spacing: -0.02em;
+  font-family: "TQ Kingston", "Playfair Display", Georgia, serif;
+  font-weight: normal;
+  font-size: 1.85rem;
+  letter-spacing: 0.01em;
+  word-spacing: -0.22em;
   color: var(--red);
   margin: 0;
-  display: inline-flex;
-  align-items: center;
+  display: inline-block;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .brand-motto {
@@ -256,6 +267,7 @@ header {
   color: var(--gold);
   padding-left: 8px;
   border-left: 1.5px solid var(--gold-border);
+  white-space: nowrap;
 }
 
 nav {
