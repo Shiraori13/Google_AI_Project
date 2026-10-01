@@ -1375,7 +1375,7 @@ nav a.nav-item.on {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: auto;
 }
 .canvas-wrapper canvas {
   display: block;
@@ -1398,6 +1398,71 @@ nav a.nav-item.on {
   flex-wrap: wrap;
   justify-content: center;
   flex-shrink: 0;
+}
+.canvas-zoom-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+}
+.zoom-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.74rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.zoom-val {
+  color: #fff;
+  font-size: 0.74rem;
+  font-weight: 700;
+  min-width: 38px;
+  text-align: center;
+}
+.zoom-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.zoom-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.zoom-btn:active {
+  background: var(--red);
+  border-color: var(--red);
+}
+.zoom-range {
+  -webkit-appearance: none;
+  width: 80px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+  outline: none;
+  cursor: pointer;
+}
+.zoom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--red);
+  cursor: pointer;
 }
 .aspect-label {
   color: rgba(255, 255, 255, 0.7);
@@ -1568,6 +1633,47 @@ nav a.nav-item.on {
   width: 15px;
   height: 15px;
   cursor: pointer;
+}
+.seal-size-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: var(--bg2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+}
+.seal-size-control .seal-size-label {
+  font-size: 0.74rem;
+  color: var(--ink2);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.seal-size-control input[type="range"] {
+  -webkit-appearance: none;
+  flex: 1;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line);
+  outline: none;
+  cursor: pointer;
+}
+.seal-size-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--red);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+.seal-hint {
+  font-size: 0.7rem;
+  color: var(--mute);
+  margin-top: 4px;
+  font-style: italic;
 }
 .editor-footer {
   padding: 10px 18px;
@@ -2215,6 +2321,14 @@ footer b {
           <button class="aspect-btn" data-ratio="1:1">1:1 (Vuông)</button>
           <button class="aspect-btn" data-ratio="4:5">4:5 (Dọc)</button>
         </div>
+        <div class="canvas-zoom-bar">
+          <span class="zoom-label">🔍 Thu phóng:</span>
+          <button class="zoom-btn" id="btnZoomOut" title="Thu nhỏ">−</button>
+          <input type="range" class="zoom-range" id="zoomRange" min="20" max="300" value="100">
+          <button class="zoom-btn" id="btnZoomIn" title="Phóng to">+</button>
+          <span class="zoom-val" id="zoomVal">100%</span>
+          <button class="zoom-btn" id="btnZoomFit" title="Vừa khung" style="font-size:0.7rem;width:auto;padding:0 8px;">Fit</button>
+        </div>
       </div>
 
       <!-- CỘT PHẢI: BẢNG CÔNG CỤ ĐIỀU CHỈNH -->
@@ -2299,6 +2413,11 @@ footer b {
             <input type="checkbox" id="chkWatermark" checked>
             <span class="seal-toggle-text">Đóng dấu triện son <b>"Thêu Lại · Di Sản"</b> góc ảnh</span>
           </label>
+          <div class="seal-size-control" id="sealSizeControl">
+            <span class="seal-size-label">📐 Cỡ dấu:</span>
+            <input type="range" id="sealSizeRange" min="40" max="200" value="100">
+          </div>
+          <p class="seal-hint" id="sealDragHint">💡 Kéo thả dấu triện trực tiếp trên ảnh để di chuyển vị trí</p>
         </div>
       </div>
     </div>
@@ -3402,8 +3521,15 @@ let editorState = {
   filter: 'normal',
   ratio: 'original',
   watermark: true,
-  caption: 'Diện Việt phục thực tế'
+  caption: 'Diện Việt phục thực tế',
+  zoom: 100,
+  sealSizePct: 100,
+  sealX: null,
+  sealY: null
 };
+
+// Seal drag state
+let sealDrag = { active: false, offX: 0, offY: 0 };
 
 function showEditorToast(msg) {
   let toast = $("#editorToast");
@@ -3451,8 +3577,13 @@ function openLookbookEditor(dataUrl, defaultName, editIdx = null) {
       filter: 'normal',
       ratio: 'original',
       watermark: (editingItemIndex === null),
-      caption: (defaultName ? defaultName.replace(/\.[^/.]+$/, "") : "Diện Việt phục thực tế")
+      caption: (defaultName ? defaultName.replace(/\.[^/.]+$/, "") : "Diện Việt phục thực tế"),
+      zoom: 100,
+      sealSizePct: 100,
+      sealX: null,
+      sealY: null
     };
+    sealDrag = { active: false, offX: 0, offY: 0 };
 
     const sB = $("#sliderBrightness"); if (sB) sB.value = 100;
     const vB = $("#valBrightness"); if (vB) vB.textContent = "100%";
@@ -3463,11 +3594,19 @@ function openLookbookEditor(dataUrl, defaultName, editIdx = null) {
     const sW = $("#sliderWarmth"); if (sW) sW.value = 0;
     const vW = $("#valWarmth"); if (vW) vW.textContent = "0%";
 
+    const zR = $("#zoomRange"); if (zR) zR.value = 100;
+    const zV = $("#zoomVal"); if (zV) zV.textContent = "100%";
+    const ssR = $("#sealSizeRange"); if (ssR) ssR.value = 100;
+
     const capInput = $("#editorCaptionInput");
     if (capInput) capInput.value = editorState.caption;
 
     const chkWatermark = $("#chkWatermark");
     if (chkWatermark) chkWatermark.checked = true;
+    const sealCtrl = $("#sealSizeControl");
+    if (sealCtrl) sealCtrl.style.display = "flex";
+    const sealHint = $("#sealDragHint");
+    if (sealHint) sealHint.style.display = "block";
 
     $$(".aspect-btn").forEach(b => b.classList.toggle("active", b.dataset.ratio === 'original'));
     $$(".filter-preset-btn").forEach(b => b.classList.toggle("active", b.dataset.filter === 'normal'));
@@ -3485,7 +3624,7 @@ function closeLookbookEditor() {
   if (fileInput) fileInput.value = "";
 }
 
-function drawLookbookCanvas() {
+function drawLookbookCanvas(isExport = false) {
   const canvas = $("#editorCanvas");
   if (!canvas || !currentEditorImg) return;
   const ctx = canvas.getContext("2d");
@@ -3539,6 +3678,11 @@ function drawLookbookCanvas() {
   canvas.width = isRotated90 ? ch : cw;
   canvas.height = isRotated90 ? cw : ch;
 
+  // Apply zoom as CSS transform on canvas element
+  const zoomScale = editorState.zoom / 100;
+  canvas.style.transform = `scale(${zoomScale})`;
+  canvas.style.transformOrigin = 'center center';
+
   ctx.save();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -3575,13 +3719,31 @@ function drawLookbookCanvas() {
 
   ctx.restore();
 
+  // ══ DẤU TRIỆN SON "THÊU LẠI" (DRAGGABLE + RESIZABLE + FIT TEXT) ══
   if (editorState.watermark) {
     ctx.save();
-    const sealSize = Math.max(76, Math.min(canvas.width, canvas.height) * 0.17);
+    const baseSealSize = Math.max(76, Math.min(canvas.width, canvas.height) * 0.17);
+    const sealSize = baseSealSize * (editorState.sealSizePct / 100);
     const pad = sealSize * 0.22;
-    const x = canvas.width - sealSize - pad;
-    const y = canvas.height - sealSize - pad;
 
+    // Position: custom coordinates or default bottom-right
+    let sealX, sealY;
+    if (editorState.sealX !== null && editorState.sealY !== null) {
+      sealX = editorState.sealX * canvas.width;
+      sealY = editorState.sealY * canvas.height;
+    } else {
+      sealX = canvas.width - sealSize - pad;
+      sealY = canvas.height - sealSize - pad;
+    }
+
+    // Clamp seal strictly within canvas bounds
+    sealX = Math.max(0, Math.min(sealX, canvas.width - sealSize));
+    sealY = Math.max(0, Math.min(sealY, canvas.height - sealSize));
+
+    // Store computed pixel coords for hit testing & dragging
+    canvas._sealRect = { x: sealX, y: sealY, w: sealSize, h: sealSize };
+
+    // Draw seal background
     ctx.fillStyle = 'rgba(198, 61, 36, 0.94)';
     ctx.strokeStyle = '#d48f22';
     ctx.lineWidth = Math.max(2, sealSize * 0.035);
@@ -3589,30 +3751,78 @@ function drawLookbookCanvas() {
     const r = sealSize * 0.18;
     ctx.beginPath();
     if (ctx.roundRect) {
-      ctx.roundRect(x, y, sealSize, sealSize, r);
+      ctx.roundRect(sealX, sealY, sealSize, sealSize, r);
     } else {
-      ctx.rect(x, y, sealSize, sealSize);
+      ctx.rect(sealX, sealY, sealSize, sealSize);
     }
     ctx.fill();
     ctx.stroke();
 
+    // Dashed inner border
     ctx.setLineDash([Math.max(2, sealSize * 0.04), Math.max(2, sealSize * 0.03)]);
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
     ctx.lineWidth = Math.max(1, sealSize * 0.018);
-    ctx.strokeRect(x + sealSize * 0.08, y + sealSize * 0.08, sealSize * 0.84, sealSize * 0.84);
+    ctx.strokeRect(sealX + sealSize * 0.08, sealY + sealSize * 0.08, sealSize * 0.84, sealSize * 0.84);
     ctx.setLineDash([]);
 
+    // Main text "THÊU LẠI" - auto-fit within 76% of seal width so it never touches the border
     ctx.fillStyle = '#ffffff';
-    ctx.font = `bold ${Math.round(sealSize * 0.23)}px "Playfair Display", Georgia, serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('THÊU LẠI', x + sealSize / 2, y + sealSize * 0.42);
 
+    const maxTextWidth = sealSize * 0.76;
+    let mainFontSize = Math.round(sealSize * 0.22);
+    ctx.font = `bold ${mainFontSize}px "Playfair Display", Georgia, serif`;
+    let measured = ctx.measureText('THÊU LẠI').width;
+    while (measured > maxTextWidth && mainFontSize > 8) {
+      mainFontSize--;
+      ctx.font = `bold ${mainFontSize}px "Playfair Display", Georgia, serif`;
+      measured = ctx.measureText('THÊU LẠI').width;
+    }
+    ctx.fillText('THÊU LẠI', sealX + sealSize / 2, sealY + sealSize * 0.42);
+
+    // Subtitle "DI SẢN VIỆT" - auto-fit
     ctx.fillStyle = '#fef7ea';
-    ctx.font = `600 ${Math.round(sealSize * 0.13)}px "Be Vietnam Pro", sans-serif`;
-    ctx.fillText('DI SẢN VIỆT', x + sealSize / 2, y + sealSize * 0.72);
+    let subFontSize = Math.round(sealSize * 0.125);
+    ctx.font = `600 ${subFontSize}px "Be Vietnam Pro", sans-serif`;
+    let subMeasured = ctx.measureText('DI SẢN VIỆT').width;
+    while (subMeasured > maxTextWidth && subFontSize > 6) {
+      subFontSize--;
+      ctx.font = `600 ${subFontSize}px "Be Vietnam Pro", sans-serif`;
+      subMeasured = ctx.measureText('DI SẢN VIỆT').width;
+    }
+    ctx.fillText('DI SẢN VIỆT', sealX + sealSize / 2, sealY + sealSize * 0.72);
+
+    // Interactive outline & corner handles (only shown during live preview when hovered or dragged)
+    if (!isExport && (sealDrag.active || canvas._sealHovered)) {
+      ctx.save();
+      ctx.strokeStyle = '#f5c542';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 4]);
+      const selPad = 3;
+      ctx.strokeRect(sealX - selPad, sealY - selPad, sealSize + selPad * 2, sealSize + selPad * 2);
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.strokeStyle = '#c63d24';
+      ctx.lineWidth = 1.5;
+      const handleSize = Math.max(6, Math.round(sealSize * 0.08));
+      const corners = [
+        [sealX - selPad, sealY - selPad],
+        [sealX + sealSize + selPad, sealY - selPad],
+        [sealX - selPad, sealY + sealSize + selPad],
+        [sealX + sealSize + sealPad, sealY + sealSize + selPad]
+      ];
+      corners.forEach(([cx, cy]) => {
+        ctx.fillRect(cx - handleSize / 2, cy - handleSize / 2, handleSize, handleSize);
+        ctx.strokeRect(cx - handleSize / 2, cy - handleSize / 2, handleSize, handleSize);
+      });
+      ctx.restore();
+    }
 
     ctx.restore();
+  } else {
+    canvas._sealRect = null;
   }
 }
 
@@ -3684,10 +3894,19 @@ function initLookbookEditor() {
     };
   }
 
+  // ══ WATERMARK UI & SLIDER SYNC ══
   const chkWm = $("#chkWatermark");
+  const sealCtrl = $("#sealSizeControl");
+  const sealHint = $("#sealDragHint");
+  const updateSealUi = (active) => {
+    if (sealCtrl) sealCtrl.style.display = active ? "flex" : "none";
+    if (sealHint) sealHint.style.display = active ? "block" : "none";
+  };
+
   if (chkWm) {
     chkWm.onchange = function() {
       editorState.watermark = this.checked;
+      updateSealUi(this.checked);
       drawLookbookCanvas();
     };
   }
@@ -3697,6 +3916,153 @@ function initLookbookEditor() {
     capInput.oninput = function() {
       editorState.caption = this.value;
     };
+  }
+
+  // ══ ZOOM CONTROLS ══
+  function setZoom(val) {
+    editorState.zoom = Math.max(20, Math.min(300, val));
+    const zR = $("#zoomRange"); if (zR) zR.value = editorState.zoom;
+    const zV = $("#zoomVal"); if (zV) zV.textContent = `${editorState.zoom}%`;
+    drawLookbookCanvas();
+  }
+
+  const btnZoomIn = $("#btnZoomIn");
+  if (btnZoomIn) btnZoomIn.onclick = () => setZoom(editorState.zoom + 10);
+
+  const btnZoomOut = $("#btnZoomOut");
+  if (btnZoomOut) btnZoomOut.onclick = () => setZoom(editorState.zoom - 10);
+
+  const zoomRange = $("#zoomRange");
+  if (zoomRange) zoomRange.oninput = function() { setZoom(parseInt(this.value, 10)); };
+
+  const btnZoomFit = $("#btnZoomFit");
+  if (btnZoomFit) btnZoomFit.onclick = () => setZoom(100);
+
+  // ══ SEAL SIZE SLIDER ══
+  const sealSizeRange = $("#sealSizeRange");
+  if (sealSizeRange) {
+    sealSizeRange.oninput = function() {
+      editorState.sealSizePct = parseInt(this.value, 10);
+      drawLookbookCanvas();
+    };
+  }
+
+  // ══ SEAL DRAG & ZOOM ON CANVAS ══
+  const editorCanvas = $("#editorCanvas");
+  function canvasToPixel(canvas, e) {
+    const rect = canvas.getBoundingClientRect();
+    const displayW = rect.width;
+    const displayH = rect.height;
+    return {
+      x: (e.clientX - rect.left) * (canvas.width / displayW),
+      y: (e.clientY - rect.top) * (canvas.height / displayH)
+    };
+  }
+
+  if (editorCanvas) {
+    // Mousewheel: zoom seal if hovering over seal; otherwise zoom canvas
+    editorCanvas.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const pos = canvasToPixel(editorCanvas, e);
+      const sr = editorCanvas._sealRect;
+      if (editorState.watermark && sr && pos.x >= sr.x && pos.x <= sr.x + sr.w && pos.y >= sr.y && pos.y <= sr.y + sr.h) {
+        const delta = e.deltaY > 0 ? -5 : 5;
+        editorState.sealSizePct = Math.max(40, Math.min(200, editorState.sealSizePct + delta));
+        if (sealSizeRange) sealSizeRange.value = editorState.sealSizePct;
+        drawLookbookCanvas();
+        return;
+      }
+      const delta = e.deltaY > 0 ? -10 : 10;
+      setZoom(editorState.zoom + delta);
+    }, { passive: false });
+
+    // Mouse drag
+    editorCanvas.addEventListener('mousedown', (e) => {
+      if (!editorState.watermark || !editorCanvas._sealRect) return;
+      const pos = canvasToPixel(editorCanvas, e);
+      const sr = editorCanvas._sealRect;
+      if (pos.x >= sr.x && pos.x <= sr.x + sr.w && pos.y >= sr.y && pos.y <= sr.y + sr.h) {
+        sealDrag.active = true;
+        sealDrag.offX = pos.x - sr.x;
+        sealDrag.offY = pos.y - sr.y;
+        editorCanvas.style.cursor = 'grabbing';
+        drawLookbookCanvas();
+        e.preventDefault();
+      }
+    });
+
+    editorCanvas.addEventListener('mousemove', (e) => {
+      const pos = canvasToPixel(editorCanvas, e);
+      const sr = editorCanvas._sealRect;
+      const isOver = !!(editorState.watermark && sr && pos.x >= sr.x && pos.x <= sr.x + sr.w && pos.y >= sr.y && pos.y <= sr.y + sr.h);
+
+      if (sealDrag.active) {
+        const newX = pos.x - sealDrag.offX;
+        const newY = pos.y - sealDrag.offY;
+        editorState.sealX = newX / editorCanvas.width;
+        editorState.sealY = newY / editorCanvas.height;
+        drawLookbookCanvas();
+        return;
+      }
+
+      if (editorCanvas._sealHovered !== isOver) {
+        editorCanvas._sealHovered = isOver;
+        drawLookbookCanvas();
+      }
+      editorCanvas.style.cursor = isOver ? 'grab' : '';
+    });
+
+    const endDrag = () => {
+      if (sealDrag.active) {
+        sealDrag.active = false;
+        editorCanvas.style.cursor = '';
+        drawLookbookCanvas();
+      }
+    };
+    editorCanvas.addEventListener('mouseup', endDrag);
+    editorCanvas.addEventListener('mouseleave', () => {
+      endDrag();
+      if (editorCanvas._sealHovered) {
+        editorCanvas._sealHovered = false;
+        drawLookbookCanvas();
+      }
+    });
+
+    // Touch support for mobile & tablet drag
+    editorCanvas.addEventListener('touchstart', (e) => {
+      if (!editorState.watermark || !editorCanvas._sealRect || e.touches.length !== 1) return;
+      const pos = canvasToPixel(editorCanvas, e.touches[0]);
+      const sr = editorCanvas._sealRect;
+      if (pos.x >= sr.x && pos.x <= sr.x + sr.w && pos.y >= sr.y && pos.y <= sr.y + sr.h) {
+        sealDrag.active = true;
+        sealDrag.offX = pos.x - sr.x;
+        sealDrag.offY = pos.y - sr.y;
+        editorCanvas._sealHovered = true;
+        drawLookbookCanvas();
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    editorCanvas.addEventListener('touchmove', (e) => {
+      if (!sealDrag.active || !editorCanvas._sealRect || e.touches.length !== 1) return;
+      const pos = canvasToPixel(editorCanvas, e.touches[0]);
+      const newX = pos.x - sealDrag.offX;
+      const newY = pos.y - sealDrag.offY;
+      editorState.sealX = newX / editorCanvas.width;
+      editorState.sealY = newY / editorCanvas.height;
+      drawLookbookCanvas();
+      e.preventDefault();
+    }, { passive: false });
+
+    const endTouchDrag = () => {
+      if (sealDrag.active) {
+        sealDrag.active = false;
+        editorCanvas._sealHovered = false;
+        drawLookbookCanvas();
+      }
+    };
+    editorCanvas.addEventListener('touchend', endTouchDrag);
+    editorCanvas.addEventListener('touchcancel', endTouchDrag);
   }
 
   const btnReset = $("#btnResetEditor");
@@ -3711,6 +4077,10 @@ function initLookbookEditor() {
       editorState.filter = 'normal';
       editorState.ratio = 'original';
       editorState.watermark = true;
+      editorState.zoom = 100;
+      editorState.sealSizePct = 100;
+      editorState.sealX = null;
+      editorState.sealY = null;
 
       const sB = $("#sliderBrightness"); if (sB) sB.value = 100;
       const vB = $("#valBrightness"); if (vB) vB.textContent = "100%";
@@ -3721,10 +4091,15 @@ function initLookbookEditor() {
       const sW = $("#sliderWarmth"); if (sW) sW.value = 0;
       const vW = $("#valWarmth"); if (vW) vW.textContent = "0%";
 
+      const zR = $("#zoomRange"); if (zR) zR.value = 100;
+      const zV = $("#zoomVal"); if (zV) zV.textContent = "100%";
+      const ssR = $("#sealSizeRange"); if (ssR) ssR.value = 100;
+
       $$(".aspect-btn").forEach(b => b.classList.toggle("active", b.dataset.ratio === 'original'));
       $$(".filter-preset-btn").forEach(b => b.classList.toggle("active", b.dataset.filter === 'normal'));
 
       if (chkWm) chkWm.checked = true;
+      updateSealUi(true);
       drawLookbookCanvas();
     };
   }
@@ -3734,7 +4109,13 @@ function initLookbookEditor() {
     btnApply.onclick = () => {
       const canvas = $("#editorCanvas");
       if (!canvas) return;
+      // Reset zoom to 100% and render without selection handles for pristine export
+      const savedZoom = editorState.zoom;
+      editorState.zoom = 100;
+      drawLookbookCanvas(true);
       const finalSrc = canvas.toDataURL("image/jpeg", 0.92);
+      editorState.zoom = savedZoom;
+      drawLookbookCanvas(false);
       const cap = (editorState.caption && editorState.caption.trim()) ? editorState.caption.trim() : "Ảnh diện Việt phục thực tế";
 
       if (editingItemIndex !== null && LookbookItems[editingItemIndex]) {
