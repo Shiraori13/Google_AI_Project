@@ -840,9 +840,45 @@
       display: flex;
     }
 
+    .tile-btn[data-type="garment"]:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+      box-shadow: 0 6px 18px rgba(212, 143, 34, 0.2);
+    }
+
+    .tile-btn[data-type="garment"].active {
+      background: linear-gradient(135deg, rgba(198, 61, 36, 0.95), rgba(150, 36, 16, 0.98));
+      border-color: var(--gold);
+      color: #ffffff;
+      box-shadow: 0 6px 20px rgba(198, 61, 36, 0.38), 0 0 0 1.5px var(--gold);
+    }
+
     /* MÀU SẮC DẠNG TRÒN SWATCH */
     .color-tile {
       padding: 8px 10px;
+      transition: all 0.25s var(--ease);
+    }
+
+    .color-tile:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .color-tile.active {
+      background: var(--card) !important;
+      border-color: var(--gold) !important;
+      color: var(--ink) !important;
+      box-shadow: 0 4px 18px rgba(212, 143, 34, 0.28) !important;
+    }
+
+    .color-tile.active .tile-title {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .color-tile.active .tile-sub {
+      color: var(--mute) !important;
     }
 
     .color-dot {
@@ -852,6 +888,12 @@
       border: 2px solid #ffffff;
       box-shadow: 0 0 0 1px var(--line);
       flex-shrink: 0;
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+
+    .color-tile.active .color-dot {
+      box-shadow: 0 0 0 2px var(--card), 0 0 0 4.5px var(--gold);
+      transform: scale(1.15);
     }
 
     /* FOOTER ĐIỀU HƯỚNG BƯỚC */
@@ -923,6 +965,7 @@
     }
 
     /* SÂN KHẤU CON PHỐ DI SẢN (HERO STREET-LEVEL RUNWAY) */
+    /* SÂN KHẤU CON PHỐ DI SẢN (HERO STREET-LEVEL RUNWAY) */
     .stage-viewport {
       position: relative;
       height: 500px;
@@ -932,10 +975,23 @@
       align-items: flex-end;
       justify-content: center;
       border: 1.5px solid var(--gold-border);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08);
       background-size: cover;
       background-position: center bottom;
       transition: background-image 0.45s var(--ease);
+      cursor: default;
+    }
+
+    /* ĐÈN SPOTLIGHT SÂN KHẤU CHUYỂN ĐỘNG THEO CHUỘT (DYNAMIC LUXURY SPOTLIGHT) */
+    .stage-dynamic-spotlight {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0;
+      mix-blend-mode: screen;
+      transition: opacity 0.35s ease;
+      background: radial-gradient(circle 280px at 50% 50%, rgba(255, 235, 190, 0.26) 0%, rgba(212, 143, 34, 0.1) 40%, transparent 75%);
     }
 
     /* ĐÃ LOẠI BỎ HOÀN TOÀN LỚP PHỦ ĐEN MỜ TRÊN ĐẦU CON PHỐ */
@@ -954,6 +1010,50 @@
       background: linear-gradient(to top, rgba(12, 6, 3, 0.7) 0%, rgba(12, 6, 3, 0.2) 60%, transparent 100%);
       pointer-events: none;
       z-index: 2;
+    }
+
+    /* HUY HIỆU TRẠNG THÁI MODEL GÓC TRÊN TRÁI */
+    .stage-inspect-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 10;
+      background: rgba(18, 10, 5, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--gold-border);
+      color: #fff;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .stage-inspect-badge .badge-gem {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 10px var(--gold);
+      animation: pulseGoldGlow 2.4s infinite ease-in-out;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulseGoldGlow {
+      0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+      }
+      50% {
+        transform: scale(1.4);
+        filter: brightness(1.35);
+      }
     }
 
     .stage-location-tag {
@@ -980,6 +1080,34 @@
       font-size: 0.95rem;
     }
 
+    /* GỢI Ý TƯƠNG TÁC GÓC DƯỚI PHẢI */
+    .stage-hover-hint {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      z-index: 10;
+      background: rgba(18, 10, 5, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 143, 34, 0.3);
+      color: rgba(255, 245, 230, 0.88);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 0.72rem;
+      letter-spacing: 0.2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      pointer-events: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .stage-viewport:hover .stage-hover-hint {
+      opacity: 0.25;
+      transform: translateY(2px);
+    }
+
     .stage-mannequin {
       position: relative;
       z-index: 5;
@@ -987,10 +1115,10 @@
       max-width: 320px;
       display: flex;
       justify-content: center;
-      padding-bottom: 4px;
+      padding-bottom: 2px;
     }
 
-    .stage-mannequin svg {
+    .stage-mannequin svg.stage-legacy-svg {
       width: 100%;
       height: auto;
       max-height: 440px;
@@ -998,9 +1126,157 @@
       transition: transform 0.28s var(--ease), opacity 0.24s;
     }
 
-    .stage-mannequin svg.anim-out {
+    .stage-base-model-wrap {
+      position: relative;
+      height: 440px;
+      width: 131.42px; /* calc(440px * 404 / 1352) Chuẩn xác tỷ lệ Canvas Model 404x1352 */
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.22s ease;
+      will-change: transform;
+    }
+
+    .stage-mannequin svg.anim-out,
+    .stage-base-model-wrap.anim-out {
       opacity: 0;
-      transform: translateY(8px) scale(0.96);
+      transform: translateY(8px) scale(0.98);
+    }
+
+    /* HIỆU ỨNG NỔI KHI DI CHUỘT ĐẾN (HOVER LIFT EFFECT) */
+    .stage-viewport:hover .stage-base-model-wrap,
+    .stage-base-model-wrap:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+
+    .stage-model-ground-shadow {
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 130px;
+      height: 16px;
+      background: radial-gradient(ellipse at center, rgba(10, 5, 2, 0.8) 0%, rgba(10, 5, 2, 0.35) 50%, transparent 75%);
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(4px);
+      z-index: 1;
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s ease;
+    }
+
+    .stage-viewport:hover .stage-model-ground-shadow,
+    .stage-base-model-wrap:hover .stage-model-ground-shadow {
+      transform: translateX(-50%) scale(1.12);
+      opacity: 0.55;
+    }
+
+    /* LỚP BORDER TRẮNG MỎNG XUNG QUANH MODEL SILHOUETTE CHUẨN THỜI TRANG */
+    .stage-base-model-img {
+      position: relative;
+      z-index: 2;
+      display: block;
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(1px 0 0 rgba(255, 255, 255, 0.95))
+              drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.95))
+              drop-shadow(0 1px 0 rgba(255, 255, 255, 0.95))
+              drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.95))
+              drop-shadow(0 10px 22px rgba(0, 0, 0, 0.65));
+      transition: filter 0.35s ease, transform 0.35s ease;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .stage-viewport:hover .stage-base-model-img,
+    .stage-base-model-wrap:hover .stage-base-model-img {
+      filter: drop-shadow(1.5px 0 0 #ffffff)
+              drop-shadow(-1.5px 0 0 #ffffff)
+              drop-shadow(0 1.5px 0 #ffffff)
+              drop-shadow(0 -1.5px 0 #ffffff)
+              drop-shadow(0 0 10px rgba(255, 255, 255, 0.45))
+              drop-shadow(0 18px 30px rgba(0, 0, 0, 0.75));
+    }
+
+    /* LỚP PHỤ KIỆN VÀ GIÀY DÉP ĐÈ KHỚP VỊ TRÍ CHUẨN XÁC LÊN MODEL */
+    .stage-accessories-overlay {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 4;
+      overflow: visible;
+      transition: filter 0.35s ease;
+    }
+
+    .stage-viewport:hover .stage-accessories-overlay,
+    .stage-base-model-wrap:hover .stage-accessories-overlay {
+      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.25));
+    }
+
+    .garment-selection-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      transition: all 0.25s var(--ease);
+      margin-bottom: 4px;
+    }
+
+    .garment-selection-banner.is-empty {
+      background: rgba(212, 143, 34, 0.08);
+      border: 1px dashed rgba(212, 143, 34, 0.45);
+      color: #ffd166;
+    }
+
+    .garment-selection-banner.is-selected {
+      background: rgba(198, 61, 36, 0.08);
+      border: 1px solid rgba(198, 61, 36, 0.35);
+      color: var(--red);
+    }
+
+    .garment-banner-icon {
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .garment-banner-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .garment-banner-text strong {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .garment-banner-text small {
+      color: var(--mute);
+      font-size: 0.76rem;
+    }
+
+    .btn-reset-garment {
+      background: rgba(43, 23, 14, 0.08);
+      border: 1px solid rgba(43, 23, 14, 0.2);
+      color: var(--ink);
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .btn-reset-garment:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
     }
 
     /* THẺ ĐÁNH GIÁ THỜI TRANG DẠNG DỌC */
@@ -1357,8 +1633,10 @@
       padding: 12px;
     }
 
-    .gallery-grid.view-compact .gallery-item img {
-      height: 180px;
+    .gallery-grid.view-compact .gallery-item-media {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      max-height: 290px;
     }
 
     .gallery-grid.view-compact .gallery-item-title {
@@ -1388,8 +1666,10 @@
       padding: 16px;
     }
 
-    .gallery-grid.view-standard .gallery-item img {
-      height: 240px;
+    .gallery-grid.view-standard .gallery-item-media {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      max-height: 400px;
     }
 
     .gallery-grid.view-standard .gallery-item-title {
@@ -1432,9 +1712,10 @@
       gap: 16px;
     }
 
-    .gallery-grid.view-list .gallery-item img {
-      width: 120px;
-      height: 140px;
+    .gallery-grid.view-list .gallery-item-media {
+      width: 130px;
+      height: 170px;
+      aspect-ratio: 3 / 4;
       flex-shrink: 0;
       margin-bottom: 0;
     }
@@ -1501,14 +1782,80 @@
       box-shadow: var(--shadow2);
     }
 
-    .gallery-item img {
+    /* CONTAINER ẢNH THẺ LOOKBOOK CHUẨN TỈ LỆ 3:4 */
+    .gallery-item-media {
+      position: relative;
       width: 100%;
-      height: 240px;
+      aspect-ratio: 3 / 4;
+      border-radius: calc(var(--radius) - 6px);
+      overflow: hidden;
+      background: radial-gradient(circle at center, #fbf7ee 0%, #ebe0ce 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-bottom: 8px;
+      flex-shrink: 0;
+      border: 1px solid rgba(212, 143, 34, 0.18);
+    }
+
+    .gallery-item-media img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .gallery-item-media:hover img {
+      transform: scale(1.04);
+    }
+
+    /* Nếu là ảnh model cutout nguyên bản thì căn giữa không cắt xén */
+    .gallery-item-media img[src*="assets/models/"] {
+      object-fit: contain;
+      padding: 6px;
+    }
+
+    .gallery-item-zoom-badge {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: rgba(18, 10, 5, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--gold-border);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s var(--ease);
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    }
+
+    .gallery-item-media:hover .gallery-item-zoom-badge {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Fallback cho img cũ nếu chưa có media wrap */
+    .gallery-item > img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      height: auto;
+      object-fit: cover;
+      object-position: center top;
       border-radius: calc(var(--radius) - 6px);
       display: block;
       background: var(--bg2);
       flex-shrink: 0;
+      margin-bottom: 8px;
     }
 
     .gallery-item-desc {
@@ -2958,8 +3305,132 @@
       box-shadow: 0 6px 20px rgba(198, 61, 36, 0.45);
     }
 
-    .btn-download-hero:active {
-      transform: translateY(0);
+    /* ══ MODAL XEM TOÀN CẢNH LIGHTBOX (LOOKBOOK FULL PREVIEW) ══ */
+    .lookbook-lightbox-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lookbook-lightbox-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(14, 8, 4, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .lookbook-lightbox-dialog {
+      position: relative;
+      z-index: 2;
+      max-width: 960px;
+      max-height: 92vh;
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: modalFadeIn 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .lookbook-lightbox-header {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg2);
+    }
+
+    .lightbox-title-box {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .lightbox-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .lightbox-title-box h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      color: var(--ink);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .lightbox-meta {
+      font-size: 0.76rem;
+      color: var(--mute);
+    }
+
+    .lightbox-close-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s var(--ease);
+    }
+
+    .lightbox-close-btn:hover {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+    }
+
+    .lookbook-lightbox-content {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, rgba(30, 18, 10, 0.6) 0%, rgba(10, 5, 2, 0.95) 100%);
+      overflow: auto;
+      flex: 1;
+      min-height: 260px;
+    }
+
+    .lightbox-img-wrap {
+      max-height: 62vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-img-wrap img {
+      max-height: 62vh;
+      max-width: 100%;
+      object-fit: contain;
+      border-radius: calc(var(--radius) - 4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75);
+    }
+
+    .lookbook-lightbox-footer {
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      border-top: 1px solid var(--line);
+      background: var(--bg2);
+      flex-wrap: wrap;
     }
 
     /* ══ GIẢI PHẪU Y PHỤC (GARMENT ANATOMY) ══ */
@@ -3686,10 +4157,25 @@
         <div class="stage-column">
           <!-- Sân khấu thời trang không còn dải đen mờ trên đầu -->
           <div class="stage-viewport stitched-card" id="stageViewport">
+            <!-- Đèn spotlight sân khấu chuyển động tương tác (Dynamic Luxury Spotlight) -->
+            <div class="stage-dynamic-spotlight" id="stageDynamicSpotlight"></div>
+
+            <!-- Huy hiệu Model trạng thái góc trên trái -->
+            <div class="stage-inspect-badge" id="stageInspectBadge">
+              <span class="badge-gem"></span>
+              <span class="badge-text" id="stageModelNameText">Model Nguyên Bản (Chưa chọn áo)</span>
+            </div>
+
             <div class="stage-location-tag" id="stageLocationTag">
               <span class="loc-icon">📍</span>
               <span id="stageLocationText">Phố Cổ Hà Nội (Đường Tạ Hiện - Hàng Bạc)</span>
             </div>
+
+            <!-- Gợi ý tương tác góc dưới phải -->
+            <div class="stage-hover-hint" id="stageHoverHint">
+              <span class="hint-icon">✦</span> Rê chuột để tương tác
+            </div>
+
             <div class="stage-mannequin" id="stageMannequin"></div>
           </div>
 
@@ -4399,6 +4885,31 @@
     </div>
   </div>
 
+  <!-- ══ MODAL XEM TOÀN CẢNH LOOKBOOK (LIGHTBOX FULL PREVIEW) ══ -->
+  <div class="lookbook-lightbox-modal" id="lookbookLightboxModal" style="display:none;">
+    <div class="lookbook-lightbox-backdrop" id="lookbookLightboxBackdrop"></div>
+    <div class="lookbook-lightbox-dialog">
+      <div class="lookbook-lightbox-header">
+        <div class="lightbox-title-box">
+          <span class="lightbox-badge" id="lightboxBadge">✦ Tác phẩm di sản</span>
+          <h3 id="lightboxTitle">Toàn cảnh tác phẩm</h3>
+          <span class="lightbox-meta" id="lightboxMeta">Bộ sưu tập Thêu Lại</span>
+        </div>
+        <button class="lightbox-close-btn" id="btnCloseLightbox" title="Đóng">✕</button>
+      </div>
+      <div class="lookbook-lightbox-content">
+        <div class="lightbox-img-wrap">
+          <img id="lightboxImg" src="" alt="Toàn cảnh tác phẩm">
+        </div>
+      </div>
+      <div class="lookbook-lightbox-footer">
+        <button class="btn" id="btnLightboxDownload">💾 Tải ảnh về máy</button>
+        <button class="btn" id="btnLightboxEdit">✏️ Chỉnh sửa ảnh</button>
+        <button class="btn primary" id="btnLightboxExport">🎴 Xuất thẻ Polaroid</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ══ JAVASCRIPT LOGIC V3 ══ -->
   <script>
     const $ = (sel) => document.querySelector(sel);
@@ -4575,11 +5086,11 @@
       currentPhase: 1, // 1: Địa danh, 2: Cổ phục, 3: Quần, 4: Giày, 5: Phụ kiện
       sceneIdx: 0,
       eventIdx: 0,
-      garment: "aodai",
+      garment: null, // Mặc định người dùng tự chọn, ban đầu không tự động chọn Cổ phục
       colorIdx: 0,
-      bottomIdx: 0,
-      shoeIdx: 0, // Unique Footwear selection
-      accessories: new Set(["Trâm cài tóc"]),
+      bottomIdx: 5, // Auto-tích Quần short ngắn đồng bộ chuẩn Model gốc
+      shoeIdx: -1, // Mặc định chân trần như ảnh Model gốc
+      accessories: new Set(), // Không tự động tích phụ kiện ban đầu
       styleIdx: 0
     };
 
@@ -4641,7 +5152,15 @@
 
       // 2. GIÀY / GUỐC (FOOTWEAR - CHỌN 1 LOẠI DUY NHẤT, RÕ RÀNG)
       let shoesSvg = "";
-      if (shoeIdx === 2) {
+      if (shoeIdx === -1 || shoeIdx === null || shoeIdx === undefined) {
+        // Chân trần mộc mạc (Barefoot đồng bộ Model gốc)
+        shoesSvg = `
+      <g filter="drop-shadow(0 2px 3px rgba(0,0,0,0.18))">
+        <path d="M120 344 C116 348 116 352 126 352 C134 352 142 350 142 344 Z" fill="${skin}"/>
+        <path d="M158 344 C158 350 166 352 174 352 C184 352 184 348 180 344 Z" fill="${skin}"/>
+      </g>
+    `;
+      } else if (shoeIdx === 2) {
         // Giày Sneaker hiện đại
         shoesSvg = `
       <g filter="drop-shadow(0 2px 4px rgba(0,0,0,0.22))">
@@ -4785,7 +5304,7 @@
       <ellipse cx="100" cy="211" rx="4.5" ry="6.5" fill="${skin}" transform="rotate(12, 100, 211)"/>
       <ellipse cx="200" cy="211" rx="4.5" ry="6.5" fill="${skin}" transform="rotate(-12, 200, 211)"/>
     `;
-      } else {
+      } else if (gType === "baba") {
         // ÁO BÀ BA NAM BỘ: Cổ tim/tròn thanh thoát, thân áo phủ qua hông che kín cạp quần, khuy giữa, 2 túi vuông
         garmentSvg = `
       <!-- Thân áo bà ba phủ dài qua eo và hông che kín cạp quần tự nhiên -->
@@ -4814,6 +5333,29 @@
       <!-- Tay áo dài suông rủ tự nhiên của người phụ nữ Nam Bộ -->
       <path d="M124 110 C114 132 102 170 98 204 C104 208 112 206 116 198 C120 168 126 138 132 118 Z" fill="${color}"/>
       <path d="M176 110 C186 132 198 170 202 204 C196 208 188 206 184 198 C180 168 174 138 168 118 Z" fill="${color}"/>
+
+      <!-- Bàn tay búp măng -->
+      <ellipse cx="102" cy="209" rx="4.5" ry="6.5" fill="${skin}" transform="rotate(10, 102, 209)"/>
+      <ellipse cx="198" cy="209" rx="4.5" ry="6.5" fill="${skin}" transform="rotate(-10, 198, 209)"/>
+    `;
+      } else {
+        // MODEL NGUYÊN BẢN (CHƯA CHỌN CỔ PHỤC): Áo thun trắng ngà cộc tay thanh thoát
+        garmentSvg = `
+      <!-- Thân áo thun trắng ngà cơ bản của Model gốc -->
+      <path d="M125 106 C120 135 118 168 120 198 L180 198 C182 168 180 135 175 106 Z" fill="#f8f6ec" stroke="#2b170e" stroke-width="0.8" filter="drop-shadow(0 2px 6px rgba(0,0,0,0.08))"/>
+      <line x1="120" y1="194" x2="180" y2="194" stroke="#dcd6c4" stroke-width="1.2"/>
+      
+      <!-- Cổ tròn áo thun có viền bo gân -->
+      <path d="M138 90 C143 98 157 98 162 90" stroke="#3d2114" stroke-width="1.8" fill="none"/>
+      <path d="M140 93 C144 99 156 99 160 93" stroke="#e0dacb" stroke-width="1.2" fill="none"/>
+
+      <!-- Tay áo cộc hai bên -->
+      <path d="M125 106 L108 136 C113 140 120 138 122 134 L129 116 Z" fill="#f8f6ec" stroke="#2b170e" stroke-width="0.8"/>
+      <path d="M175 106 L192 136 C187 140 180 138 178 134 L171 116 Z" fill="#f8f6ec" stroke="#2b170e" stroke-width="0.8"/>
+      
+      <!-- Cánh tay thon thả để trần -->
+      <path d="M108 136 C104 162 100 188 98 206 C104 209 110 208 114 200 C116 182 118 158 122 134 Z" fill="${skin}"/>
+      <path d="M192 136 C196 162 200 188 202 206 C196 209 190 208 186 200 C184 182 182 158 178 134 Z" fill="${skin}"/>
 
       <!-- Bàn tay búp măng -->
       <ellipse cx="102" cy="209" rx="4.5" ry="6.5" fill="${skin}" transform="rotate(10, 102, 209)"/>
@@ -5021,7 +5563,20 @@
       // BƯỚC 2: 4 CỔ PHỤC (Grid 2x2)
       const gEl = $("#tilesGarments");
       if (gEl) {
-        gEl.innerHTML = Object.entries(GARMENTS).map(([key, val]) => `
+        const hasGarment = !!AppState.garment;
+        const bannerHtml = `
+          <div style="grid-column: 1 / -1; margin-bottom: 8px;">
+            <div class="garment-selection-banner ${!hasGarment ? 'is-empty' : 'is-selected'}">
+              <span class="garment-banner-icon">${!hasGarment ? '✨' : '👘'}</span>
+              <div class="garment-banner-text">
+                <strong>${!hasGarment ? 'Trạng thái: Model nguyên bản (chưa chọn Cổ phục)' : `Đang mặc: ${GARMENTS[AppState.garment].name}`}</strong>
+                <small>${!hasGarment ? 'Nhấp chọn 1 dòng Cổ phục bên dưới để khoác lên người mẫu' : 'Nhấp lại vào Cổ phục đang chọn hoặc nút bên phải để tháo Cổ phục, trở về Model ban đầu'}</small>
+              </div>
+              ${hasGarment ? `<button type="button" class="btn-reset-garment" id="btnResetGarment" title="Tháo Cổ phục, trở về Model nguyên bản">↩ Trở về Model ban đầu</button>` : ''}
+            </div>
+          </div>
+        `;
+        gEl.innerHTML = bannerHtml + Object.entries(GARMENTS).map(([key, val]) => `
       <button class="tile-btn ${AppState.garment === key ? 'active' : ''}" data-type="garment" data-val="${key}">
         <span class="tile-icon">${val.icon}</span>
         <div class="tile-info">
@@ -5149,13 +5704,291 @@
     }
 
     // ══════════════════════════════════════════════════════════════
+    // VẼ PHỤ KIỆN VÀ GIÀY DÉP ĐÈ KHỚP 100% VỊ TRÍ MODEL (CANVAS 404 × 1352)
+    // ══════════════════════════════════════════════════════════════
+    function renderAccessoriesOverlaySvg(state) {
+      const acc = state.accessories || new Set();
+      const shoeIdx = (state.shoeIdx !== undefined && state.shoeIdx !== null) ? state.shoeIdx : -1;
+
+      if (shoeIdx === -1 && acc.size === 0) {
+        return "";
+      }
+
+      let defs = `
+        <defs>
+          <linearGradient id="accNonLaGrad" x1="0%" y1="0%" x2="100%" y2="80%">
+            <stop offset="0%" stop-color="#fffdf0"/>
+            <stop offset="45%" stop-color="#f2e2be"/>
+            <stop offset="85%" stop-color="#d6bf89"/>
+            <stop offset="100%" stop-color="#ba9f67"/>
+          </linearGradient>
+          <linearGradient id="accQuaiThaoSilk" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ff758f"/>
+            <stop offset="50%" stop-color="#e63946"/>
+            <stop offset="100%" stop-color="#ba181b"/>
+          </linearGradient>
+          <linearGradient id="accKhanVanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#141416"/>
+            <stop offset="35%" stop-color="#2c2c36"/>
+            <stop offset="65%" stop-color="#1c1c22"/>
+            <stop offset="100%" stop-color="#101012"/>
+          </linearGradient>
+          <linearGradient id="accGuocWood" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#be7b45"/>
+            <stop offset="50%" stop-color="#935727"/>
+            <stop offset="100%" stop-color="#673914"/>
+          </linearGradient>
+          <linearGradient id="accHaiRed" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#c63024"/>
+            <stop offset="60%" stop-color="#941e16"/>
+            <stop offset="100%" stop-color="#5c0e08"/>
+          </linearGradient>
+          <linearGradient id="accOxfordLeather" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3d2114"/>
+            <stop offset="50%" stop-color="#241209"/>
+            <stop offset="100%" stop-color="#120804"/>
+          </linearGradient>
+          <linearGradient id="accTuiCoiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#edd5a4"/>
+            <stop offset="50%" stop-color="#caa76e"/>
+            <stop offset="100%" stop-color="#a07d46"/>
+          </linearGradient>
+          <linearGradient id="accHoodieGrey" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#495057"/>
+            <stop offset="50%" stop-color="#343a40"/>
+            <stop offset="100%" stop-color="#212529"/>
+          </linearGradient>
+        </defs>
+      `;
+
+      let elements = [];
+
+      // ── 1. GIÀY DÉP / GUỐC (FOOTWEAR) ───────────────────────────
+      // Chân trái: center 176 (range 148..202), Chân phải: center 251 (range 224..278), đáy chân y = 1333
+      if (shoeIdx === 0) {
+        // HÀI THÊU HOA SEN CỔ TRUYỀN
+        elements.push(`
+          <g id="accShoeHaiTheu" filter="drop-shadow(0 3px 6px rgba(0,0,0,0.4))">
+            <!-- Chân trái -->
+            <path d="M148 1324 C148 1334 164 1335 176 1335 C190 1335 204 1332 204 1326 C204 1322 195 1318 176 1318 C158 1318 148 1320 148 1324 Z" fill="#2b1408"/>
+            <path d="M152 1324 C150 1312 156 1298 168 1292 C178 1288 188 1292 196 1300 C202 1308 202 1320 198 1325 C186 1328 164 1328 152 1324 Z" fill="url(#accHaiRed)"/>
+            <path d="M158 1300 C168 1290 186 1292 195 1302" stroke="#ffd166" stroke-width="1.8" fill="none"/>
+            <circle cx="176" cy="1310" r="3.2" fill="#ffd166"/>
+            <circle cx="172" cy="1312" r="1.8" fill="#ff758f"/>
+            <circle cx="180" cy="1312" r="1.8" fill="#ff758f"/>
+
+            <!-- Chân phải -->
+            <path d="M222 1326 C222 1332 236 1335 250 1335 C262 1335 278 1334 278 1324 C278 1320 268 1318 250 1318 C231 1318 222 1322 222 1326 Z" fill="#2b1408"/>
+            <path d="M228 1325 C224 1320 224 1308 230 1300 C238 1292 248 1288 258 1292 C270 1298 276 1312 274 1324 C262 1328 240 1328 228 1325 Z" fill="url(#accHaiRed)"/>
+            <path d="M231 1302 C240 1292 258 1290 268 1300" stroke="#ffd166" stroke-width="1.8" fill="none"/>
+            <circle cx="250" cy="1310" r="3.2" fill="#ffd166"/>
+            <circle cx="246" cy="1312" r="1.8" fill="#ff758f"/>
+            <circle cx="254" cy="1312" r="1.8" fill="#ff758f"/>
+          </g>
+        `);
+      } else if (shoeIdx === 1) {
+        // GUỐC MỘC QUAI GẤM
+        elements.push(`
+          <g id="accShoeGuocMoc" filter="drop-shadow(0 4px 7px rgba(0,0,0,0.45))">
+            <!-- Chân trái -->
+            <path d="M148 1326 C148 1335 160 1335 176 1335 C192 1335 204 1334 204 1327 C204 1323 194 1321 176 1321 C158 1321 148 1323 148 1326 Z" fill="url(#accGuocWood)"/>
+            <rect x="155" y="1328" width="12" height="5" rx="1.5" fill="#4d290e"/>
+            <rect x="185" y="1328" width="12" height="5" rx="1.5" fill="#4d290e"/>
+            <path d="M152 1322 C152 1298 200 1298 200 1322 C196 1324 191 1322 189 1306 C163 1306 158 1322 152 1322 Z" fill="url(#accHaiRed)" stroke="#ffd166" stroke-width="1.2"/>
+            <circle cx="176" cy="1306" r="2.5" fill="#ffd166"/>
+
+            <!-- Chân phải -->
+            <path d="M222 1327 C222 1334 234 1335 250 1335 C266 1335 278 1335 278 1326 C278 1323 268 1321 250 1321 C232 1321 222 1323 222 1327 Z" fill="url(#accGuocWood)"/>
+            <rect x="229" y="1328" width="12" height="5" rx="1.5" fill="#4d290e"/>
+            <rect x="259" y="1328" width="12" height="5" rx="1.5" fill="#4d290e"/>
+            <path d="M226 1322 C226 1298 274 1298 274 1322 C270 1324 265 1322 263 1306 C237 1306 232 1322 226 1322 Z" fill="url(#accHaiRed)" stroke="#ffd166" stroke-width="1.2"/>
+            <circle cx="250" cy="1306" r="2.5" fill="#ffd166"/>
+          </g>
+        `);
+      } else if (shoeIdx === 2) {
+        // GIÀY SNEAKER TRẮNG
+        elements.push(`
+          <g id="accShoeSneaker" filter="drop-shadow(0 3px 6px rgba(0,0,0,0.3))">
+            <!-- Chân trái -->
+            <path d="M144 1328 C144 1335 158 1335 176 1335 C194 1335 208 1333 208 1326 C208 1322 195 1320 176 1320 C156 1320 144 1322 144 1328 Z" fill="#e9ecef" stroke="#ced4da" stroke-width="0.8"/>
+            <path d="M148 1326 C146 1314 152 1295 168 1288 C180 1284 192 1290 198 1298 C204 1308 206 1320 202 1326 Z" fill="#ffffff" stroke="#dee2e6" stroke-width="1"/>
+            <path d="M164 1296 C168 1294 186 1296 190 1300" stroke="#adb5bd" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="168" y1="1305" x2="186" y2="1305" stroke="#adb5bd" stroke-width="1.6"/>
+            <line x1="166" y1="1313" x2="188" y2="1313" stroke="#adb5bd" stroke-width="1.6"/>
+            <path d="M146 1329 C164 1331 188 1331 206 1328" stroke="#495057" stroke-width="1.2" fill="none"/>
+
+            <!-- Chân phải -->
+            <path d="M218 1326 C218 1333 232 1335 250 1335 C268 1335 282 1335 282 1328 C282 1322 270 1320 250 1320 C231 1320 218 1322 218 1326 Z" fill="#e9ecef" stroke="#ced4da" stroke-width="0.8"/>
+            <path d="M224 1326 C220 1320 222 1308 228 1298 C234 1290 246 1284 258 1288 C274 1295 280 1314 278 1326 Z" fill="#ffffff" stroke="#dee2e6" stroke-width="1"/>
+            <path d="M236 1300 C240 1296 258 1294 262 1296" stroke="#adb5bd" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="240" y1="1305" x2="258" y2="1305" stroke="#adb5bd" stroke-width="1.6"/>
+            <line x1="238" y1="1313" x2="260" y2="1313" stroke="#adb5bd" stroke-width="1.6"/>
+            <path d="M220 1328 C238 1331 262 1331 280 1329" stroke="#495057" stroke-width="1.2" fill="none"/>
+          </g>
+        `);
+      } else if (shoeIdx === 3) {
+        // GIÀY DA OXFORD
+        elements.push(`
+          <g id="accShoeOxford" filter="drop-shadow(0 3px 6px rgba(0,0,0,0.45))">
+            <!-- Chân trái -->
+            <path d="M146 1326 C146 1334 160 1335 176 1335 C192 1335 206 1333 206 1326 C206 1321 194 1319 176 1319 C157 1319 146 1321 146 1326 Z" fill="#120804"/>
+            <path d="M150 1325 C148 1314 154 1297 168 1290 C180 1286 190 1290 196 1298 C202 1307 204 1318 200 1325 Z" fill="url(#accOxfordLeather)"/>
+            <path d="M158 1314 C170 1316 182 1316 194 1314" stroke="#ffd166" stroke-width="0.8" stroke-dasharray="1.5,1.5" fill="none"/>
+            <circle cx="176" cy="1302" r="1.5" fill="#ffd166"/>
+            <circle cx="176" cy="1308" r="1.5" fill="#ffd166"/>
+
+            <!-- Chân phải -->
+            <path d="M220 1326 C220 1333 234 1335 250 1335 C266 1335 280 1334 280 1326 C280 1321 269 1319 250 1319 C232 1319 220 1321 220 1326 Z" fill="#120804"/>
+            <path d="M226 1325 C222 1318 224 1307 230 1298 C236 1290 246 1286 258 1290 C272 1297 278 1314 276 1325 Z" fill="url(#accOxfordLeather)"/>
+            <path d="M232 1314 C244 1316 256 1316 268 1314" stroke="#ffd166" stroke-width="0.8" stroke-dasharray="1.5,1.5" fill="none"/>
+            <circle cx="250" cy="1302" r="1.5" fill="#ffd166"/>
+            <circle cx="250" cy="1308" r="1.5" fill="#ffd166"/>
+          </g>
+        `);
+      }
+
+      // ── 2. PHỤ KIỆN THÂN (BODY / HAND ACCESSORIES) ────────────────
+      if (acc.has("Áo Hoodie")) {
+        elements.push(`
+          <g id="accHoodieLayer" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.35))">
+            <path d="M142 195 C122 230 114 280 116 325 L138 328 C140 285 150 235 160 205 Z" fill="url(#accHoodieGrey)"/>
+            <path d="M284 195 C304 230 312 280 310 325 L288 328 C286 285 276 235 266 205 Z" fill="url(#accHoodieGrey)"/>
+            <path d="M156 195 C172 178 254 178 270 195 C256 185 170 185 156 195 Z" fill="#212529"/>
+            <path d="M174 210 C172 245 175 270 174 295" stroke="#f8f9fa" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <rect x="172" y="295" width="4" height="8" rx="1.5" fill="#adb5bd"/>
+            <path d="M252 210 C254 245 251 270 252 295" stroke="#f8f9fa" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <rect x="250" y="295" width="4" height="8" rx="1.5" fill="#adb5bd"/>
+          </g>
+        `);
+      }
+
+      if (acc.has("Khăn rằn Nam Bộ")) {
+        elements.push(`
+          <g id="accKhanRan" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.3))">
+            <path d="M170 192 C184 216 242 216 256 192 C262 208 256 226 246 232 C228 238 198 238 180 232 C170 226 164 208 170 192 Z" fill="#ffffff" stroke="#212529" stroke-width="1"/>
+            <path d="M166 220 C162 260 162 380 164 490 L195 490 C195 380 192 260 188 220 Z" fill="#ffffff" stroke="#212529" stroke-width="0.8"/>
+            ${[240, 270, 300, 330, 360, 390, 420, 450, 480].map((y, i) => `
+              <rect x="${i % 2 === 0 ? '166' : '180'}" y="${y}" width="14" height="15" fill="#212529"/>
+            `).join('')}
+            ${[168, 173, 178, 183, 188, 193].map(x => `<line x1="${x}" y1="490" x2="${x}" y2="505" stroke="#495057" stroke-width="1.4"/>`).join('')}
+            <path d="M238 220 C234 260 231 380 231 490 L262 490 C264 380 264 260 260 220 Z" fill="#ffffff" stroke="#212529" stroke-width="0.8"/>
+            ${[240, 270, 300, 330, 360, 390, 420, 450, 480].map((y, i) => `
+              <rect x="${i % 2 === 0 ? '232' : '246'}" y="${y}" width="14" height="15" fill="#212529"/>
+            `).join('')}
+            ${[234, 239, 244, 249, 254, 259].map(x => `<line x1="${x}" y1="490" x2="${x}" y2="505" stroke="#495057" stroke-width="1.4"/>`).join('')}
+          </g>
+        `);
+      }
+
+      if (acc.has("Túi cói thủ công")) {
+        elements.push(`
+          <g id="accTuiCoi" filter="drop-shadow(0 6px 12px rgba(0,0,0,0.32))">
+            <path d="M96 580 C96 535 124 535 124 580" stroke="#7f4f24" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+            <path d="M102 580 C102 545 118 545 118 580" stroke="#a68a56" stroke-width="2" fill="none"/>
+            <path d="M84 580 L136 580 L142 685 C142 705 126 714 110 714 C94 714 78 705 78 685 Z" fill="url(#accTuiCoiGrad)" stroke="#8c6d37" stroke-width="1.5"/>
+            <path d="M82 605 L138 605 M80 630 L140 630 M80 655 L140 655 M82 680 L138 680" stroke="#8c6d37" stroke-width="1.2" stroke-dasharray="3,3" fill="none"/>
+            <line x1="110" y1="580" x2="110" y2="714" stroke="#8c6d37" stroke-width="1.2" stroke-dasharray="3,3"/>
+            <circle cx="110" cy="595" r="4.5" fill="#c63d24" stroke="#ffd166" stroke-width="1"/>
+            <circle cx="110" cy="595" r="2" fill="#ffd166"/>
+            <line x1="110" y1="599" x2="110" y2="618" stroke="#c63d24" stroke-width="2"/>
+            <circle cx="110" cy="620" r="2.5" fill="#ffd166"/>
+          </g>
+        `);
+      }
+
+      if (acc.has("Quạt Trầm Hương")) {
+        elements.push(`
+          <g id="accQuatTram" filter="drop-shadow(0 5px 10px rgba(0,0,0,0.38))">
+            <path d="M302 615 L365 540 A60 60 0 0 1 392 615 Z" fill="#603813" stroke="#402208" stroke-width="1.2"/>
+            <path d="M312 605 L358 550 A48 48 0 0 1 382 605 Z" fill="#8b5a2b"/>
+            <circle cx="348" cy="580" r="5" fill="#ffd166" opacity="0.9"/>
+            <path d="M348 574 C344 578 352 578 348 574 Z" fill="#fff"/>
+            <circle cx="344" cy="582" r="2.5" fill="#ff758f"/>
+            <circle cx="352" cy="582" r="2.5" fill="#ff758f"/>
+            <line x1="302" y1="615" x2="365" y2="540" stroke="#ffd166" stroke-width="1.4"/>
+            <line x1="302" y1="615" x2="392" y2="615" stroke="#ffd166" stroke-width="1.4"/>
+            <circle cx="302" cy="615" r="3.5" fill="#ffd166" stroke="#2b1408" stroke-width="0.8"/>
+            <path d="M302 618 C298 640 295 658 296 678" stroke="#c63d24" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <circle cx="296" cy="680" r="3.5" fill="#ffd166"/>
+            <line x1="296" y1="682" x2="296" y2="695" stroke="#c63d24" stroke-width="1.8"/>
+          </g>
+        `);
+      }
+
+      // ── 3. PHỤ KIỆN ĐẦU (HEADWEAR / HAIR ACCESSORIES) ───────────
+      if (acc.has("Nón Thúng Quai Thao")) {
+        elements.push(`
+          <g id="accNonQuaiThao" filter="drop-shadow(0 6px 14px rgba(0,0,0,0.4))">
+            <ellipse cx="213" cy="52" rx="165" ry="34" fill="#edd6a8" stroke="#bfa05e" stroke-width="2.2"/>
+            <ellipse cx="213" cy="50" rx="150" ry="28" fill="#dfc693"/>
+            <ellipse cx="213" cy="48" rx="110" ry="20" fill="none" stroke="#ba9e68" stroke-width="1.2"/>
+            <ellipse cx="213" cy="46" rx="70" ry="14" fill="#cbb07a"/>
+            <ellipse cx="213" cy="42" rx="38" ry="9" fill="#a58852" stroke="#876d3e" stroke-width="1"/>
+            <path d="M120 62 C108 140 126 260 130 395" stroke="url(#accQuaiThaoSilk)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+            <circle cx="130" cy="397" r="4.5" fill="#ffd166" stroke="#2b1408" stroke-width="0.8"/>
+            <line x1="130" y1="401" x2="130" y2="430" stroke="#ba181b" stroke-width="3"/>
+            <path d="M306 62 C318 140 300 260 296 395" stroke="url(#accQuaiThaoSilk)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+            <circle cx="296" cy="397" r="4.5" fill="#ffd166" stroke="#2b1408" stroke-width="0.8"/>
+            <line x1="296" y1="401" x2="296" y2="430" stroke="#ba181b" stroke-width="3"/>
+          </g>
+        `);
+      } else if (acc.has("Nón lá")) {
+        elements.push(`
+          <g id="accNonLa" filter="drop-shadow(0 6px 14px rgba(0,0,0,0.36))">
+            <path d="M213 -18 L76 112 Q213 138 350 112 Z" fill="url(#accNonLaGrad)" stroke="#cbb282" stroke-width="1.5"/>
+            <line x1="213" y1="-18" x2="105" y2="114" stroke="#d5be8e" stroke-width="0.9"/>
+            <line x1="213" y1="-18" x2="140" y2="120" stroke="#d5be8e" stroke-width="0.9"/>
+            <line x1="213" y1="-18" x2="176" y2="124" stroke="#d5be8e" stroke-width="0.9"/>
+            <line x1="213" y1="-18" x2="213" y2="126" stroke="#d5be8e" stroke-width="0.9"/>
+            <line x1="213" y1="-18" x2="250" y2="124" stroke="#d5be8e" stroke-width="0.9"/>
+            <line x1="213" y1="-18" x2="286" y2="120" stroke="#d5be8e" stroke-width="0.9"/>
+            <line x1="213" y1="-18" x2="321" y2="114" stroke="#d5be8e" stroke-width="0.9"/>
+            <path d="M90 85 Q213 105 336 85" stroke="#d5be8e" stroke-width="1.2" fill="none"/>
+            <path d="M120 55 Q213 72 306 55" stroke="#d5be8e" stroke-width="1.2" fill="none"/>
+            <path d="M152 25 Q213 38 274 25" stroke="#d5be8e" stroke-width="1" fill="none"/>
+            <path d="M76 112 Q213 138 350 112" stroke="#bfa05e" stroke-width="2" fill="none"/>
+            <path d="M148 116 C145 160 180 202 213 206 C246 202 281 160 278 116" stroke="#f4978e" stroke-width="3" stroke-linecap="round" fill="none" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.25))"/>
+          </g>
+        `);
+      } else if (acc.has("Khăn vấn")) {
+        elements.push(`
+          <g id="accKhanVan" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.45))">
+            <path d="M144 86 C136 38 290 38 282 86 C274 104 152 104 144 86 Z" fill="url(#accKhanVanGrad)" stroke="#1a1a20" stroke-width="1.2"/>
+            <path d="M147 80 C154 44 272 44 279 80" stroke="#3d3d4a" stroke-width="2.5" fill="none"/>
+            <path d="M150 72 C158 40 268 40 276 72" stroke="#282832" stroke-width="2.5" fill="none"/>
+            <path d="M154 64 C164 36 262 36 272 64" stroke="#464656" stroke-width="2.2" fill="none"/>
+            <path d="M159 56 C170 32 256 32 267 56" stroke="#24242e" stroke-width="2.2" fill="none"/>
+            <path d="M166 48 C178 28 248 28 260 48" stroke="#3b3b48" stroke-width="2" fill="none"/>
+            <circle cx="213" cy="54" r="5.5" fill="#ffd166" stroke="#2b1408" stroke-width="0.8"/>
+            <circle cx="213" cy="54" r="2.8" fill="#c63d24"/>
+          </g>
+        `);
+      }
+
+      if (acc.has("Trâm cài tóc") && !acc.has("Nón lá") && !acc.has("Nón Thúng Quai Thao")) {
+        elements.push(`
+          <g id="accTramCai" filter="drop-shadow(0 3px 6px rgba(0,0,0,0.35))">
+            <line x1="248" y1="86" x2="288" y2="44" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="288" cy="44" r="6" fill="#ff758f"/>
+            <circle cx="288" cy="44" r="3.2" fill="#ffd166"/>
+            <circle cx="284" cy="54" r="2.2" fill="#52b788"/>
+            <circle cx="282" cy="64" r="1.8" fill="#ffd166"/>
+          </g>
+        `);
+      }
+
+      return defs + elements.join('\n');
+    }
+
+    // ══════════════════════════════════════════════════════════════
     // CẬP NHẬT SÂN KHẤU & ĐÁNH GIÁ THỜI TRANG DỌC
     // ══════════════════════════════════════════════════════════════
     function updateStage(animate = true) {
-      const sc = SCENES[AppState.sceneIdx];
+      const sc = SCENES[AppState.sceneIdx] || SCENES[0];
       const stage = $("#stageViewport");
       const man = $("#stageMannequin");
       const locText = $("#stageLocationText");
+      const inspectBadge = $("#stageInspectBadge");
 
       if (stage) {
         stage.style.backgroundImage = `url('${sc.photo}')`;
@@ -5164,41 +5997,183 @@
         locText.textContent = sc.fullLabel;
       }
 
+      // Cập nhật huy hiệu trạng thái Model
+      if (inspectBadge) {
+        if (AppState.garment) {
+          const gObj = GARMENTS[AppState.garment];
+          const gName = gObj ? gObj.name : "Cổ phục";
+          const cIdx = (AppState.colorIdx >= 0 && AppState.colorIdx <= 5) ? AppState.colorIdx : 0;
+          const cObj = COLORS[cIdx] || COLORS[0];
+          const cName = cObj.name;
+          const cHex = cObj.hex || "#d48f22";
+          inspectBadge.innerHTML = `
+            <span class="badge-gem" style="background:${cHex};box-shadow:0 0 10px ${cHex}, 0 0 18px ${cHex}99;"></span>
+            <span class="badge-text" id="stageModelNameText"><strong>${gName}</strong> · ${cName}</span>
+          `;
+        } else {
+          inspectBadge.innerHTML = `
+            <span class="badge-gem"></span>
+            <span class="badge-text" id="stageModelNameText">Model Nguyên Bản (Chưa chọn áo)</span>
+          `;
+        }
+      }
+
       if (man) {
+        const hasGarment = !!AppState.garment;
+        const cIdx = (AppState.colorIdx >= 0 && AppState.colorIdx <= 5) ? AppState.colorIdx : 0;
+        const modelImgSrc = hasGarment ? `assets/models/${AppState.garment}_${cIdx}.png` : "assets/models/default.png";
+        const garmentObj = hasGarment ? GARMENTS[AppState.garment] : null;
+        const colorObj = COLORS[cIdx];
+        const modelAlt = hasGarment ? `${garmentObj ? garmentObj.name : 'Cổ Phục'} (${colorObj ? colorObj.name : ''})` : "Model Di Sản Gốc";
+
+        const renderMan = () => {
+          man.innerHTML = `
+            <div class="stage-base-model-wrap" id="stageModelWrap">
+              <div class="stage-model-ground-shadow"></div>
+              <img src="${modelImgSrc}" alt="${modelAlt}" class="stage-base-model-img" id="stageBaseModelImg" />
+              <svg class="stage-accessories-overlay" id="stageAccOverlay" viewBox="0 0 404 1352" preserveAspectRatio="none">
+                ${renderAccessoriesOverlaySvg(AppState)}
+              </svg>
+            </div>
+          `;
+        };
+
         if (animate) {
-          const curSvg = man.querySelector("svg");
-          if (curSvg) {
-            curSvg.classList.add("anim-out");
-            setTimeout(() => {
-              man.innerHTML = generateCharacterSVG(AppState);
-            }, 150);
+          const curEl = man.querySelector(".stage-base-model-wrap, img, svg");
+          if (curEl) {
+            curEl.classList.add("anim-out");
+            setTimeout(renderMan, 120);
           } else {
-            man.innerHTML = generateCharacterSVG(AppState);
+            renderMan();
           }
         } else {
-          man.innerHTML = generateCharacterSVG(AppState);
+          renderMan();
         }
       }
     }
 
+    // ══════════════════════════════════════════════════════════════
+    // TỔNG HỢP ẢNH TOÀN CẢNH PHỐ DI SẢN + MODEL + PHỤ KIỆN (FULL SCENE SNAPSHOT)
+    // ══════════════════════════════════════════════════════════════
+    function generateOutfitSceneSnapshot(state, callback) {
+      const sc = SCENES[state.sceneIdx] || SCENES[0];
+      const hasGarment = !!state.garment;
+      const cIdx = (state.colorIdx >= 0 && state.colorIdx <= 5) ? state.colorIdx : 0;
+      const modelImgSrc = hasGarment ? `assets/models/${state.garment}_${cIdx}.png` : "assets/models/default.png";
+
+      const canvas = document.createElement("canvas");
+      const W = 900;
+      const H = 1200;
+      canvas.width = W;
+      canvas.height = H;
+      const ctx = canvas.getContext("2d");
+
+      const bgImg = new Image();
+      const modelImg = new Image();
+      let bgLoaded = false;
+      let modelLoaded = false;
+
+      const tryCompose = () => {
+        if (!bgLoaded || !modelLoaded) return;
+
+        // 1. Vẽ ảnh nền con phố (cover toàn màn 900x1200)
+        const bgW = bgImg.naturalWidth || bgImg.width || 1200;
+        const bgH = bgImg.naturalHeight || bgImg.height || 800;
+        const bgScale = Math.max(W / bgW, H / bgH);
+        const bdw = bgW * bgScale;
+        const bdh = bgH * bgScale;
+        const bdx = (W - bdw) / 2;
+        const bdy = (H - bdh) / 2;
+        ctx.drawImage(bgImg, bdx, bdy, bdw, bdh);
+
+        // 2. Lớp bóng tiếp đất tự nhiên
+        const groundGrad = ctx.createLinearGradient(0, H - 240, 0, H);
+        groundGrad.addColorStop(0, "transparent");
+        groundGrad.addColorStop(0.7, "rgba(10, 5, 2, 0.4)");
+        groundGrad.addColorStop(1, "rgba(10, 5, 2, 0.72)");
+        ctx.fillStyle = groundGrad;
+        ctx.fillRect(0, H - 240, W, 240);
+
+        // 3. Tọa độ của người mẫu (chiếm ~84% chiều cao canvas)
+        const targetH = 1010;
+        const scale = targetH / 1352;
+        const dw = 404 * scale;
+        const dh = targetH;
+        const dx = (W - dw) / 2;
+        const dy = H - dh - 38;
+
+        // Bóng tiếp xúc dưới chân model
+        ctx.save();
+        const shadowGrad = ctx.createRadialGradient(W / 2, dy + dh - 6, 8, W / 2, dy + dh - 6, dw * 0.58);
+        shadowGrad.addColorStop(0, "rgba(12, 6, 3, 0.85)");
+        shadowGrad.addColorStop(0.5, "rgba(12, 6, 3, 0.35)");
+        shadowGrad.addColorStop(1, "transparent");
+        ctx.fillStyle = shadowGrad;
+        ctx.beginPath();
+        ctx.ellipse(W / 2, dy + dh - 6, dw * 0.58, 15, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        // 4. Vẽ người mẫu với viền trắng mỏng tôn dáng
+        ctx.save();
+        ctx.filter = "drop-shadow(2px 0 0 rgba(255,255,255,0.95)) drop-shadow(-2px 0 0 rgba(255,255,255,0.95)) drop-shadow(0 2px 0 rgba(255,255,255,0.95)) drop-shadow(0 -2px 0 rgba(255,255,255,0.95)) drop-shadow(0 14px 28px rgba(0,0,0,0.65))";
+        ctx.drawImage(modelImg, dx, dy, dw, dh);
+        ctx.restore();
+
+        // 5. Vẽ SVG Overlay phụ kiện & giày guốc
+        const overlaySvgStr = renderAccessoriesOverlaySvg(state);
+        const onSvgComplete = () => {
+          // 6. Đóng dấu triện văn hóa Thêu Lại góc ảnh
+          drawSealWatermark(ctx, W - 75, H - 75, 54);
+
+          try {
+            const dataUrl = canvas.toDataURL("image/jpeg", 0.92);
+            callback(dataUrl);
+          } catch (e) {
+            callback(modelImgSrc);
+          }
+        };
+
+        if (overlaySvgStr) {
+          const fullOverlaySvg = `<svg viewBox="0 0 404 1352" xmlns="http://www.w3.org/2000/svg">${overlaySvgStr}</svg>`;
+          drawSvgOnCanvas(ctx, fullOverlaySvg, dx, dy, dw, dh, onSvgComplete);
+        } else {
+          onSvgComplete();
+        }
+      };
+
+      bgImg.onload = () => { bgLoaded = true; tryCompose(); };
+      bgImg.onerror = () => { bgLoaded = true; tryCompose(); };
+      modelImg.onload = () => { modelLoaded = true; tryCompose(); };
+      modelImg.onerror = () => { modelLoaded = true; tryCompose(); };
+
+      bgImg.src = sc.photo;
+      modelImg.src = modelImgSrc;
+    }
+
     function analyzeOutfit() {
-      const g = GARMENTS[AppState.garment];
-      const col = COLORS[AppState.colorIdx];
-      const bot = MODERN_BOTTOMS[AppState.bottomIdx];
-      const sh = SHOES[AppState.shoeIdx];
-      const acc = AppState.accessories;
-      const ev = EVENTS[AppState.eventIdx];
-      const sc = SCENES[AppState.sceneIdx];
+      const g = AppState.garment ? GARMENTS[AppState.garment] : null;
+      const col = COLORS[AppState.colorIdx] || COLORS[0];
+      const bot = MODERN_BOTTOMS[AppState.bottomIdx] || MODERN_BOTTOMS[0];
+      const sh = (AppState.shoeIdx >= 0 && SHOES[AppState.shoeIdx]) ? SHOES[AppState.shoeIdx] : null;
+      const acc = AppState.accessories || new Set();
+      const ev = EVENTS[AppState.eventIdx] || EVENTS[0];
+      const sc = SCENES[AppState.sceneIdx] || SCENES[0];
 
       let score = 92;
       let warnings = [];
       let tips = [];
 
+      if (!g) {
+        score = 88;
+        tips.push("Model đang ở trạng thái trang phục cơ bản (áo thun + quần short). Hãy chọn một dòng Cổ phục ở Bước 2 để phối hợp nét đẹp di sản.");
+      }
+
       if (bot.name.includes("short")) {
-        if (AppState.eventIdx === 0) { // Lễ hội / Tết
+        if (AppState.eventIdx === 0 && g) { // Lễ hội / Tết
           score -= 20;
           warnings.push(`Quần short ngắn khi đi lễ hội trang nghiêm chưa thật sự chuẩn mực với ${g.name}. Hãy thử thay bằng quần ống rộng hoặc chân váy suông.`);
-        } else {
+        } else if (g) {
           tips.push(`Bản phối quần short với ${g.name} mang đậm tinh thần Streetwear phá cách trẻ trung của thế hệ Gen Z.`);
         }
       }
@@ -5206,7 +6181,7 @@
       if (acc.has("Áo Hoodie")) {
         if (AppState.garment === "nguthan" || AppState.garment === "tuthan") {
           score -= 15;
-          warnings.push(`Áo hoodie che khuất phần cổ đứng và tà áo đặc trưng của ${g.name}. Nên khoác hờ mở khóa để tôn dáng áo.`);
+          warnings.push(`Áo hoodie che khuất phần cổ đứng và tà áo đặc trưng của ${g ? g.name : 'cổ phục'}. Nên khoác hờ mở khóa để tôn dáng áo.`);
         }
       }
 
@@ -5215,7 +6190,7 @@
         warnings.push("Không nên đội đồng thời nón lá và khăn vấn; chỉ nên chọn 1 điểm nhấn trên đầu để tôn trọn vẻ thanh thoát.");
       }
 
-      if (sh.name.includes("Sneaker") && AppState.eventIdx === 0 && AppState.garment === "nguthan") {
+      if (sh && sh.name.includes("Sneaker") && AppState.eventIdx === 0 && AppState.garment === "nguthan") {
         tips.push("Trong các đại lễ truyền thống, hài thêu hoặc guốc mộc sẽ tôn nét tôn nghiêm chuẩn mực hơn giày sneaker.");
       }
 
@@ -5227,26 +6202,28 @@
 
       const warnHtml = warnings.map(w => `<div class="advice-box">⚠️ ${w}</div>`).join('');
       const tipsHtml = tips.map(t => `<div class="advice-box success">💡 ${t}</div>`).join('');
+      const caption = (g ? g.name : "Model Nguyên Bản") + " · " + sc.label + " (" + bot.name + ")";
 
       analysisEl.innerHTML = `
     <div class="analysis-header-row">
       <div>
-        <h3 style="margin:0;">${g.name} · ${STYLES[AppState.styleIdx].name}</h3>
-        <p style="margin:2px 0 0;font-size:0.84rem;color:var(--mute);">${g.desc}</p>
+        <h3 style="margin:0;">${g ? g.name + ' · ' + STYLES[AppState.styleIdx].name : 'Model Nguyên Bản (Chưa chọn Cổ phục)'}</h3>
+        <p style="margin:2px 0 0;font-size:0.84rem;color:var(--mute);">${g ? g.desc : 'Đang hiển thị trang phục ban đầu (áo thun + quần short). Nhấp chọn 1 Cổ phục tại Bước 2 để bắt đầu phối đồ.'}</p>
       </div>
-      <div class="score-badge">✦ Độ hài hòa: ${score}/100</div>
+      <div class="score-badge">${g ? '✦ Độ hài hòa: ' + score + '/100' : '✨ Model Ban Đầu'}</div>
     </div>
 
     <div class="score-progress">
-      <div class="score-progress-bar" style="width: ${score}%;"></div>
+      <div class="score-progress-bar" style="width: ${g ? score : 100}%;"></div>
     </div>
 
     <div class="analysis-chips-row">
       <span class="badge-tag">📍 ${sc.label}</span>
       <span class="badge-tag">📅 ${ev.name}</span>
+      ${g ? `<span class="badge-tag">👘 ${g.name}</span>` : `<span class="badge-tag">👕 Áo thun cơ bản</span>`}
       <span class="badge-tag">🎨 ${col.name}</span>
       <span class="badge-tag">👖 ${bot.name}</span>
-      <span class="badge-tag">👟 ${sh.name}</span>
+      ${sh ? `<span class="badge-tag">👟 ${sh.name}</span>` : `<span class="badge-tag">👣 Chân trần</span>`}
       ${Array.from(acc).map(a => `<span class="badge-tag">✨ ${a}</span>`).join('')}
     </div>
 
@@ -5263,20 +6240,26 @@
       const saveBtn = $("#btnSaveToLookbook");
       if (saveBtn) {
         saveBtn.onclick = function () {
-          const svgCode = generateCharacterSVG(AppState);
-          const dataUri = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgCode);
-          addLookbookItem(dataUri, caption, {
-            garment: AppState.garment,
-            colorIdx: AppState.colorIdx,
-            bottomIdx: AppState.bottomIdx,
-            shoeIdx: AppState.shoeIdx,
-            accessories: Array.from(AppState.accessories || []),
-            styleIdx: AppState.styleIdx,
-            sceneIdx: AppState.sceneIdx,
-            theme: caption
+          saveBtn.disabled = true;
+          saveBtn.innerHTML = "⏳ Đang tổng hợp toàn cảnh...";
+
+          generateOutfitSceneSnapshot(AppState, (fullSceneDataUrl) => {
+            saveBtn.disabled = false;
+            saveBtn.innerHTML = "✦ Lưu vào Lookbook";
+
+            addLookbookItem(fullSceneDataUrl, caption, {
+              garment: AppState.garment,
+              colorIdx: AppState.colorIdx,
+              bottomIdx: AppState.bottomIdx,
+              shoeIdx: AppState.shoeIdx,
+              accessories: Array.from(AppState.accessories || []),
+              styleIdx: AppState.styleIdx,
+              sceneIdx: AppState.sceneIdx,
+              theme: caption
+            });
+            showEditorToast("✨ Đã lưu bộ phối toàn cảnh vào Lookbook cá nhân!");
+            location.hash = "#look";
           });
-          showEditorToast("✨ Đã lưu bộ phối vào Lookbook cá nhân!");
-          location.hash = "#look";
         };
       }
 
@@ -6401,7 +7384,108 @@
       renderLookbookGallery();
     }
 
+    // Tự động nâng cấp các bản phối cũ (chỉ có model PNG) thành ảnh toàn cảnh phố cổ
+    function upgradeLegacyLookbookItems() {
+      let needsSave = false;
+      LookbookItems.forEach((item) => {
+        if (item.outfitState && item.src && item.src.includes("assets/models/")) {
+          generateOutfitSceneSnapshot(item.outfitState, (dataUrl) => {
+            item.src = dataUrl;
+            saveLookbook();
+            renderLookbookGallery();
+          });
+          needsSave = true;
+        }
+      });
+      if (needsSave) {
+        saveLookbook();
+      }
+    }
+
     let currentWardrobeFilter = "all";
+    let currentLightboxIdx = null;
+
+    function openLookbookLightbox(item, origIdx) {
+      const modal = $("#lookbookLightboxModal");
+      if (!modal) return;
+      currentLightboxIdx = origIdx;
+
+      document.body.classList.add("modal-open");
+      document.documentElement.classList.add("modal-open");
+
+      const img = $("#lightboxImg");
+      const title = $("#lightboxTitle");
+      const meta = $("#lightboxMeta");
+      const badge = $("#lightboxBadge");
+
+      if (img) img.src = item.src;
+      if (title) title.textContent = item.cap || "Tác phẩm Thêu Lại";
+      if (meta) meta.textContent = `🕒 ${item.time || 'Bộ sưu tập'}`;
+      if (badge) badge.textContent = item.outfitState ? "✦ Tạo mẫu toàn cảnh phố di sản" : "📷 Ảnh chụp thực tế";
+
+      modal.style.display = "flex";
+    }
+
+    function closeLookbookLightbox() {
+      const modal = $("#lookbookLightboxModal");
+      if (modal) modal.style.display = "none";
+      document.body.classList.remove("modal-open");
+      document.documentElement.classList.remove("modal-open");
+      currentLightboxIdx = null;
+    }
+
+    function initLookbookLightbox() {
+      const closeBtn = $("#btnCloseLightbox");
+      const backdrop = $("#lookbookLightboxBackdrop");
+      if (closeBtn) closeBtn.onclick = closeLookbookLightbox;
+      if (backdrop) backdrop.onclick = closeLookbookLightbox;
+
+      const btnDl = $("#btnLightboxDownload");
+      if (btnDl) {
+        btnDl.onclick = () => {
+          if (currentLightboxIdx === null || !LookbookItems[currentLightboxIdx]) return;
+          const it = LookbookItems[currentLightboxIdx];
+          const a = document.createElement("a");
+          a.href = it.src;
+          const cleanSlug = (it.cap || "TheuLai_TacPham").replace(/[^a-zA-Z0-9_\u00C0-\u024F\u1EA0-\u1EF9]/g, "_").slice(0, 30);
+          a.download = `TheuLai_${cleanSlug}_${Date.now()}.jpg`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          showEditorToast("💾 Đã tải ảnh toàn cảnh về máy!");
+        };
+      }
+
+      const btnEdit = $("#btnLightboxEdit");
+      if (btnEdit) {
+        btnEdit.onclick = () => {
+          if (currentLightboxIdx === null || !LookbookItems[currentLightboxIdx]) return;
+          const idx = currentLightboxIdx;
+          const it = LookbookItems[idx];
+          closeLookbookLightbox();
+          if (it.outfitState && it.src && it.src.includes("assets/models/")) {
+            showEditorToast("⏳ Đang chuẩn bị toàn cảnh để chỉnh sửa...");
+            generateOutfitSceneSnapshot(it.outfitState, (fullDataUrl) => {
+              it.src = fullDataUrl;
+              saveLookbook();
+              openLookbookEditor(fullDataUrl, it.cap, idx);
+            });
+          } else {
+            openLookbookEditor(it.src, it.cap, idx);
+          }
+        };
+      }
+
+      const btnExport = $("#btnLightboxExport");
+      if (btnExport) {
+        btnExport.onclick = () => {
+          if (currentLightboxIdx === null || !LookbookItems[currentLightboxIdx]) return;
+          const it = LookbookItems[currentLightboxIdx];
+          closeLookbookLightbox();
+          openLookbookGenerator(it);
+        };
+      }
+    }
 
     function renderLookbookGallery(filter = currentWardrobeFilter) {
       const gal = $("#lookbookGallery");
@@ -6438,7 +7522,10 @@
         const tagLabel = item.outfitState ? "✦ Tạo mẫu" : "📷 Ảnh chụp";
         return `
         <div class="gallery-item stitched-card">
-          <img src="${item.src}" alt="${item.cap}">
+          <div class="gallery-item-media" data-preview="${origIdx}" title="Nhấp để xem toàn cảnh tác phẩm">
+            <img src="${item.src}" alt="${item.cap}" loading="lazy">
+            <div class="gallery-item-zoom-badge">🔍 Xem toàn cảnh</div>
+          </div>
           <div class="gallery-item-desc">
             <div class="gallery-item-title" title="${item.cap}">${item.cap}</div>
             <div class="gallery-item-footer">
@@ -6457,8 +7544,19 @@
       `;
       }).join('');
 
+      gal.querySelectorAll("[data-preview]").forEach(mediaWrap => {
+        mediaWrap.onclick = function () {
+          const idx = parseInt(this.dataset.preview, 10);
+          const targetItem = LookbookItems[idx];
+          if (targetItem) {
+            openLookbookLightbox(targetItem, idx);
+          }
+        };
+      });
+
       gal.querySelectorAll("[data-export]").forEach(btn => {
-        btn.onclick = function () {
+        btn.onclick = function (e) {
+          e.stopPropagation();
           const idx = parseInt(this.dataset.export, 10);
           const targetItem = LookbookItems[idx];
           if (targetItem) {
@@ -6468,17 +7566,28 @@
       });
 
       gal.querySelectorAll("[data-edit]").forEach(btn => {
-        btn.onclick = function () {
+        btn.onclick = function (e) {
+          e.stopPropagation();
           const idx = parseInt(this.dataset.edit, 10);
           const targetItem = LookbookItems[idx];
           if (targetItem) {
-            openLookbookEditor(targetItem.src, targetItem.cap, idx);
+            if (targetItem.outfitState && targetItem.src && targetItem.src.includes("assets/models/")) {
+              showEditorToast("⏳ Đang chuẩn bị toàn cảnh để chỉnh sửa...");
+              generateOutfitSceneSnapshot(targetItem.outfitState, (fullDataUrl) => {
+                targetItem.src = fullDataUrl;
+                saveLookbook();
+                openLookbookEditor(fullDataUrl, targetItem.cap, idx);
+              });
+            } else {
+              openLookbookEditor(targetItem.src, targetItem.cap, idx);
+            }
           }
         };
       });
 
       gal.querySelectorAll("[data-del]").forEach(btn => {
-        btn.onclick = function () {
+        btn.onclick = function (e) {
+          e.stopPropagation();
           const idx = parseInt(this.dataset.del, 10);
           LookbookItems.splice(idx, 1);
           saveLookbook();
@@ -7317,7 +8426,7 @@
         styleIdx: st.styleIdx !== undefined ? st.styleIdx : 0,
         sceneIdx: st.sceneIdx !== undefined ? st.sceneIdx : 0,
         theme: st.theme || st.cap || (isPhotoOnly ? "Kỷ Niệm Diện Cổ Phục" : ""),
-        imageSrc: st.imageSrc || st.src || null,
+        imageSrc: st.imageSrc || st.src || (st.garment ? `assets/models/${st.garment}_${st.colorIdx || 0}.png` : "assets/models/default.png"),
         isPhotoOnly: !!isPhotoOnly
       };
 
@@ -7405,11 +8514,11 @@
         if (currentGenTpl === "heritage") {
           btnHer.classList.add("active");
           btnPol.classList.remove("active");
-          if (specEl) specEl.textContent = "Thiệp Cổ Phong 600×800 · Giấy Dó Cổ Điển";
+          if (specEl) specEl.textContent = "Thiệp Cổ Phong 1200×1600 · Chuẩn 300 DPI";
         } else {
           btnPol.classList.add("active");
           btnHer.classList.remove("active");
-          if (specEl) specEl.textContent = "Polaroid 600×800 · Chuẩn 300 DPI";
+          if (specEl) specEl.textContent = "Polaroid 1200×1600 · Chuẩn 300 DPI";
         }
       }
 
@@ -7428,10 +8537,16 @@
       const canvas = $("#generatorCanvas");
       if (!canvas || !currentGenState) return;
       const ctx = canvas.getContext("2d");
+
+      // Độ phân giải cao 2x sắc nét chuẩn in ấn 300 DPI (1200 × 1600 px)
+      const DUMMY_SCALE = 2;
       const W = 600;
       const H = 800;
-      canvas.width = W;
-      canvas.height = H;
+      canvas.width = W * DUMMY_SCALE;
+      canvas.height = H * DUMMY_SCALE;
+      ctx.scale(DUMMY_SCALE, DUMMY_SCALE);
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
 
       const thisSeq = ++genDrawSeq;
 
@@ -7439,7 +8554,7 @@
       const g = GARMENTS[currentGenState.garment] || GARMENTS.aodai;
       const col = COLORS[currentGenState.colorIdx] || COLORS[0];
       const bot = MODERN_BOTTOMS[currentGenState.bottomIdx] || MODERN_BOTTOMS[0];
-      const sh = SHOES[currentGenState.shoeIdx] || SHOES[0];
+      const sh = (currentGenState.shoeIdx >= 0 && SHOES[currentGenState.shoeIdx]) ? SHOES[currentGenState.shoeIdx] : null;
       const sc = SCENES[currentGenState.sceneIdx] || SCENES[0];
 
       const fallbackTitle = hasGarment ? `${g.name} · ${sc.label}` : "Khoảnh Khắc Cổ Phục Đương Đại";
@@ -7447,7 +8562,74 @@
       const authorText = ($("#generatorAuthorInput") && $("#generatorAuthorInput").value.trim()) || "Người thương Cổ Phục";
 
       function renderVisual(x, y, w, h, isEllipse, onDone) {
-        if (currentGenState.imageSrc) {
+        const isOutfit = !currentGenState.isPhotoOnly;
+
+        if (isOutfit) {
+          // ══════════════════════════════════════════════════════════════
+          // FIT HOÀN TOÀN TỈ LỆ KHUNG ẢNH POLAROID / THIỆP CỔ PHONG
+          // Không crop mất đầu, không crop mất chân, hiển thị trọn vẹn 100%
+          // ══════════════════════════════════════════════════════════════
+          const cIdx = (currentGenState.colorIdx >= 0 && currentGenState.colorIdx <= 5) ? currentGenState.colorIdx : 0;
+          const modelImgSrc = hasGarment ? `assets/models/${currentGenState.garment}_${cIdx}.png` : "assets/models/default.png";
+
+          const img = new Image();
+          img.onload = () => {
+            if (thisSeq !== genDrawSeq) return;
+
+            // Tính scale để model fit trọn vẹn từ đỉnh đầu đến gót chân trong khung (chừa khoảng thở sang trọng)
+            const paddingV = isEllipse ? 44 : 26;
+            const availH = h - paddingV * 2;
+            const scale = availH / 1352;
+            const dw = 404 * scale;
+            const dh = 1352 * scale;
+            const dx = x + (w - dw) / 2;
+            const dy = y + paddingV + (availH - dh) / 2 + (isEllipse ? 6 : 4);
+
+            // Bóng tiếp xúc mặt đất dưới chân model
+            ctx.save();
+            const shadowY = dy + dh - 4;
+            const shadowRx = dw * 0.52;
+            const shadowRy = isEllipse ? 6 : 7;
+            const shadowGrad = ctx.createRadialGradient(x + w / 2, shadowY, 2, x + w / 2, shadowY, shadowRx);
+            shadowGrad.addColorStop(0, "rgba(43, 23, 14, 0.45)");
+            shadowGrad.addColorStop(0.5, "rgba(43, 23, 14, 0.15)");
+            shadowGrad.addColorStop(1, "transparent");
+            ctx.fillStyle = shadowGrad;
+            ctx.beginPath();
+            ctx.ellipse(x + w / 2, shadowY, shadowRx, shadowRy, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+
+            // Vẽ Model với lớp viền trắng mỏng tôn dáng
+            ctx.save();
+            ctx.filter = "drop-shadow(1.5px 0 0 rgba(255, 255, 255, 0.95)) drop-shadow(-1.5px 0 0 rgba(255, 255, 255, 0.95)) drop-shadow(0 1.5px 0 rgba(255, 255, 255, 0.95)) drop-shadow(0 -1.5px 0 rgba(255, 255, 255, 0.95)) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35))";
+            ctx.drawImage(img, dx, dy, dw, dh);
+            ctx.restore();
+
+            // Vẽ lớp SVG Overlay phụ kiện & giày guốc
+            const overlaySvgStr = renderAccessoriesOverlaySvg(currentGenState);
+            if (overlaySvgStr) {
+              const fullOverlaySvg = `<svg viewBox="0 0 404 1352" xmlns="http://www.w3.org/2000/svg">${overlaySvgStr}</svg>`;
+              drawSvgOnCanvas(ctx, fullOverlaySvg, dx, dy, dw, dh, () => {
+                onDone();
+              });
+            } else {
+              onDone();
+            }
+          };
+
+          img.onerror = () => {
+            if (thisSeq !== genDrawSeq) return;
+            const charSvg = generateCharacterSVG(currentGenState);
+            drawSvgOnCanvas(ctx, charSvg, x + 30, y + 20, w - 60, h - 30, onDone);
+          };
+
+          img.src = modelImgSrc;
+
+        } else if (currentGenState.imageSrc) {
+          // ══════════════════════════════════════════════════════════════
+          // ẢNH CHỤP THỰC TẾ NGƯỜI DÙNG TẢI LÊN (PHOTO-ONLY)
+          // ══════════════════════════════════════════════════════════════
           const img = new Image();
           img.onload = () => {
             if (thisSeq !== genDrawSeq) return;
@@ -7473,24 +8655,11 @@
           };
           img.onerror = () => {
             if (thisSeq !== genDrawSeq) return;
-            const charSvg = generateCharacterSVG(currentGenState);
-            drawSvgOnCanvas(ctx, charSvg, x + 20, y + 10, w - 40, h - 20, onDone);
+            onDone();
           };
           img.src = currentGenState.imageSrc;
         } else {
-          const charSvg = generateCharacterSVG(currentGenState);
-          if (isEllipse) {
-            ctx.save();
-            ctx.beginPath();
-            ctx.ellipse(x + w / 2, y + h / 2, w / 2, h / 2, 0, 0, Math.PI * 2);
-            ctx.clip();
-            drawSvgOnCanvas(ctx, charSvg, x + 20, y + 10, w - 40, h - 20, () => {
-              ctx.restore();
-              onDone();
-            });
-          } else {
-            drawSvgOnCanvas(ctx, charSvg, x + 45, y + 20, w - 90, h - 25, onDone);
-          }
+          onDone();
         }
       }
 
@@ -7512,15 +8681,24 @@
         ctx.restore();
 
         const photoX = 55, photoY = 52, photoW = 490, photoH = 500;
-        const grad = ctx.createLinearGradient(photoX, photoY, photoX, photoY + photoH);
-        grad.addColorStop(0, "#faf6ef");
-        grad.addColorStop(1, "#e8dfcc");
+
+        // Nền studio nghệ thuật cao cấp cho thẻ Polaroid (theo yêu cầu người dùng: nền studio sạch đẹp, không cần background phố xá rườm rà)
+        const grad = ctx.createRadialGradient(
+          photoX + photoW / 2, photoY + photoH * 0.42, 40,
+          photoX + photoW / 2, photoY + photoH * 0.5, photoW * 0.68
+        );
+        grad.addColorStop(0, "#fdfbf7");
+        grad.addColorStop(0.55, "#f6efe2");
+        grad.addColorStop(1, "#e6dcce");
         ctx.fillStyle = grad;
         ctx.fillRect(photoX, photoY, photoW, photoH);
 
-        ctx.strokeStyle = "rgba(43, 23, 14, 0.08)";
+        // Khung viền chỉ vàng tế vi sang trọng
+        ctx.strokeStyle = "rgba(198, 162, 107, 0.45)";
         ctx.lineWidth = 1;
         ctx.strokeRect(photoX, photoY, photoW, photoH);
+        ctx.strokeStyle = "rgba(198, 162, 107, 0.25)";
+        ctx.strokeRect(photoX + 6, photoY + 6, photoW - 12, photoH - 12);
 
         renderVisual(photoX, photoY, photoW, photoH, false, () => {
           if (thisSeq !== genDrawSeq) return;
@@ -7538,7 +8716,8 @@
           ctx.fillStyle = "#5c4d44";
           ctx.font = "500 12px 'Be Vietnam Pro', sans-serif";
           if (hasGarment) {
-            ctx.fillText(`✦ ${g.name} (${col.name})  ·  ${bot.name}  ·  ${sh.name}`, 58, 652);
+            const shoeText = sh ? sh.name : "Chân trần";
+            ctx.fillText(`✦ ${g.name} (${col.name})  ·  ${bot.name}  ·  ${shoeText}`, 58, 652);
           } else {
             ctx.fillText("✦ Diện Việt phục đương đại  ·  Bản thêu đời thường", 58, 652);
           }
@@ -7597,7 +8776,14 @@
         ctx.fillText("✦  THÊU LẠI  ·  DI SẢN Y PHỤC ĐƯƠNG ĐẠI  ✦", W / 2, 60);
 
         const frameX = 135, frameY = 85, frameW = 330, frameH = 430;
-        ctx.fillStyle = "#efe6d4";
+        const ovalGrad = ctx.createRadialGradient(
+          W / 2, frameY + frameH * 0.45, 30,
+          W / 2, frameY + frameH * 0.5, frameW * 0.65
+        );
+        ovalGrad.addColorStop(0, "#fefbf6");
+        ovalGrad.addColorStop(0.65, "#f2e8d5");
+        ovalGrad.addColorStop(1, "#ded0b7");
+        ctx.fillStyle = ovalGrad;
         ctx.beginPath();
         ctx.ellipse(W / 2, frameY + frameH / 2, frameW / 2, frameH / 2, 0, 0, Math.PI * 2);
         ctx.fill();
@@ -7622,8 +8808,9 @@
           ctx.fillStyle = "#2b170e";
           ctx.font = "500 12.5px 'Be Vietnam Pro', sans-serif";
           if (hasGarment) {
+            const shoeText = sh ? sh.name : "Chân trần";
             ctx.fillText(`Áo ngoài: ${g.name} (${col.name})  ·  Thân dưới: ${bot.name}`, W / 2, 630);
-            ctx.fillText(`Giày guốc: ${sh.name}  ·  Bối cảnh: ${sc.label}`, W / 2, 654);
+            ctx.fillText(`Giày guốc: ${shoeText}  ·  Bối cảnh: ${sc.label}`, W / 2, 654);
           } else {
             ctx.fillText("Khoảnh khắc diện Việt phục thực tế đời thường", W / 2, 630);
             ctx.fillText(`Lưu giữ bởi: ${authorText}  ·  Thêu Lại Studio`, W / 2, 654);
@@ -8213,6 +9400,47 @@
     }
 
     // ══════════════════════════════════════════════════════════════
+    // ĐÈN SPOTLIGHT SÂN KHẤU CHUYỂN ĐỘNG THEO CHUỘT CHO MODEL
+    // ══════════════════════════════════════════════════════════════
+    function initStageInteractiveLight() {
+      const stage = $("#stageViewport");
+      const spotlight = $("#stageDynamicSpotlight");
+      if (!stage) return;
+
+      stage.addEventListener("mousemove", (e) => {
+        const rect = stage.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const spotX = (x / rect.width) * 100;
+        const spotY = (y / rect.height) * 100;
+        if (spotlight) {
+          spotlight.style.background = `radial-gradient(circle 280px at ${spotX}% ${spotY}%, rgba(255, 235, 190, 0.26) 0%, rgba(212, 143, 34, 0.1) 40%, transparent 75%)`;
+          spotlight.style.opacity = '1';
+        }
+      });
+
+      stage.addEventListener("mouseleave", () => {
+        if (spotlight) {
+          spotlight.style.opacity = '0';
+        }
+      });
+    }
+
+    function preloadModelImages() {
+      const paths = ['assets/models/default.png'];
+      const garments = ['aodai', 'tuthan', 'nguthan', 'baba'];
+      for (const g of garments) {
+        for (let i = 0; i <= 5; i++) {
+          paths.push(`assets/models/${g}_${i}.png`);
+        }
+      }
+      paths.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+    }
+
+    // ══════════════════════════════════════════════════════════════
     // KHỞI CHẠY ỨNG DỤNG (INITIALIZATION)
     // ══════════════════════════════════════════════════════════════
     document.addEventListener("DOMContentLoaded", () => {
@@ -8226,6 +9454,8 @@
       renderLearnIllustrations();
       initSidebar();
       initGarmentAnatomy();
+      initStageInteractiveLight();
+      preloadModelImages();
 
       $$(".step-tab").forEach(tab => {
         tab.onclick = function () {
@@ -8258,13 +9488,27 @@
       document.addEventListener("click", (e) => {
         createSilkSparkle(e.clientX, e.clientY);
 
+        // Nút đặt lại Model ban đầu
+        if (e.target.closest("#btnResetGarment")) {
+          AppState.garment = null;
+          renderPhaseControls();
+          updateStage(true);
+          analyzeOutfit();
+          return;
+        }
+
         const tileBtn = e.target.closest("[data-type]");
         if (tileBtn) {
           const type = tileBtn.dataset.type;
           const val = tileBtn.dataset.val;
 
           if (type === "garment") {
-            AppState.garment = val;
+            // Nhấp lại Cổ phục đang chọn sẽ bỏ chọn (trở về model ban đầu)
+            if (AppState.garment === val) {
+              AppState.garment = null;
+            } else {
+              AppState.garment = val;
+            }
           } else if (type === "scene") {
             AppState.sceneIdx = parseInt(val, 10);
           } else if (type === "event") {
@@ -8274,7 +9518,13 @@
           } else if (type === "bottom") {
             AppState.bottomIdx = parseInt(val, 10);
           } else if (type === "shoe") {
-            AppState.shoeIdx = parseInt(val, 10);
+            const sVal = parseInt(val, 10);
+            // Nhấp lại giày đang chọn sẽ bỏ chọn -> chân trần mộc mạc
+            if (AppState.shoeIdx === sVal) {
+              AppState.shoeIdx = -1;
+            } else {
+              AppState.shoeIdx = sVal;
+            }
           } else if (type === "acc") {
             if (tileBtn.dataset.locked === "1") {
               showEditorToast("🔒 Phụ kiện đang bị khóa! Hãy hoàn thành Mini-Quiz văn hóa để mở khóa.");
@@ -8296,6 +9546,8 @@
       });
 
       renderLookbookGallery();
+      initLookbookLightbox();
+      upgradeLegacyLookbookItems();
       initLookbookEditor();
       initLookbookTabs();
       initWardrobeToolbar();
